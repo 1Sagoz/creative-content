@@ -1,0 +1,584 @@
+<title>כלים דיגיטליים למנחים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: a night-time studio. Neon storyboard strip of numbered scene frames, then glowing tool "slates" that tilt in 3D, grouped by production stage. Single deliberate dark look. */
+:root{
+  color-scheme:light;
+  --bg:#F2F8FF;
+  --bg2:#E3F0FF;
+  --glass:rgba(255,255,255,.82);
+  --ink:#14213D;
+  --muted:#4A5873;
+  --line:rgba(40,90,170,.16);
+  --s1:#2F6BFF; /* כתיבה */
+  --s2:#D92F66; /* צילום */
+  --s3:#0B8F7D; /* מסך */
+  --s4:#B86A00; /* עריכה */
+  --s5:#7440D8; /* פרסום */
+  --display:"Secular One","Assistant","Arial Hebrew",Arial,sans-serif;
+  --body:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#FFFFFF}
+body{background:linear-gradient(180deg,#FFFFFF 0%,#EEF6FF 45%,#E3F0FF 100%);min-height:100vh;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+
+/* Ambient aurora + star grid */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sky::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(140,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,160,255,.07) 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:drift 22s ease-in-out infinite alternate}
+.b1{width:520px;height:520px;background:var(--s5);top:-180px;inset-inline-end:-120px}
+.b2{width:420px;height:420px;background:var(--s1);top:140px;inset-inline-start:-160px;animation-delay:-7s}
+.b3{width:360px;height:360px;background:var(--s2);top:780px;inset-inline-end:10%;opacity:.25;animation-delay:-12s}
+@keyframes drift{to{transform:translate3d(40px,60px,0) scale(1.12)}}
+
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:36px 64px;display:grid;gap:52px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.2}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--s3);text-shadow:0 0 12px rgba(46,230,200,.6)}
+
+/* Hero */
+.hero{display:grid;gap:16px}
+.hero h1{font-size:clamp(36px,6.4vw,62px);text-shadow:0 0 30px rgba(91,140,255,.35)}
+.hero h1 span{background:linear-gradient(90deg,var(--s2),var(--s5),var(--s1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(255,92,138,.45))}
+.lead{color:var(--muted);max-width:62ch;font-size:19px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;width:max-content;max-width:100%;
+  color:var(--muted);border:1.5px dashed rgba(160,175,255,.35);background:rgba(14,19,48,.6)}
+.play{width:0;height:0;border-block:7px solid transparent;border-inline-end:11px solid var(--s2);filter:drop-shadow(0 0 6px var(--s2))}
+
+/* Section heads */
+.head{display:grid;gap:6px}
+.head h2{font-size:clamp(26px,4vw,36px)}
+.head p{color:var(--muted);max-width:62ch}
+
+/* Glass panels */
+.panel{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:24px}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.did{display:grid;gap:12px}
+.did ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.did li::marker{color:var(--s3);font-weight:700}
+.task{display:grid;gap:10px;border-color:rgba(255,185,56,.55);box-shadow:0 0 0 1px rgba(255,185,56,.25),0 0 40px -8px rgba(255,185,56,.45)}
+.task .eyebrow{color:var(--s4);text-shadow:0 0 12px rgba(255,185,56,.6)}
+.task .q{font-weight:600;border-top:1px solid rgba(255,185,56,.35);padding-top:10px}
+
+/* Storyboard */
+.board{overflow-x:auto;padding:18px 4px 14px;perspective:1400px}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:16px;min-width:1080px;transform-style:preserve-3d}
+.frame{display:grid;gap:8px;transition:transform .35s ease}
+.frame:hover{transform:translateZ(40px) rotateX(6deg)}
+.screen{aspect-ratio:16/10;border-radius:12px;border:1.5px solid var(--c);background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 28%,transparent),rgba(10,14,36,.9) 70%);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--c) 70%,transparent),inset 0 0 22px -8px var(--c)}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.screen .sc{position:absolute;top:8px;inset-inline-start:10px;font-size:12px;font-weight:700;color:var(--c);letter-spacing:.08em;text-shadow:0 0 8px var(--c)}
+.screen svg{width:44%;height:auto;color:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.frame h3{font-size:18px}
+.frame p{font-size:15px;color:var(--muted);line-height:1.45}
+.frame .tool{font-weight:700;color:var(--c);font-size:15px;text-shadow:0 0 10px color-mix(in srgb,var(--c) 60%,transparent)}
+.c1{--c:var(--s1)} .c2{--c:var(--s2)} .c3{--c:var(--s3)} .c4{--c:var(--s4)} .c5{--c:var(--s5)}
+
+/* Tool cards with 3D tilt */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;perspective:1000px}
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;
+  position:relative;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;grid-template-rows:auto 1fr auto;gap:12px;
+  text-decoration:none;color:inherit;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;min-width:0}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s ease;
+  background:radial-gradient(260px circle at var(--mx) var(--my),color-mix(in srgb,var(--c) 30%,transparent),transparent 60%)}
+a.card:hover,a.card:focus-visible,.card.live{border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 18px 50px -18px var(--c),0 0 0 1px color-mix(in srgb,var(--c) 40%,transparent)}
+.card:hover::before{opacity:1}
+a.card:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.top{display:flex;align-items:center;gap:14px;min-width:0;transform:translateZ(30px)}
+.mono{position:relative;flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  font-family:var(--display);font-size:20px;color:#fff;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 85%,#fff 15%),color-mix(in srgb,var(--c) 70%,#000 30%));
+  box-shadow:0 0 22px -4px var(--c),inset 0 1px 0 rgba(255,255,255,.35)}
+.mono img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:8px}
+.name{display:grid;min-width:0}
+.name strong{font-size:19px;line-height:1.2}
+.name span{font-size:14px;color:var(--muted);direction:ltr;text-align:start;overflow-wrap:anywhere}
+.use{font-size:16px;transform:translateZ(16px)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;transform:translateZ(20px)}
+.pill{font-size:13px;font-weight:700;padding:3px 11px;border-radius:999px}
+.pill.free{background:rgba(46,230,200,.14);color:var(--s3);box-shadow:inset 0 0 0 1px rgba(46,230,200,.45)}
+.pill.limit{border:1px solid var(--line);color:var(--muted);font-weight:600}
+.kbd{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:6px;padding:1px 6px;direction:ltr;display:inline-block}
+
+/* Featured: our own teleprompter */
+.feature{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;text-decoration:none;color:inherit;
+  border:1.5px solid color-mix(in srgb,var(--s3) 65%,transparent);
+  box-shadow:0 0 0 1px rgba(46,230,200,.2),0 0 50px -10px rgba(46,230,200,.55);
+  background:linear-gradient(135deg,rgba(46,230,200,.12),rgba(91,140,255,.08) 60%,var(--glass));transition:transform .2s ease,box-shadow .2s ease}
+.feature:hover,.feature:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(46,230,200,.35),0 0 70px -8px rgba(46,230,200,.7)}
+.feature:focus-visible{outline:2px solid var(--s3);outline-offset:3px}
+.feature-text{display:grid;gap:8px;flex:1 1 320px;min-width:0}
+.feature-text .pill{justify-self:start}
+.feature h3{font-size:clamp(22px,3vw,28px)}
+.feature .hint{color:var(--muted);font-size:15px}
+.go{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;
+  background:var(--s3);color:#05221D;box-shadow:0 0 24px -4px var(--s3)}
+@media (prefers-reduced-motion:reduce){.feature{transition:none}}
+
+/* Phone + teleprompter */
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.opt{display:grid;gap:10px;align-content:start;border-top:3px solid var(--c);box-shadow:0 -6px 30px -16px var(--c)}
+.opt h3{font-size:21px}
+.opt .tag{justify-self:start}
+.opt ol{margin:0;padding-inline-start:20px;display:grid;gap:4px;font-size:16px}
+.opt ol li::marker{color:var(--c);font-weight:700}
+.minis{display:flex;flex-wrap:wrap;gap:8px}
+.minis a{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:14px}
+.minis img{width:26px;height:26px;border-radius:7px;background:#fff;object-fit:contain;padding:2px}
+.pill.paid{background:rgba(255,92,138,.14);color:var(--s2);box-shadow:inset 0 0 0 1px rgba(255,92,138,.45)}
+.tips{display:grid;gap:6px;font-size:16px;color:var(--muted)}
+.tips strong{color:var(--ink)}
+
+/* Gear */
+.gear{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.item{display:grid;gap:10px;align-content:start}
+.sketch{height:170px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line);
+  background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c) 22%,transparent),transparent 65%),
+             linear-gradient(rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px,
+             linear-gradient(90deg,rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px}
+.sketch svg{height:140px;width:auto;color:var(--c);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--c) 70%,transparent))}
+.item h3{font-size:20px}
+.price{font-family:var(--display);font-size:22px;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent);font-variant-numeric:tabular-nums}
+.item p{font-size:16px;color:var(--muted)}
+.total{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+.total strong{font-family:var(--display);font-size:24px;color:var(--s3);text-shadow:0 0 14px rgba(46,230,200,.5)}
+
+.pay{display:grid;gap:8px;border-style:dashed}
+.pay h3{font-size:22px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:4px}
+
+/* Light theme overrides */
+.sky::before{background-image:linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px)}
+.blob{opacity:.16}
+.b3{opacity:.1}
+.eyebrow,.task .eyebrow,.hero h1,.frame .tool,.screen .sc{text-shadow:none}
+.hero h1 span{filter:none}
+.btn{background:rgba(255,255,255,.75)}
+.screen{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 16%,transparent),#F8FBFF 70%);box-shadow:0 6px 20px -10px color-mix(in srgb,var(--c) 60%,transparent)}
+.screen::after{background:none}
+.screen svg{filter:none}
+.panel,.card{box-shadow:0 10px 30px -18px rgba(20,60,140,.35)}
+.task{box-shadow:0 0 0 1px rgba(184,106,0,.25),0 14px 36px -18px rgba(184,106,0,.45)}
+.feature{background:linear-gradient(135deg,rgba(11,143,125,.10),rgba(47,107,255,.06) 60%,#FFFFFF);box-shadow:0 14px 40px -18px rgba(11,143,125,.55)}
+.go{color:#FFFFFF}
+.kbd{background:rgba(20,33,61,.06)}
+.date{font-weight:700;color:var(--ink);font-size:17px}
+.tocnav{display:grid;gap:12px;max-width:760px}
+.tocnav h2{font-size:24px}
+.tocnav ol{margin:0;padding:0;list-style:none;counter-reset:t;display:flex;flex-wrap:wrap;gap:10px}
+.tocnav li{counter-increment:t}
+.tocnav a{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;text-decoration:none;font-weight:700;font-size:16px;color:var(--ink)}
+.tocnav a::before{content:counter(t);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--s1);color:#fff;font-size:13px}
+.tocnav a:hover{border-color:var(--s1)}
+html{scroll-behavior:smooth}
+.toc{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:17px}
+.toc li::marker{color:var(--s1);font-weight:700}
+.toc a{color:var(--s1);font-weight:700;text-decoration:none}
+.hello{display:grid;gap:10px;max-width:760px;border-inline-start:4px solid var(--s1);font-size:18px}
+.credit{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:16px}
+.credit img{width:28px;height:28px;border-radius:8px;background:#fff;object-fit:contain;flex:none}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.step{display:grid;gap:12px;align-content:start;border-top:3px solid var(--c)}
+.sketch2{border-radius:12px;border:1px solid var(--line);background:#FFFFFF;padding:10px;color:var(--c)}
+.sketch2 svg{width:100%;height:auto;display:block;direction:ltr}
+.step h3{font-size:21px;display:flex;align-items:center;gap:10px}
+.step .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px;flex:none}
+.step ol{margin:0;padding-inline-start:20px;display:grid;gap:6px;font-size:16px}
+.step ol li::marker{color:var(--c);font-weight:700}
+.ui{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(20,33,61,.06);border:1px solid var(--line);border-radius:6px;padding:0 6px;direction:ltr;display:inline-block;white-space:nowrap}
+.prep{border-color:rgba(116,64,216,.45);box-shadow:0 0 0 1px rgba(116,64,216,.2),0 14px 36px -18px rgba(116,64,216,.45)}
+.prep .eyebrow{color:var(--s5)}
+.prep .q{border-top-color:rgba(116,64,216,.35)}
+.task a{color:var(--s5);font-weight:700}
+.tp-logo-img{flex:none;width:88px;height:88px;border-radius:20px;box-shadow:0 10px 24px -10px rgba(20,33,61,.6)}
+.tp-logo{flex:none;width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#0B8F7D,#2F6BFF);box-shadow:0 10px 24px -10px rgba(11,143,125,.7)}
+.tp-logo svg{width:44px;height:44px}
+.made{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--ink)}
+.made img{width:22px;height:22px;border-radius:6px;background:#fff;object-fit:contain}
+
+.vids{display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+@media (max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{margin:0;display:grid;gap:12px;border-top:3px solid var(--c)}
+.vid video{width:100%;border-radius:12px;background:#0B1020;aspect-ratio:16/9}
+.vid video.tall{aspect-ratio:9/16;max-height:560px;justify-self:center}
+.vid figcaption{display:grid;gap:4px}
+.vid figcaption strong{font-size:19px}
+.vid figcaption span{color:var(--muted);font-size:15px}
+.vid figcaption a{color:var(--c);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){
+  .blob{animation:none}
+  .card,.frame{transition:none}
+  .frame:hover{transform:none}
+}
+</style>
+
+<div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<div class="wrap" dir="rtl" lang="he">
+
+  <header class="hero">
+    <div class="eyebrow">Creative Content · שיעור 5</div>
+    <h1>כלים דיגיטליים בסיסיים <span>למנחים ומנחים ראשיים</span></h1>
+    <p class="date">תאריך: 8 באוקטובר 2026</p>
+    <p class="lead">הכלים שבהם השתמשנו בשיעור, והכלים מהמעבדה. לכולם יש גרסה חינמית שמספיקה כדי להתחיל היום.</p>
+
+    <div class="panel hello">
+      <p><strong>היי לכולם,</strong></p>
+      <p>צירפתי לכם כאן את כל מה שצריך מהמפגש, במקום אחד, כדי שתוכלו לחזור אליו בכל זמן ולעבוד ממנו בקצב שלכם.</p>
+      <p><strong>מה תמצאו במסמך:</strong></p>
+      <ol class="toc">
+        <li><a href="#tasks">שתי משימות</a>: משימת התנסות לשבוע הקרוב (העלאת סרטון ראשון ליוטיוב והוספת כתוביות), ומשימת הכנה למפגשים הבאים (טקסט אישי ועוצמתי שאיתו נעבוד)</li>
+        <li><a href="#videos">הסרטונים מהשיעור</a>, בגרסה רוחבית ובגרסה אנכית לרשתות</li>
+        <li><a href="#youtube">יוטיוב צעד אחר צעד</a>: איך מעלים סרטון, איך מוסיפים ומתקנים כתוביות בעברית, ואיך מתמצאים ב-YouTube Studio, עם שרטוט פשוט לכל שלב</li>
+        <li><a href="#sb">תהליך יצירת סרטון</a>: הצעה לשבעה שלבים, מהרעיון ועד השיתוף</li>
+        <li><a href="#ph">הטלפרומפטר של הקורס</a>, ודרכים פשוטות לצלם את עצמכם בטלפון</li>
+        <li><a href="#t1">ארגז הכלים</a>: כל הכלים שבהם השתמשנו, וכלים ליצירה מהמעבדה, כולם בגרסה חינמית</li>
+      </ol>
+      <p>שאלות? אני כאן. בהצלחה,<br>שגיא</p>
+    </div>
+    <nav class="panel tocnav" aria-label="תוכן עניינים">
+      <h2>תוכן עניינים</h2>
+      <ol>
+        <li><a href="#tasks">משימות</a></li>
+        <li><a href="#videos">הסרטונים מהשיעור</a></li>
+        <li><a href="#youtube">יוטיוב, צעד אחר צעד</a></li>
+        <li><a href="#sb">תהליך יצירת סרטון (הצעה)</a></li>
+        <li><a href="#ph">הטלפרומפטר וצילום בטלפון</a></li>
+        <li><a href="#t1">הכלים שבהם צולם השיעור</a></li>
+        <li><a href="#t2">מהמעבדה: יוצרים בחינם</a></li>
+      </ol>
+    </nav>
+    <a class="btn" href="#videos" style="color:var(--ink);border-style:solid"><span class="play" aria-hidden="true"></span>לצפייה בסרטונים מהשיעור</a>
+  </header>
+
+  <section id="tasks" class="two" aria-label="משימות">
+    <div class="panel task">
+      <div class="eyebrow">משימת התנסות</div>
+      <h2 style="font-size:26px">העלאת סרטון והוספת כתוביות</h2>
+      <p>פתחו ערוץ. העלו סרטון של חצי דקה, אפילו מהטלפון, כלא רשום. היכנסו לכתוביות.</p>
+      <p class="q">המכונה כתבה את הכתוביות, אבל השם שלכם על הסרטון. של מי הטעות?</p>
+    </div>
+    <div class="panel task prep">
+      <div class="eyebrow">משימה: הכנה למפגשים הבאים</div>
+      <h2 style="font-size:26px">טקסט אישי ועוצמתי</h2>
+      <p>בחרו או כתבו טקסט אישי ועוצמתי. אפשר גם לבחור הרצאה משמעותית מהרצאות <a href="https://www.ted.com/talks" target="_blank" rel="noopener">TED</a>.</p>
+      <p>הכי חשוב: שיהיה אותנטי. משהו שאתם באמת מאמינים בו.</p>
+      <p class="q">איתו נעבוד במפגשים הבאים, ונהפוך אותו לתוכן דיגיטלי שלכם, כמנחים ומנחים ראשיים.</p>
+    </div>
+  </section>
+
+  <section id="videos" style="display:grid;gap:18px" aria-labelledby="vd">
+    <div class="head">
+      <h2 id="vd">הסרטונים מהשיעור</h2>
+      <p>לוחצים על הסרטון כדי לנגן. אפשר גם לפתוח אותו בחלון נפרד ולהוריד.</p>
+    </div>
+    <div class="vids">
+      <figure class="panel vid c2">
+        <video controls preload="none" playsinline poster="videos/nizkor.jpg" src="videos/nizkor.mp4"></video>
+        <figcaption><strong>נזכור · 7 באוקטובר</strong><span>סרטון טקסט ותמונה, בלי קריינות · 3:34</span><a href="videos/nizkor.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
+      </figure>
+      <figure class="panel vid c5">
+        <video class="tall" controls preload="none" playsinline poster="videos/nizkor-9x16.jpg" src="videos/nizkor-9x16.mp4"></video>
+        <figcaption><strong>נזכור · גרסה אנכית</strong><span>אותו סרטון בפורמט 9:16, לרילס, שורטס וסטוריז · 1:55</span><a href="videos/nizkor-9x16.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
+      </figure>
+    </div>
+    <p class="panel credit"><img src="icons/claude.png" alt="">הסרטון נוצר כולו עם Claude, בשיתוף כלים דיגיטליים נוספים שחוברו ל-Claude וקיבלו ממנו הנחיות (פרומפטים).</p>
+  </section>
+
+  <section id="youtube" style="display:grid;gap:18px" aria-labelledby="yt">
+    <div class="head">
+      <h2 id="yt">יוטיוב, צעד אחר צעד</h2>
+      <p>שלושה דברים בסיסיים: להעלות סרטון, להוסיף כתוביות, ולהכיר את YouTube Studio. שמות הכפתורים כתובים כמו שהם מופיעים על המסך.</p>
+    </div>
+    <div class="steps">
+      <div class="panel step c2">
+        <div class="sketch2" aria-hidden="true">
+          <svg viewBox="0 0 240 150" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="224" height="134" rx="10"/><line x1="8" y1="30" x2="232" y2="30"/>
+            <rect x="176" y="14" width="48" height="11" rx="5.5" stroke-width="2"/><text x="200" y="23" font-size="8" text-anchor="middle" fill="currentColor" stroke="none" font-family="Assistant,Arial">+ Create</text>
+            <rect x="60" y="48" width="120" height="80" rx="8" stroke-dasharray="5 5"/>
+            <path d="M120 98V66M108 78l12-12 12 12"/>
+            <text x="120" y="118" font-size="9" text-anchor="middle" fill="currentColor" stroke="none" font-family="Assistant,Arial">Upload videos</text>
+          </svg>
+        </div>
+        <h3><span class="n">1</span>מעלים סרטון</h3>
+        <ol>
+          <li>נכנסים ל-<b>studio.youtube.com</b>. אין עדיין ערוץ? בתמונת הפרופיל ביוטיוב בוחרים <span class="ui">Create a channel</span></li>
+          <li>למעלה לוחצים <span class="ui">Create</span>, ואז <span class="ui">Upload videos</span>, וגוררים את הקובץ</li>
+          <li>כותבים כותרת ותיאור קצר</li>
+          <li>ב-<span class="ui">Audience</span> עונים אם הסרטון מיועד לילדים</li>
+          <li><span class="ui">Show more</span>, ובשפת הסרטון בוחרים עברית. בלי זה אין כתוביות בעברית</li>
+          <li>ב-<span class="ui">Visibility</span> בוחרים <span class="ui">Unlisted</span> ולוחצים <span class="ui">Save</span></li>
+        </ol>
+      </div>
+      <div class="panel step c3">
+        <div class="sketch2" aria-hidden="true">
+          <svg viewBox="0 0 240 150" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="224" height="134" rx="10"/>
+            <rect x="122" y="20" width="98" height="64" rx="6"/><path d="M164 42l14 10-14 10z"/>
+            <line x1="134" y1="74" x2="208" y2="74" stroke-width="5"/>
+            <line x1="20" y1="24" x2="104" y2="24"/><line x1="20" y1="44" x2="96" y2="44"/><line x1="20" y1="64" x2="104" y2="64"/><line x1="20" y1="84" x2="88" y2="84"/><line x1="20" y1="104" x2="100" y2="104"/>
+            <path d="M92 58l14-14 6 6-14 14h-6z" stroke-width="2"/>
+            <rect x="150" y="106" width="70" height="22" rx="11"/><text x="185" y="120.5" font-size="9" text-anchor="middle" fill="currentColor" stroke="none" font-family="Assistant,Arial">Publish</text>
+          </svg>
+        </div>
+        <h3><span class="n">2</span>מוסיפים כתוביות</h3>
+        <ol>
+          <li>מחכים שהכתוביות האוטומטיות יהיו מוכנות. לפעמים דקות, לפעמים יותר</li>
+          <li>ב-Studio, בתפריט שבצד, בוחרים <span class="ui">Subtitles</span>, ואז את הסרטון</li>
+          <li>ליד הכתוביות בעברית לוחצים <span class="ui">Duplicate and edit</span></li>
+          <li>קוראים לצד הסרטון, ומתקנים שורה אחרי שורה. שימו לב במיוחד לשמות, למילים באנגלית ולקטעים מהירים</li>
+          <li>לוחצים <span class="ui">Publish</span>. הגרסה המתוקנת היא זו שהצופים יראו</li>
+        </ol>
+      </div>
+      <div class="panel step c5">
+        <div class="sketch2" aria-hidden="true">
+          <svg viewBox="0 0 240 150" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="224" height="134" rx="10"/><line x1="170" y1="8" x2="170" y2="142"/>
+            <g font-size="8.5" fill="currentColor" stroke="none" font-family="Assistant,Arial" text-anchor="end"><text x="224" y="32">Dashboard</text><text x="224" y="52">Content</text><text x="224" y="72">Analytics</text><text x="224" y="92">Subtitles</text><text x="224" y="112">Customization</text></g>
+            <path d="M24 118V94M48 118V76M72 118V86M96 118V60M120 118V70M144 118V48" stroke-width="7"/>
+            <line x1="18" y1="124" x2="156" y2="124"/>
+          </svg>
+        </div>
+        <h3><span class="n">3</span>מכירים את YouTube Studio</h3>
+        <ol>
+          <li><span class="ui">Dashboard</span>: מה קורה בערוץ, במבט אחד</li>
+          <li><span class="ui">Content</span>: כל הסרטונים. מכאן משנים כותרת ונראות</li>
+          <li><span class="ui">Analytics</span>: צפיות, זמן צפייה ממוצע, ומאיפה הגיעו הצופים</li>
+          <li><span class="ui">Customization</span>: תמונת פרופיל, באנר ותיאור הערוץ</li>
+          <li>בטלפון: אפליקציה נפרדת בשם YouTube Studio, לבדיקה מהירה ולמענה לתגובות</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+
+  <section style="display:grid;gap:14px" aria-labelledby="sb">
+    <div class="head">
+      <h2 id="sb">תהליך יצירת סרטון (הצעה)</h2>
+      <p>שבעה שלבים, מהרעיון ועד השיתוף. כל שלב, והכלי שאפשר לעשות איתו אותו.</p>
+    </div>
+    <div class="board" tabindex="0" aria-label="סטוריבורד, גלילה לצדדים">
+      <div class="strip">
+        <div class="frame c1">
+          <div class="screen"><span class="sc">SC 01</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M24 6a12 12 0 0 0-7 21.7V33h14v-5.3A12 12 0 0 0 24 6Z"/><path d="M19 39h10M21 43h6"/></svg></div>
+          <h3>רעיון</h3><p>מה הצופה ידע לעשות בסוף? משפט אחד.</p>
+        </div>
+        <div class="frame c1">
+          <div class="screen"><span class="sc">SC 02</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 15h16M16 22h16M16 29h10"/></svg></div>
+          <h3>תסריט</h3><p class="tool">Claude</p><p>שורה אחרי שורה, מוכן לקריאה בקול.</p>
+        </div>
+        <div class="frame c2">
+          <div class="screen"><span class="sc">SC 03</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="6" y="12" width="26" height="24" rx="3"/><path d="M32 21l10-6v18l-10-6"/></svg></div>
+          <h3>צילום עם טלפרומפטר</h3><p class="tool">Google Vids</p><p>הטקסט רץ מול העיניים, ואני מסתכל למצלמה.</p>
+        </div>
+        <div class="frame c3">
+          <div class="screen"><span class="sc">SC 04</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="38" height="25" rx="3"/><path d="M17 41h14M24 34v7"/><circle cx="24" cy="21.5" r="4" fill="currentColor"/></svg></div>
+          <h3>הקלטות מסך</h3><p class="tool">מובנה במחשב ובטלפון</p><p>כל לחיצה, לאט, עם עצירה לפניה.</p>
+        </div>
+        <div class="frame c4">
+          <div class="screen"><span class="sc">SC 05</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="13" cy="14" r="5"/><circle cx="13" cy="34" r="5"/><path d="M17 17l25 15M17 31l25-15"/></svg></div>
+          <h3>עריכה</h3><p class="tool">CapCut</p><p>חיתוך, זום על הכפתור, מוזיקה שקטה.</p>
+        </div>
+        <div class="frame c5">
+          <div class="screen"><span class="sc">SC 06</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M13 30h10M27 30h8M13 24h22"/></svg></div>
+          <h3>העלאה וכתוביות</h3><p class="tool">YouTube Studio</p><p>כתוביות אוטומטיות בעברית, ואז תיקון.</p>
+        </div>
+        <div class="frame c5">
+          <div class="screen"><span class="sc">SC 07</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 25l9 9 19-20"/></svg></div>
+          <h3>בדיקה ושיתוף</h3><p>קודם "לא רשום", בודקים, ורק אז ציבורי.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:18px" aria-labelledby="ph">
+    <div class="head">
+      <h2 id="ph">לצלם את עצמכם בטלפון, עם טלפרומפטר</h2>
+      <p>המצלמה הקדמית מצלמת אתכם, והטקסט רץ על אותו מסך, ממש מתחת לעדשה. הדרך הכי פשוטה היא הטלפרומפטר של הקורס. מתחתיו, עוד שתי דרכים חינמיות.</p>
+    </div>
+    <a class="panel feature c3" href="https://roaring-pithivier-96dda3.netlify.app" target="_blank" rel="noopener">
+      <img class="tp-logo-img" src="icons/teleprompter-cc.png" alt="הלוגו של הטלפרומפטר">
+      <div class="feature-text">
+        <span class="pill free">חינם · בלי הרשמה · בלי סימן מים</span>
+        <h3>הטלפרומפטר של Creative Content</h3>
+        <p class="made"><img src="icons/claude.png" alt="">אפליקציה שיצרתי במיוחד לקורס, עם Claude</p>
+        <p>נפתח מהטלפון ומהמחשב. מדביקים את הטקסט, והוא רץ מעל המצלמה הקדמית בזמן שאתם מצלמים. כל פסקה היא טייק נפרד. הסרטון נשמר אצלכם בטלפון ולא עולה לשום מקום.</p>
+        <p class="hint">טיפ: בטלפון, הוסיפו את הקישור למסך הבית, ואז הוא נפתח כמו אפליקציה.</p>
+      </div>
+      <span class="go">לפתיחת הטלפרומפטר<span aria-hidden="true">←</span></span>
+    </a>
+    <div class="opts">
+      <div class="panel opt c4">
+        <span class="pill free tag">חינם · מומלץ</span>
+        <h3>CapCut בטלפון</h3>
+        <div class="minis"><a href="https://www.capcut.com" target="_blank" rel="noopener"><img src="icons/capcut.png" alt="" onerror="this.remove()">CapCut</a></div>
+        <ol>
+          <li>מורידים את CapCut ופותחים את המצלמה שבתוך האפליקציה</li>
+          <li>עוברים למצלמה הקדמית ומסובבים את הטלפון לרוחב</li>
+          <li>פותחים את הטלפרומפטר ומדביקים את הטקסט</li>
+          <li>מגדילים את הגופן ומאטים את מהירות הגלילה</li>
+          <li>לוחצים הקלטה, ומסתכלים לעדשה, לא לטקסט</li>
+        </ol>
+        <p class="tips">הגלילה במהירות קבועה. שמות הכפתורים משתנים מגרסה לגרסה.</p>
+      </div>
+      <div class="panel opt c1">
+        <span class="pill free tag">חינם · שני מכשירים</span>
+        <h3>טלפון מצלם, מחשב מקריא</h3>
+        <ol>
+          <li>במחשב פותחים את CuePrompter ומדביקים את הטקסט</li>
+          <li>מצמידים את הטלפון לחלק העליון של מסך המחשב</li>
+          <li>מצלמים במצלמה האחורית, האיכותית יותר</li>
+          <li>מצמצמים את חלון הטקסט כך שיהיה ממש מתחת לטלפון</li>
+        </ol>
+        <p class="tips">האיכות הכי טובה בחינם, וגם בלי סימן מים.</p>
+      </div>
+    </div>
+    <div class="panel tips">
+      <p><strong>הטלפון בגובה העיניים</strong>, לא מלמטה. פריים מהחזה ומעלה.</p>
+      <p><strong>אור מהחלון מולכם</strong> או מהצד, לא מאחוריכם.</p>
+      <p><strong>שורה אחת בכל טייק</strong>. קוראים, מרימים את המבט לעדשה, ואומרים במילים שלכם.</p>
+      <p><strong>לרוחב</strong> לסרטון יוטיוב, <strong>לאורך</strong> לרילס ושורטס.</p>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:18px" aria-labelledby="t1">
+    <div class="head">
+      <h2 id="t1">הכלים שבהם צולם השיעור</h2>
+      <p>לחצו על כרטיס כדי לפתוח את הכלי.</p>
+    </div>
+    <div class="grid">
+      <a class="card c1" href="https://claude.ai" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cl<img src="icons/claude.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Claude</strong><span>claude.ai</span></div></div>
+        <p class="use">כתיבת רעיונות ותסריטים, שורה אחרי שורה, ובניית אנימציות וכותרות קצרות.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלת שימוש יומית</span></div>
+      </a>
+      <a class="card c2" href="https://vids.google.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Vi<img src="icons/vids.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Google Vids</strong><span>vids.google.com</span></div></div>
+        <p class="use">טלפרומפטר מובנה והקלטה של מצלמה, או מצלמה ומסך יחד. למדנו אותו בשיעור 2.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">גלילה לפי הקול: אנגלית בלבד</span></div>
+      </a>
+      <a class="card c4" href="https://www.capcut.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cc<img src="icons/capcut.png" alt="" onerror="this.remove()"></div><div class="name"><strong>CapCut</strong><span>capcut.com</span></div></div>
+        <p class="use">עריכת וידאו במחשב ובטלפון. באפליקציה בטלפון יש גם טלפרומפטר מעל המצלמה הקדמית.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">חלק מהכלים בתשלום</span></div>
+      </a>
+      <a class="card c2" href="https://cueprompter.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cu<img src="icons/cueprompter.png" alt="" onerror="this.remove()"></div><div class="name"><strong>CuePrompter</strong><span>cueprompter.com</span></div></div>
+        <p class="use">טלפרומפטר בדפדפן, בלי הרשמה. מדביקים טקסט, והוא גולל. מצלמים במכשיר אחר.</p>
+        <div class="meta"><span class="pill free">חינם</span></div>
+      </a>
+      <div class="card c3">
+        <div class="top"><div class="mono" aria-hidden="true">●</div><div class="name"><strong>הקלטת מסך</strong><span>built-in</span></div></div>
+        <p class="use">במק: <span class="kbd">Cmd+Shift+5</span>. בווינדוס: <span class="kbd">Win+Alt+R</span>. בטלפון: הקלטת המסך מהתפריט המהיר.</p>
+        <div class="meta"><span class="pill free">מובנה במכשיר</span></div>
+      </div>
+      <a class="card c5" href="https://studio.youtube.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">YT<img src="icons/youtube-studio.png" alt="" onerror="this.remove()"></div><div class="name"><strong>YouTube Studio</strong><span>studio.youtube.com</span></div></div>
+        <p class="use">העלאה, כתוביות בעברית, ונתונים. בטלפון: אפליקציה נפרדת בשם YouTube Studio.</p>
+        <div class="meta"><span class="pill free">חינם</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:18px" aria-labelledby="t2">
+    <div class="head">
+      <h2 id="t2">מהמעבדה: יוצרים בחינם</h2>
+      <p>טעימות. כל כלי נותן כמה יצירות חינם ביום או בחודש, מספיק כדי לנסות ולהבין מה אפשר.</p>
+    </div>
+    <div class="grid">
+      <a class="card c1" href="https://gemini.google.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">NB<img src="icons/gemini.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Nano Banana</strong><span>gemini.google.com</span></div></div>
+        <p class="use">תמונה מטקסט, להכניס את עצמכם לתמונה ולהחליף רקע, להחליף אובייקט, אותה דמות מכמה זוויות.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">כ-20 תמונות ביום</span></div>
+      </a>
+      <a class="card c2" href="https://klingai.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Kl<img src="icons/kling.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Kling</strong><span>klingai.com</span></div></div>
+        <p class="use">מתמונה לווידאו: מעלים תמונה, מתארים תנועה, ומקבלים קליפ קצר.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div>
+      </a>
+      <a class="card c4" href="https://dreamina.capcut.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Sd<img src="icons/dreamina.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Seedance (Dreamina)</strong><span>dreamina.capcut.com</span></div></div>
+        <p class="use">וידאו מטקסט או מתמונה. חלופה ל-Kling, זמין גם בתוך CapCut.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div>
+      </a>
+      <a class="card c5" href="https://www.heygen.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Hg<img src="icons/heygen.png" alt="" onerror="this.remove()"></div><div class="name"><strong>HeyGen</strong><span>heygen.com</span></div></div>
+        <p class="use">אווטאר מדבר: דמות שמקריאה טקסט שכתבתם. רק עם הפנים והקול שלכם.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">3 סרטונים בחודש · סימן מים</span></div>
+      </a>
+      <a class="card c3" href="https://chatgpt.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">GP<img src="icons/chatgpt.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ChatGPT</strong><span>chatgpt.com</span></div></div>
+        <p class="use">יצירת תמונות. נסו לבקש תמונה עם כיתוב בעברית, והשוו ל-Nano Banana.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלה יומית</span></div>
+      </a>
+      <a class="card c1" href="https://claude.ai" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cl<img src="icons/claude.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Claude</strong><span>claude.ai</span></div></div>
+        <p class="use">כותרת מונפשת או אינפוגרפיקה להסבר. התוצאה רצה בדפדפן; מקליטים את המסך כדי להכניס לסרטון.</p>
+        <div class="meta"><span class="pill free">חינם</span></div>
+      </a>
+      <a class="card c2" href="https://suno.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Su<img src="icons/suno.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Suno</strong><span>suno.com</span></div></div>
+        <p class="use">שיר או מוזיקת רקע מתיאור במילים. כותבים סגנון ונושא, ומקבלים שיר שלם עם שירה.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · לשימוש לא מסחרי</span></div>
+      </a>
+      <a class="card c4" href="https://elevenlabs.io" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">11<img src="icons/elevenlabs.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ElevenLabs</strong><span>elevenlabs.io</span></div></div>
+        <p class="use">הקראה בקול טבעי, דיבוב לשפות אחרות ואפקטים קוליים. מדביקים טקסט ומקבלים קובץ שמע.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מכסה חודשית</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>המגבלות החינמיות נבדקו באוקטובר 2026. כלים חינמיים משנים את התנאים לעתים קרובות, אז בדקו בהרשמה.</p>
+    <p>Creative Content · שגיא אשכנזי</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  document.querySelectorAll('.card').forEach(function(card){
+    if (fine) {
+      card.addEventListener('pointermove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((x - .5) * 14).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('pointerleave', function(){
+        card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg');
+      });
+    }
+  });
+  if (!fine && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ en.target.classList.toggle('live', en.intersectionRatio > .85); });
+    }, {threshold:[0,.85,1]});
+    document.querySelectorAll('.card').forEach(function(c){ io.observe(c); });
+  }
+})();
+</script>
