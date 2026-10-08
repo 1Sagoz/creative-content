@@ -172,6 +172,10 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
 .feature{background:linear-gradient(135deg,rgba(11,143,125,.10),rgba(47,107,255,.06) 60%,#FFFFFF);box-shadow:0 14px 40px -18px rgba(11,143,125,.55)}
 .go{color:#FFFFFF}
 .kbd{background:rgba(20,33,61,.06)}
+.opts.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.opts.four{grid-template-columns:1fr}}
+.what{display:grid;gap:10px;border-inline-start:4px solid var(--s3)}
+.what h3{font-size:22px}
 .date{font-weight:700;color:var(--ink);font-size:17px}
 .tocnav{display:grid;gap:12px;max-width:760px}
 .tocnav h2{font-size:24px}
@@ -242,7 +246,7 @@ html{scroll-behavior:smooth}
         <li><a href="#videos">הסרטונים מהשיעור</a>, בגרסה רוחבית ובגרסה אנכית לרשתות</li>
         <li><a href="#youtube">יוטיוב צעד אחר צעד</a>: איך מעלים סרטון, איך מוסיפים ומתקנים כתוביות בעברית, ואיך מתמצאים ב-YouTube Studio, עם שרטוט פשוט לכל שלב</li>
         <li><a href="#sb">תהליך יצירת סרטון</a>: הצעה לשבעה שלבים, מהרעיון ועד השיתוף</li>
-        <li><a href="#ph">הטלפרומפטר של הקורס</a>, ודרכים פשוטות לצלם את עצמכם בטלפון</li>
+        <li><a href="#ph">אפשרויות צילום</a>: מצלמת מחשב, טלפון על חצובה או ביד, ומה זה טלפרומפטר ולמה הוא עוזר</li>
         <li><a href="#t1">ארגז הכלים</a>: כל הכלים שבהם השתמשנו, וכלים ליצירה מהמעבדה, כולם בגרסה חינמית</li>
       </ol>
       <p>שאלות? אני כאן. בהצלחה,<br>שגיא</p>
@@ -254,8 +258,8 @@ html{scroll-behavior:smooth}
         <li><a href="#videos">הסרטונים מהשיעור</a></li>
         <li><a href="#youtube">יוטיוב, צעד אחר צעד</a></li>
         <li><a href="#sb">תהליך יצירת סרטון (הצעה)</a></li>
-        <li><a href="#ph">הטלפרומפטר וצילום בטלפון</a></li>
-        <li><a href="#t1">הכלים שבהם צולם השיעור</a></li>
+        <li><a href="#ph">אפשרויות צילום וטלפרומפטר</a></li>
+        <li><a href="#t1">כלים דיגיטליים בסיסיים</a></li>
         <li><a href="#t2">מהמעבדה: יוצרים בחינם</a></li>
       </ol>
     </nav>
@@ -412,8 +416,13 @@ html{scroll-behavior:smooth}
 
   <section style="display:grid;gap:18px" aria-labelledby="ph">
     <div class="head">
-      <h2 id="ph">לצלם את עצמכם בטלפון, עם טלפרומפטר</h2>
-      <p>המצלמה הקדמית מצלמת אתכם, והטקסט רץ על אותו מסך, ממש מתחת לעדשה. הדרך הכי פשוטה היא הטלפרומפטר של הקורס. מתחתיו, עוד שתי דרכים חינמיות.</p>
+      <h2 id="ph">אפשרויות צילום, וטלפרומפטר</h2>
+      <p>איך מצלמים את עצמכם מדברים, ואיך קוראים טקסט בלי לאבד קשר עין עם המצלמה.</p>
+    </div>
+    <div class="panel what">
+      <h3>מה זה טלפרומפטר, ולמה צריך אותו?</h3>
+      <p>טלפרומפטר הוא מסך שהטקסט שלכם גולל עליו לאט, ממש ליד עדשת המצלמה. ככה אתם קוראים את מה שכתבתם, אבל נראים כאילו אתם מדברים ישר אל הצופה.</p>
+      <p>בלי טלפרומפטר, העיניים בורחות לדף או למסך בצד, והצופה מרגיש את זה מיד. עם טלפרומפטר, נשאר קשר עין, ומספיקים פחות טייקים כדי לומר את המסר בדיוק כמו שתכננתם.</p>
     </div>
     <a class="panel feature c3" href="https://roaring-pithivier-96dda3.netlify.app" target="_blank" rel="noopener">
       <img class="tp-logo-img" src="icons/teleprompter-cc.png" alt="הלוגו של הטלפרומפטר">
@@ -426,43 +435,49 @@ html{scroll-behavior:smooth}
       </div>
       <span class="go">לפתיחת הטלפרומפטר<span aria-hidden="true">←</span></span>
     </a>
-    <div class="opts">
-      <div class="panel opt c4">
-        <span class="pill free tag">חינם · מומלץ</span>
-        <h3>CapCut בטלפון</h3>
-        <div class="minis"><a href="https://www.capcut.com" target="_blank" rel="noopener"><img src="icons/capcut.png" alt="" onerror="this.remove()">CapCut</a></div>
-        <ol>
-          <li>מורידים את CapCut ופותחים את המצלמה שבתוך האפליקציה</li>
-          <li>עוברים למצלמה הקדמית ומסובבים את הטלפון לרוחב</li>
-          <li>פותחים את הטלפרומפטר ומדביקים את הטקסט</li>
-          <li>מגדילים את הגופן ומאטים את מהירות הגלילה</li>
-          <li>לוחצים הקלטה, ומסתכלים לעדשה, לא לטקסט</li>
-        </ol>
-        <p class="tips">הגלילה במהירות קבועה. שמות הכפתורים משתנים מגרסה לגרסה.</p>
-      </div>
+    <div class="opts four">
       <div class="panel opt c1">
-        <span class="pill free tag">חינם · שני מכשירים</span>
-        <h3>טלפון מצלם, מחשב מקריא</h3>
+        <span class="pill free tag">הכי פשוט</span>
+        <h3>מצלמת המחשב</h3>
         <ol>
-          <li>במחשב פותחים את CuePrompter ומדביקים את הטקסט</li>
-          <li>מצמידים את הטלפון לחלק העליון של מסך המחשב</li>
-          <li>מצלמים במצלמה האחורית, האיכותית יותר</li>
-          <li>מצמצמים את חלון הטקסט כך שיהיה ממש מתחת לטלפון</li>
+          <li>יושבים מול המחשב, והמצלמה המובנית מצלמת אתכם</li>
+          <li>פותחים את הטלפרומפטר באותו מחשב ומדביקים את הטקסט</li>
+          <li>מקטינים את חלון הטקסט ומצמידים אותו לחלק העליון של המסך, קרוב למצלמה</li>
+          <li>מקליטים, ומסתכלים לעדשה</li>
         </ol>
-        <p class="tips">האיכות הכי טובה בחינם, וגם בלי סימן מים.</p>
       </div>
-    </div>
-    <div class="panel tips">
-      <p><strong>הטלפון בגובה העיניים</strong>, לא מלמטה. פריים מהחזה ומעלה.</p>
-      <p><strong>אור מהחלון מולכם</strong> או מהצד, לא מאחוריכם.</p>
-      <p><strong>שורה אחת בכל טייק</strong>. קוראים, מרימים את המבט לעדשה, ואומרים במילים שלכם.</p>
-      <p><strong>לרוחב</strong> לסרטון יוטיוב, <strong>לאורך</strong> לרילס ושורטס.</p>
+      <div class="panel opt c3">
+        <span class="pill free tag">יציב · ידיים חופשיות</span>
+        <h3>טלפון על חצובה</h3>
+        <ol>
+          <li>מעמידים את הטלפון על חצובה בגובה העיניים</li>
+          <li>מצלמים במצלמה הקדמית, עם הטלפרומפטר של הקורס על אותו מסך</li>
+          <li>או: מצלמים במצלמה האחורית, האיכותית יותר, והטקסט רץ על מחשב שמונח ממש מתחת לטלפון</li>
+        </ol>
+      </div>
+      <div class="panel opt c2">
+        <span class="pill free tag">הכי מהיר</span>
+        <h3>טלפון ביד</h3>
+        <ol>
+          <li>מחזיקים את הטלפון בשתי ידיים, קרוב לגוף, כדי שהתמונה לא תרעד</li>
+          <li>מצלמים במצלמה הקדמית, עם הטלפרומפטר על המסך</li>
+          <li>מתאים לסרטון קצר, לסטורי או לרילס</li>
+        </ol>
+      </div>
+      <div class="panel opt c4">
+        <span class="pill free tag">בלי אפליקציה</span>
+        <h3>מחשב או דף כתוב</h3>
+        <ol>
+          <li>אפשר פשוט להניח מחשב פתוח, או דף כתוב, ממש מתחת למצלמה</li>
+          <li>קוראים משפט, מרימים את המבט לעדשה, ואומרים אותו</li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <section style="display:grid;gap:18px" aria-labelledby="t1">
     <div class="head">
-      <h2 id="t1">הכלים שבהם צולם השיעור</h2>
+      <h2 id="t1">כלים דיגיטליים בסיסיים</h2>
       <p>לחצו על כרטיס כדי לפתוח את הכלי.</p>
     </div>
     <div class="grid">
