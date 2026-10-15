@@ -365,6 +365,43 @@ figure figcaption{font-size:15px;color:var(--muted)}
 .sl h4 span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px}
 .steps2{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:16px}
 .steps2 li::marker{color:var(--c);font-weight:700}
+.strip.nine{grid-template-columns:repeat(9,minmax(116px,1fr));min-width:1080px}
+.strip.nine .screen{aspect-ratio:16/8}
+.strip.nine .screen .sc{position:static;font-size:22px;font-family:var(--display)}
+.quote2{margin:0;border-inline-start:4px solid var(--s1);padding:6px 16px;display:grid;gap:6px}
+.quote2 p{font-family:var(--display);font-size:clamp(20px,2.6vw,24px);line-height:1.4}
+.quote2 cite{font-style:normal;color:var(--muted);font-size:15px}
+a.inl{color:var(--c);font-weight:700}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.compare{grid-template-columns:1fr}}
+.dir{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.dir img,.dir .noimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.dir .noimg{display:grid;place-items:center;text-align:center;padding:16px;background:linear-gradient(160deg,#1B2235,#3A2A2A);color:#C9C2B8;font-size:15px}
+.dir .db{padding:14px 16px;display:grid;gap:6px}
+.dir h4{margin:0;font-family:var(--display);font-weight:400;font-size:21px}
+.dir p{font-size:15px;color:var(--muted)}
+.dir .verdict{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.dir.chosen{border-color:var(--s4);box-shadow:inset 0 0 0 1px var(--s4)}
+.dir.chosen .verdict{color:var(--s4)}
+.ladder{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.ladder li{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.ladder li:last-child{border-bottom:0}
+@media (max-width:640px){.ladder li{grid-template-columns:1fr;gap:6px}}
+.ladder .who{font-size:13px;font-weight:700;color:var(--c);line-height:1.35}
+.ladder .who em{display:block;font-style:normal;font-weight:400;color:var(--muted)}
+.ladder .what{min-width:0;display:grid;gap:4px}
+.ladder .what b{font-family:var(--display);font-weight:400;font-size:18px}
+.ladder .what p{font-size:16px}
+.asis{font-size:15px;background:color-mix(in srgb,var(--c) 7%,#fff);border:1px solid var(--line);border-radius:8px;padding:9px 11px;white-space:pre-wrap;overflow-wrap:anywhere}
+.tallgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tallgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:640px){.tallgrid,.tallgrid.three{grid-template-columns:1fr 1fr}}
+.tallgrid figure{margin:0;display:grid;gap:6px;min-width:0}
+.tallgrid img,.tallgrid video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;display:block;background:#E6EADD}
+.pits2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.pits2{grid-template-columns:1fr}}
+.pits2 p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
+pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
 </style>
 
 <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
@@ -389,7 +426,7 @@ figure figcaption{font-size:15px;color:var(--muted)}
       <ol class="toc">
         <li><a href="#task">המשימה למפגש הבא</a>: להפוך את הטקסט שלכם לסרטון קצר, אותנטי ואישי</li>
         <li><a href="#text">בחירת טקסט</a>: מה הופך טקסט לחומר טוב לסרטון, ומה אפשר לעשות איתו</li>
-        <li><a href="#ex1">דוגמה 1, אפוק</a>: איך מאמר ארוך הופך לסרטון של שתי דקות, ו<a href="#epoch-process">התהליך בשישה שלבים</a></li>
+        <li><a href="#ex1">דוגמה 1, אפוק: מכתבה לרילס</a>: הסרטון, ו<a href="#epoch-process">התהליך בתשע תחנות</a>, מניתוח הכתבה ועד ההרכבה, עם תמונות, פרומפטים וכלים</li>
         <li><a href="#ex2">דוגמה 2, בראשית: מפסוק לסרט</a>: הסרט, ו<a href="#process">התהליך בשמונה שלבים</a>, מהרעיון, דרך בחירת הסגנון והסטוריבורד, ועד ההפצה, עם פרומפטים מוכנים להעתקה</li>
         <li><a href="#textonly">להמחיז בטקסט בלבד</a>: הדרך הכי ישירה להפוך טקסט אישי לסרטון</li>
       </ol>
@@ -441,19 +478,19 @@ figure figcaption{font-size:15px;color:var(--muted)}
   <section id="ex1" style="display:grid;gap:18px" aria-labelledby="e1">
     <div class="head">
       <div class="eyebrow">דוגמה 1</div>
-      <h2 id="e1">אפוק: ממאמר ארוך לשתי דקות</h2>
-      <p>הטקסט: כתבה שמעלה רעיון חדש, שאולי מקורה של מחלת האלצהיימר לאו דווקא במוח. המטרה: לקחת הרבה טקסט, ולהציג את הרעיון בשתי דקות, כך שהצופה ירצה לקרוא את הכתבה המלאה.</p>
+      <h2 id="e1">אפוק: מכתבה לרילס</h2>
+      <p>הטקסט: כתבה שמעלה רעיון חדש, שאולי מקורה של מחלת האלצהיימר לאו דווקא במוח. המטרה: לקחת הרבה טקסט, ולהציג את הרעיון בפחות משלוש דקות, כך שהצופה ירצה לקרוא את הכתבה המלאה.</p>
     </div>
     <div class="vids one">
       <figure class="panel vid c2">
         <div class="soon"><span class="play" aria-hidden="true"></span><span>הסרטון יעלה לכאן בקרוב</span></div>
-        <figcaption><strong>אפוק · פתיח לכתבה</strong><span>מאמר שהפך לסרטון של כשתי דקות</span></figcaption>
+        <figcaption><strong>אפוק · פתיח לכתבה</strong><span>כתבה מדעית שהפכה לרילס אנכי · 2:43</span></figcaption>
       </figure>
     </div>
     <div class="facts">
-      <div class="panel"><b>2:08</b><span>אורך הסרטון</span></div>
-      <div class="panel"><b>9:16</b><span>אנכי, לרשתות</span></div>
-      <div class="panel"><b>3</b><span>איורים מונפשים</span></div>
+      <div class="panel"><b>2:43</b><span>אורך הסרטון, אנכי</span></div>
+      <div class="panel"><b>21</b><span>שוטים</span></div>
+      <div class="panel"><b>13</b><span>פריימים גרפיים</span></div>
       <div class="panel"><b>8</b><span>שעות, מקצה לקצה</span></div>
     </div>
     <div class="panel did">
@@ -473,46 +510,173 @@ figure figcaption{font-size:15px;color:var(--muted)}
 
     <div class="head" id="epoch-process" style="margin-top:8px;scroll-margin-top:16px">
       <div class="eyebrow">מאחורי הקלעים</div>
-      <h2 style="font-size:clamp(26px,4vw,34px)">איך נבנה סרטון אפוק: שישה שלבים</h2>
-      <p>כתבה מדעית ארוכה הפכה לרילס של שתי דקות, בסגנון העריכה של המגזין. כך זה נבנה, ואיך אפשר לעשות את אותו הדבר בכלים חינמיים.</p>
+      <h2 style="font-size:clamp(26px,4vw,34px)">מכתבה לרילס: תשע תחנות</h2>
+      <p>איך כתבה מדעית על אלצהיימר הפכה לסרטון אנכי של שתי דקות וארבעים ושלוש שניות, ואיך אפשר לעשות את אותו הדבר על כל כתבה אחרת. לחצו על תחנה כדי לקפוץ אליה.</p>
     </div>
-    <div class="estages">
-      <article class="panel est c1">
-        <div class="sn"><span>1</span>ניתוח ותסריט</div>
-        <p>נתתי ל-Claude את הכתבה ואת אחד הסרטונים של המגזין כדוגמה לסגנון. ביקשתי ממנו לזקק את הרעיון המרכזי, ואז לכתוב תסריט של שתי דקות: פתיחה שתופסת, הרעיון החדש, הסבר אחד ברור, וסגירה שמזמינה לקרוא.</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>חלופה מלאה ל-Claude, גם ליצירת תמונות</span></li><li><div class="tn"><b><a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a></b><span class="pill free">חינם</span></div><span>מעלים את הכתבה ושואלים עליה שאלות</span></li></ul></div>
-      </article>
-      <article class="panel est c3">
-        <div class="sn"><span>2</span>צילום</div>
-        <p>צילמתי את עצמי מול מסך ירוק, עם התסריט רץ בטלפרומפטר. מסך ירוק מאפשר להחליף את הרקע אחר כך בכל רקע שרוצים. בלי מסך ירוק, קיר חלק ושקט עובד מצוין.</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="../teleprompter/" target="_blank" rel="noopener">הטלפרומפטר של הקורס</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>בטלפון או במחשב</span></li><li><div class="tn"><b><a href="https://cueprompter.com" target="_blank" rel="noopener">CuePrompter</a></b><span class="pill free">חינם</span></div><span>בדפדפן, בלי הרשמה</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut (טלפון)</a></b><span class="pill free">חינם</span></div><span>טלפרומפטר מעל המצלמה הקדמית</span></li></ul></div>
-      </article>
-      <article class="panel est c4">
-        <div class="sn"><span>3</span>ויזואלים בשתי ערכות</div>
-        <p>הגדרתי מראש שני סגנונות, וכל תמונה נוצרה באחד מהם: ערכה קולנועית לתמונות שנראות כמו צילום, וערכת איור עריכתי, אדום על ירוק-מרווה. שתי ערכות קבועות הן מה שגורם לכל התמונות להיראות כמו סרטון אחד.</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תמונות, עם תמונת ייחוס לשמירה על עקביות</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>יצירת תמונות, טוב גם עם כיתוב</span></li><li><div class="tn"><b><a href="https://higgsfield.ai" target="_blank" rel="noopener">Higgsfield</a></b><span class="pill paid">בתשלום</span><span class="pill limit">בו השתמשתי</span></div><span>כמה מודלים של תמונה ווידאו במקום אחד</span></li></ul></div>
-      </article>
-      <article class="panel est c5">
-        <div class="sn"><span>4</span>הנפשה</div>
-        <p>שלושה איורים בלבד קיבלו תנועה, ברגעים החשובים. כל השאר נשארו תמונות עם תנועת מצלמה עדינה. ככה חוסכים קרדיטים, והתנועה מורגשת דווקא כי היא נדירה.</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://klingai.com" target="_blank" rel="noopener">Kling</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים</span></div><span>מתמונה לווידאו, תנועה לפי תיאור</span></li><li><div class="tn"><b><a href="https://dreamina.capcut.com" target="_blank" rel="noopener">Dreamina (Seedance)</a></b><span class="pill free">חינם</span></div><span>של CapCut, וידאו מתמונה או מטקסט</span></li><li><div class="tn"><b><a href="https://runwayml.com" target="_blank" rel="noopener">Runway</a></b><span class="pill paid">בתשלום</span></div><span>כלי וידאו מקצועי, קרדיטים חינמיים לניסיון</span></li></ul></div>
-      </article>
-      <article class="panel est c2">
-        <div class="sn"><span>5</span>תמלול וכתוביות</div>
-        <p>תמללתי את מה שאמרתי בפועל, ומהתמלול נבנו הכתוביות. כאן הייתה הטעות המרכזית של כל הפרויקט, ראו למטה.</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>כתוביות אוטומטיות בעברית, ועריכה שלהן</span></li><li><div class="tn"><b><a href="https://turboscribe.ai" target="_blank" rel="noopener">TurboScribe</a></b><span class="pill free">חינם</span><span class="pill limit">מכסה יומית</span></div><span>תמלול מדויק, בו השתמשתי</span></li><li><div class="tn"><b><a href="https://studio.youtube.com" target="_blank" rel="noopener">YouTube Studio</a></b><span class="pill free">חינם</span></div><span>כתוביות אוטומטיות אחרי העלאה</span></li></ul></div>
-      </article>
-      <article class="panel est c1">
-        <div class="sn"><span>6</span>הרכבה</div>
-        <p>הסרת המסך הירוק, החלפת הרקע, הנחת התמונות לפי התסריט, צריבת הכתוביות, ובסוף הדמיה של טלפון שגולל בכתבה המקורית. אני הרכבתי עם Claude Code ו-CapCut. בחינם, הכול אפשרי ב-CapCut לבד, כולל הסרת מסך ירוק (<span class="ui">Chroma key</span>).</p>
-        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">כולל Chroma key</span></div><span>עריכה במחשב ובטלפון, כתוביות אוטומטיות</span></li><li><div class="tn"><b><a href="https://vids.google.com" target="_blank" rel="noopener">Google Vids</a></b><span class="pill free">חינם</span></div><span>עריכה פשוטה בדפדפן, למדנו בשיעור 2</span></li><li><div class="tn"><b><a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener">DaVinci Resolve</a></b><span class="pill free">חינם</span><span class="pill limit">למתקדמים</span></div><span>עריכה מקצועית, למתקדמים</span></li><li><div class="tn"><b><a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a></b><span class="pill paid">בתשלום</span></div><span>הרכבה אוטומטית, בו השתמשתי</span></li></ul></div>
-      </article>
-    </div>
+    <div class="board" tabindex="0" aria-label="תשע תחנות, גלילה לצדדים"><div class="strip nine"><a class="frame c1" href="#e1"><div class="screen"><span class="sc">01</span></div><h3>הכתבה</h3><p class="tool">המקור</p></a><a class="frame c3" href="#e2"><div class="screen"><span class="sc">02</span></div><h3>ניתוח דוגמה</h3><p class="tool">מבנה וקצב</p></a><a class="frame c1" href="#e3"><div class="screen"><span class="sc">03</span></div><h3>התסריט</h3><p class="tool">Claude</p></a><a class="frame c3" href="#e4"><div class="screen"><span class="sc">04</span></div><h3>צילום</h3><p class="tool">טלפרומפטר</p></a><a class="frame c4" href="#e5"><div class="screen"><span class="sc">05</span></div><h3>בחירת סגנון</h3><p class="tool">שתי חזיתות</p></a><a class="frame c4" href="#e6"><div class="screen"><span class="sc">06</span></div><h3>יצירת פריים</h3><p class="tool">מכתבה לפרומפט</p></a><a class="frame c5" href="#e7"><div class="screen"><span class="sc">07</span></div><h3>תנועה</h3><p class="tool">Kling</p></a><a class="frame c2" href="#e8"><div class="screen"><span class="sc">08</span></div><h3>הסרת המסך</h3><p class="tool">Chroma key</p></a><a class="frame c1" href="#e9"><div class="screen"><span class="sc">09</span></div><h3>הרכבה</h3><p class="tool">CapCut</p></a></div></div>
+    <article class="panel stg c1" id="e1">
+      <div class="sn"><span>1</span>הכתבה</div>
+      <h3>הכול מתחיל בטקסט המלא</h3>
+      <p class="lead2">הכתבה היא המקור, וגם הגבול. שום דבר בסרטון לא יכול להיות נכון יותר ממנה, ושום מספר לא יכול להופיע בו אם הוא לא מופיע בה.</p>
+      <blockquote class="quote2"><p>שנים חיפשנו את האלצהיימר במוח. כעת, חוקרים מציעים שאולי הוא מתחיל במקום אחר.</p><cite>מגזין אפוק · אפריל 2026</cite></blockquote>
+      <p>קודם משיגים את הכתבה המלאה, גם אם היא מאחורי חומת תשלום. אחרי הקריאה איתרנו גם את המחקר עצמו, והתברר שזה פרה-פרינט: מאמר שפורסם לפני ביקורת עמיתים. ההבדל הזה נכנס לתסריט כמשפט מפורש, כי בלעדיו הסרטון היה טוען טענה חזקה מדי.</p>
+      <p>לכתבה היו תמונות משלה, אבל הן נועדו להמחיש פסקה על מסך רחב, לא לשאת פריים אנכי של חמש שניות. מה שכן לקחנו מהן זה את ההיגיון: מה בכתבה צריך תמונה בכלל, ואיפה המילים מספיקות.</p>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>קריאה, ניתוח ואיתור המחקר המקורי</span></li><li><div class="tn"><b><a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a></b><span class="pill free">חינם</span></div><span>איתור מקורות סביב הנושא, עם קישורים</span></li><li><div class="tn"><b><a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a></b><span class="pill free">חינם</span></div><span>מעלים את הכתבה ושואלים עליה שאלות</span></li></ul></div>
+      <p class="tipbox"><b>כלל אצבע:</b> אם מספר לא מופיע בכתבה, הוא לא מופיע בסרטון. אינפוגרפיקה יוצרת רושם של ודאות, וקל מאוד להמציא בה דיוק שאינו קיים.</p>
+    </article>
+    <article class="panel stg c3" id="e2">
+      <div class="sn"><span>2</span>ניתוח דוגמה</div>
+      <h3>לקחת סרטון אחד ולחקור ממה הוא מורכב</h3>
+      <p class="lead2">בוחרים סרטון קיים של הערוץ, ומפרקים אותו עד הסוף, לפני שכותבים מילה אחת.</p>
+      <p>התמלול נספר והומר למספרים: כמה מילים, כמה שניות, מה קצב הדיבור. משם נחשף המבנה: איפה ההוק, איפה הגוף, איפה הסגירה, ואיפה בדיוק הסרטון עוצר ולא נותן את התשובה. אחרי הפירוק הזה אפשר לכתוב תסריט שמרגיש כמו שלהם, ולא כמו תסריט כללי טוב. <a class="inl" href="https://epoch.org.il/videos/" target="_blank" rel="noopener">סרטוני הערוץ</a></p>
+<div class="panel prompt c3"><div class="ph"><span class="n">1</span><h3>לפרק סרטון ייחוס</h3><button type="button" class="copy">העתקה</button></div><pre>זה התמלול של סרטון קיים: [הדביקו]
+נתח אותו כך:
+1. כמה מילים, כמה שניות, מה קצב הדיבור במילים לשנייה.
+2. מה המבנה: איפה ההוק, איפה הגוף, איפה הסגירה.
+3. מה נלקח מהכתבה כמעט מילה במילה ומה נוסח מחדש.
+4. איפה בדיוק הסרטון עוצר ולא נותן את התשובה.
+אל תמציא. אם משהו לא נגזר מהתמלול, תגיד שאתה לא יודע.</pre></div><div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>ניתוח מבנה וקצב מתוך תמלול</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>אותו ניתוח, כחלופה</span></li><li><div class="tn"><b><a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a></b><span class="pill free">חינם</span></div><span>בכל סרטון: "הצגת תמליל" בתיאור, ומעתיקים</span></li></ul></div>
+    </article>
+    <article class="panel stg c1" id="e3">
+      <div class="sn"><span>3</span>התסריט</div>
+      <h3>תסריט אחד, שלושה אורכים</h3>
+      <p class="lead2">כותבים במבנה מקונן: גרסה של שתי דקות וחצי, שבתוכה יושבת גרסה של תשעים שניות, ובתוכה גרסה של שישים.</p>
+      <p>כך מצלמים פעם אחת ויוצאים עם שלושה סרטונים. כל יחידה בתסריט מסומנת: אילו נשארות ב-60, אילו מצטרפות ב-90, ואילו מופיעות רק בגרסה המלאה.</p>
+<div class="panel prompt c1"><div class="ph"><span class="n">2</span><h3>מכתבה לתסריט</h3><button type="button" class="copy">העתקה</button></div><pre>זו הכתבה המלאה: [הדביקו]
+כתוב תסריט לסרטון אנכי באורך 2:30, בעברית, לדיבור מול מצלמה.
+חוקים:
+- ההוק הוא המשפט הפותח של הכתבה, כמעט מילה במילה.
+- עוצרים לפני התשובות. הסיום הוא שאלה שמחזירה לכתבה.
+- כל יחידה מסומנת A01, A02 וכו', עם סימון אם היא בגרסת 60, 90 או 150 שניות.
+- בלי מספרים שלא מופיעים בכתבה. בלי טענת סיבתיות אם המחקר לא טוען אותה.
+בסוף: טבלת שוטים עם זמן, מה נאמר, ומה רואים.</pre></div><div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט מקונן וטבלת שוטים</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>חלופה</span></li><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></b><span class="pill free">חינם</span></div><span>חלופה, עם חשבון Gmail</span></li></ul></div>
+      <p class="tipbox"><b>פח נפוץ:</b> תסריט שנכתב ב-3 מילים לשנייה נשמע נהדר על הנייר ובלתי אפשרי בפה. 2.2 עד 2.5 מילים לשנייה זה הטווח שבאמת מדברים בו.</p>
+    </article>
+    <article class="panel stg c3" id="e4">
+      <div class="sn"><span>4</span>צילום</div>
+      <h3>מצלמים עם טלפרומפטר, בטייק אחד</h3>
+      <p class="lead2">התסריט לא נלמד בעל פה. הוא נטען לטלפרומפטר ונקרא ישר אל העדשה, בטייק אחד רצוף.</p>
+      <p>בין משפט למשפט עוצרים שנייה. השתיקות האלה מאפשרות אחר כך לחתוך נקי בכל גבול, ולהפיק מאותו טייק גם את גרסת התשעים וגם את גרסת השישים.</p>
+      <div class="tbl" tabindex="0"><table>
+        <thead><tr><th>הגדרה בצילום</th><th>למה</th></tr></thead>
+        <tbody>
+          <tr><td>הטלפרומפטר ממש מתחת לעדשה או עליה</td><td>אחרת המבט בורח הצידה, וזה נראה כמו קריאה</td></tr>
+          <tr><td>קצב גלילה לפי הקצב שנמדד בתחנה 2</td><td>אם הטקסט רץ מהר מהדיבור, הקול נלחץ</td></tr>
+          <tr><td>שנייה של שתיקה בין משפטים</td><td>נקודות חיתוך נקיות</td></tr>
+          <tr><td>טייק אחד רצוף</td><td>תאורה, מרחק וטון נשארים זהים לאורך כל הסרטון</td></tr>
+          <tr><td>מסך ירוק פרוס מאחור</td><td>הרקע נקבע בעריכה, לא בצילום</td></tr>
+        </tbody>
+      </table></div>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="../teleprompter/" target="_blank" rel="noopener">הטלפרומפטר של הקורס</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>בדפדפן, בטלפון או במחשב, בלי התקנה</span></li><li><div class="tn"><b><a href="https://cueprompter.com" target="_blank" rel="noopener">CuePrompter</a></b><span class="pill free">חינם</span></div><span>טלפרומפטר בדפדפן, בלי הרשמה</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut (טלפון)</a></b><span class="pill free">חינם</span></div><span>טלפרומפטר מעל המצלמה הקדמית</span></li></ul></div>
+      <p class="tipbox"><b>מה שחוסך הכי הרבה זמן:</b> לצלם כל בלוק פעמיים ברצף. בעריכה בוחרים את הטוב יותר בלי לחזור לסט. זה עולה דקה בצילום, מול חצי שעה בשחזור.</p>
+    </article>
+    <article class="panel stg c4" id="e5">
+      <div class="sn"><span>5</span>בחירת סגנון</div>
+      <h3>שתי חזיתות, בחירה אחת</h3>
+      <p class="lead2">לפני שמייצרים פריים אחד, מייצרים שתי חבילות סגנון מלאות על אותן סצנות בדיוק, ומשווים.</p>
+      <div class="compare">
+        <div class="dir dropped">
+          <div class="noimg">חוקרת מול סריקות מוח · מסדרון חשוך עם נורת חירום</div>
+          <div class="db"><span class="verdict">נבחן ונדחה</span><h4>פוטוריאליסטי קולנועי</h4><p>יפה ומרשים, ונראה כמו צילום אמיתי. וזו בדיוק הבעיה בכתבה מדעית: צופה שרואה "חוקרת במעבדה" עלול לחשוב שזו החוקרת מהמחקר. ופריים ריאליסטי לא יכול להסביר מספר או מנגנון.</p></div>
+        </div>
+        <div class="dir chosen">
+          <img src="img/e/v10.jpg" alt="איור חוט אדום על רקע מרווה" loading="lazy">
+          <div class="db"><span class="verdict">נבחר</span><h4>איור חוט אדום</h4><p>אומר מיד שזו המחשה ולא תיעוד. מחזיק צבע אחד וחומר אחד לאורך כל הסרטון, מתאים לסגנון העריכתי של המגזין, ומאפשר לעבור בלי תפר בין איור חופשי לאינפוגרפיקה.</p></div>
+        </div>
+      </div>
+      <p><b>מה הכריע:</b> לא היופי, אלא שלוש שאלות. האם הסגנון עלול להטעות את הצופה לחשוב שהוא רואה תיעוד אמיתי? האם אפשר להסביר בו נתון? והאם הוא מחזיק לאורך שלוש-עשרה המחשות בלי להשתנות? הפוטוריאליסטי נכשל בשלושתן.</p>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">כ-20 תמונות ביום</span></div><span>שתי חבילות סגנון על אותן סצנות</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>יצירת תמונות, להשוואה</span></li><li><div class="tn"><b><a href="https://higgsfield.ai" target="_blank" rel="noopener">Higgsfield</a></b><span class="pill paid">בתשלום</span><span class="pill limit">בו השתמשתי</span></div><span>כמה מודלים במקום אחד</span></li></ul></div>
+      <p class="tipbox"><b>החוט האדום הוא העוגן:</b> פרט חוזר אחד, צבע, חומר או חפץ, עושה לעקביות יותר מכל תיאור סגנון מפורט. בסרטון הזה הוא גם המטאפורה: משהו שנפרם, שנמתח, שמחבר בין איברים.</p>
+    </article>
+    <article class="panel stg c4" id="e6">
+      <div class="sn"><span>6</span>יצירת פריים</div>
+      <h3>איך מגיעים מהכתבה לפרומפט</h3>
+      <p class="lead2">זה הלב של העבודה. פרומפט טוב הוא לא ניסוח מוצלח, אלא סוף של שרשרת בת ארבעה שלבים, שכל אחד מהם מצמצם.</p>
+      <ol class="ladder">
+        <li><div class="who">שלב 1 · מהכתבה<em>קריאה אנושית</em></div><div class="what"><b>המשפט שצריך תמונה</b><p>לא כל פסקה צריכה פריים. מחפשים את המקום שבו הכתבה עצמה נעזרת בדימוי כדי להסביר.</p><div class="asis">"מערכת החיסון אמורה לזהות פורץ. אבל אזעקה תקולה מופעלת גם כשחתול עובר."</div></div></li>
+        <li><div class="who">שלב 2 · לתסריט<em>Claude</em></div><div class="what"><b>השוט, הזמן והמשימה</b><p>המשפט הופך ליחידה עם מספר שוט וזמן. עכשיו ידוע כמה שניות הפריים חי על המסך, וזה קובע כמה מידע הוא יכול לשאת.</p><div class="asis">שוט 15 · 1:31–1:38 · 7 שניות
+המשימה: להמחיש אזעקה שמופעלת על גירוי לא מסוכן</div></div></li>
+        <li><div class="who">שלב 3 · לבריף<em>Claude</em></div><div class="what"><b>תיאור הסצנה בעברית</b><p>לפני הפרומפט באנגלית, כותבים בעברית מה בדיוק רואים. כאן מתגלות הבעיות: יותר מדי אלמנטים, או אלמנט שאי אפשר לצייר.</p><div class="asis">מסדרון בית. קופסת אזעקה על הקיר, קווי צליל יוצאים ממנה.
+חתול הולך על הרצפה מתחתיה. שום דבר מסוכן בפריים.
+אזור ריק בפינה השמאלית העליונה ובשליש התחתון.</div></div></li>
+        <li><div class="who">שלב 4 · לפרומפט<em>Claude ואז כלי התמונה</em></div><div class="what"><b>תרגום לאנגלית + משפט הסגנון</b><p>התיאור מתורגם לאנגלית, ואליו מודבק משפט הסגנון הקבוע, אותו משפט בדיוק בכל הפריימים.</p></div></li>
+      </ol>
+<div class="panel prompt c4"><div class="ph"><span class="n">3</span><h3>פרומפט הפריים (תיאור הסצנה + משפט הסגנון הקבוע)</h3><button type="button" class="copy">העתקה</button></div><pre dir="ltr">A house corridor. An alarm box on the wall with sound lines radiating from it. A cat walks calmly along the floor beneath it. Nothing dangerous in the frame.
 
+Editorial illustration, single continuous red embroidery thread forming the subject, on a flat sage-green paper background with visible paper grain. Limited palette: rust red and sage only. Clean empty space at the top-left corner and along the bottom third. Vertical 9:16. No text, no letters, no logos, no watermark.</pre></div>
+      <div class="tallgrid">
+        <figure><img src="img/e/v08.jpg" alt="איור חוט אדום: אזעקה על קיר וחתול מתחתיה" loading="lazy"><figcaption>האזעקה והחתול · הפריים מהפרומפט</figcaption></figure>
+        <figure><img src="img/e/f08.jpg" alt="אינפוגרפיקה: אזעקה תקינה מול אזעקה תקולה" loading="lazy"><figcaption>האזעקה התקולה · שוט 15</figcaption></figure>
+        <figure><img src="img/e/f10.jpg" alt="אינפוגרפיקה: פרצה במחסום הדם-מוח" loading="lazy"><figcaption>מחסום הדם-מוח · שוט 17</figcaption></figure>
+        <figure><img src="img/e/f11.jpg" alt="אינפוגרפיקה: ציר זמן לפני התסמינים" loading="lazy"><figcaption>החלון שלפני הנזק · שוט 19</figcaption></figure>
+      </div>
+      <p><b>שתי משפחות של פריימים.</b> האיורים החופשיים נוצרו בכלי תמונה מהפרומפט. אבל פריים שמסביר מספר, ציר זמן או מנגנון לא יכול להיווצר כך: מחולל תמונה לא יודע לכתוב עברית נכונה ולא מחויב לנתון. הפריימים האלה נבנו בנפרד, באותה פלטה ובאותו חומר, כך שהעין לא מרגישה שעברה בין שני עולמות.</p>
+      <div class="tbl" tabindex="0"><table>
+        <thead><tr><th>כלל בבנייה</th><th>למה</th></tr></thead>
+        <tbody>
+          <tr><td>הפינה השמאלית העליונה נשארת ריקה</td><td>שם יושב הלוגו לאורך כל הסרטון</td></tr>
+          <tr><td>השליש התחתון נשאר ריק</td><td>שם יושבות הכתוביות</td></tr>
+          <tr><td>פריים שמסביר תהליך נשמר בשכבות</td><td>כל שלב מופיע בדיוק כשהוא נאמר</td></tr>
+        </tbody>
+      </table></div>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>איורים חופשיים, עם תמונת ייחוס</span></li><li><div class="tn"><b><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">חלק מהתבניות בתשלום</span></div><span>אינפוגרפיקה עם טקסט עברי נכון</span></li><li><div class="tn"><b><a href="https://higgsfield.ai" target="_blank" rel="noopener">Higgsfield</a></b><span class="pill paid">בתשלום</span></div><span>איורים, בו השתמשתי</span></li><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill free">חינם</span></div><span>בריף, פרומפט, ובניית פריימים גרפיים</span></li></ul></div>
+      <p class="tipbox"><b>הסימן שהבריף לא מוכן:</b> אם התיאור בעברית צריך יותר משלושה משפטים, הפריים מנסה להגיד יותר מדי. מפצלים לשני פריימים, או מורידים אלמנט.</p>
+    </article>
+    <article class="panel stg c5" id="e7">
+      <div class="sn"><span>7</span>תנועה</div>
+      <h3>פרומפט תנועה מתאר מה זז, לא מה רואים</h3>
+      <p class="lead2">התמונה כבר אמרה מה רואים. הפרומפט לכלי הווידאו צריך לומר דבר אחד שזז, ולומר במפורש שהשאר עומד.</p>
+      <div class="tallgrid three">
+        <figure><video src="img/e/v08.mp4" poster="img/e/v08.jpg" autoplay muted loop playsinline preload="none"></video><figcaption>האזעקה והחתול · המטאפורה</figcaption></figure>
+        <figure><video src="img/e/v10.mp4" poster="img/e/v10.jpg" autoplay muted loop playsinline preload="none"></video><figcaption>הקרע במחסום</figcaption></figure>
+        <figure><video src="img/e/v11.mp4" poster="img/e/v11.jpg" autoplay muted loop playsinline preload="none"></video><figcaption>הביט האנושי</figcaption></figure>
+      </div>
+<div class="panel prompt c5"><div class="ph"><span class="n">4</span><h3>מתמונה לתנועה</h3><button type="button" class="copy">העתקה</button></div><pre dir="ltr">The loose red threads at the torn gap sway very slowly, as if in a faint draft. The woven wall itself stays completely still. No camera movement, no zoom, no new objects entering the frame. 5 seconds, seamless loop.</pre></div><div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://klingai.com" target="_blank" rel="noopener">Kling</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div><span>מתמונה לווידאו, תנועה לפי תיאור</span></li><li><div class="tn"><b><a href="https://dreamina.capcut.com" target="_blank" rel="noopener">Dreamina (Seedance)</a></b><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים</span></div><span>של CapCut, חלופה</span></li><li><div class="tn"><b><a href="https://runwayml.com" target="_blank" rel="noopener">Runway</a></b><span class="pill paid">בתשלום</span><span class="pill limit">ניסיון חינמי</span></div><span>כלי וידאו מקצועי</span></li></ul></div>
+      <div class="pits2"><p><b>שתי תנועות בו-זמנית:</b> כאן המודל מתחיל להמציא. תנועה אחת לקליפ.</p><p><b>תנועת מצלמה בפריים אינפוגרפי:</b> זום על טקסט הופך אותו ללא קריא. משאירים סטטי.</p></div>
+    </article>
+    <article class="panel stg c2" id="e8">
+      <div class="sn"><span>8</span>הסרת המסך</div>
+      <h3>הקצוות שלא רצו להיעלם</h3>
+      <p class="lead2">החלק הקשה לא היה להסיר את המסך הירוק, אלא להסיר אותו בלי לאכול את הפנים ובלי להשאיר הילה ירוקה בשיער.</p>
+      <p>המסך היה ירוק-צהבהב, קרוב מדי לגוון העור. בהסרה רגילה, ברגישות נמוכה נשארה הילה ירוקה בשיער ובכתפיים, וברגישות גבוהה הפנים עצמן התחילו להיעלם. מה שפתר את זה: להפסיק לשאול "כמה הצבע קרוב לירוק", ולשאול "כמה הירוק חזק יותר מהאדום והכחול". עור, גם מואר חזק, אף פעם לא ירוק-דומיננטי. מסך ירוק תמיד כן.</p>
+      <ol class="steps2" style="--c:var(--s2)">
+        <li><b>תאורה אחידה על המסך</b>, בלי צללים וקמטים. זה חוסך את רוב הבעיה מראש.</li>
+        <li><b>מרחק של מטר לפחות</b> בין הדובר למסך, כדי שהירוק לא יחזור על השיער והכתפיים.</li>
+        <li><b>בעריכה:</b> ב-CapCut בוחרים <span class="ui">Chroma key</span>, דוגמים את הירוק, ומעלים את העוצמה בהדרגה עד שהרקע נעלם והפנים נשארות. אחר כך <span class="ui">Shadow</span> נמוך לניקוי הקצוות.</li>
+      </ol>
+      <details class="reveal"><summary>למתקדמים: שרשרת הפילטרים ב-ffmpeg שעבדה</summary>
+        <pre class="code" dir="ltr">[1:v]format=rgb24,split=2[src][m];
+[m]extractplanes=r+g+b[pr][pg][pb];
+[pr][pb]blend=all_mode=lighten[prb];
+[pg][prb]blend=all_mode=subtract[dif];
+[dif]lutyuv=y='clip(255-val*12,0,255)',erosion,gblur=sigma=0.8[al];
+[src][al]alphamerge,despill=type=green:mix=0.30:expand=0.0[fg];
+[0:v][fg]overlay=shortest=1,vignette=PI/5,format=yuv420p[v]</pre>
+        <p>הירוק פחות המקסימום של האדום והכחול יוצר מסכה נקייה. אחריה: כרסום של פיקסל אחד מנקה את ההילה, טשטוש עדין מרכך את הקו, והסרת השתקפות ירוקה בעוצמה נמוכה. בעוצמה גבוהה היא לא מנקה, אלא צובעת.</p>
+      </details>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>Chroma key, במחשב ובטלפון</span></li><li><div class="tn"><b><a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener">DaVinci Resolve</a></b><span class="pill free">חינם</span></div><span>הסרה מדויקת, למתקדמים</span></li><li><div class="tn"><b><a href="https://ffmpeg.org" target="_blank" rel="noopener">ffmpeg</a></b><span class="pill free">חינם</span><span class="pill limit">למתקדמים</span></div><span>שורת פקודה, עם Claude Code</span></li></ul></div>
+    </article>
+    <article class="panel stg c1" id="e9">
+      <div class="sn"><span>9</span>הרכבה</div>
+      <h3>להרכיב, לתזמן, למסור</h3>
+      <p class="lead2">פתיח, מגיש, פריימים, קליפים, לוגו, כתוביות, כותרות, מוזיקה וסגירה, ובסוף טלפון שגולל בכתבה המקורית.</p>
+      <p>העבודה נעשתה כסקריפט ולא כטיימליין ידני, וזו הייתה ההחלטה הנכונה: הסרטון נבנה מחדש פעמיים מאפס, פעם כשהוחלפו כל הפריימים ופעם כשהתמלול חשף שהתזמון שגוי. כל בנייה כזו לקחה עשר דקות במקום שעות. ב-CapCut עושים את אותו הדבר ידנית.</p>
+      <div class="tbl" tabindex="0"><table>
+        <thead><tr><th>שכבה</th><th>איך</th></tr></thead>
+        <tbody>
+          <tr><td>לוגו</td><td>שתי גרסאות, לבנה וכהה, מתחלפות לפי בהירות הרקע</td></tr>
+          <tr><td>כתוביות</td><td>מתוזמנות מתמלול אמיתי של הטייק, לא מהתסריט</td></tr>
+          <tr><td>כותרות</td><td>כותרת קטנה מעל כותרת גדולה, נכנסות ויוצאות בהדרגה</td></tr>
+          <tr><td>קול</td><td>ניקוי רעשים נמוכים, דחיסה עדינה, ועוצמה אחידה</td></tr>
+          <tr><td>מוזיקה</td><td>שכבה אחת, הרבה מתחת לקול, נכנסת ויוצאת בהדרגה</td></tr>
+        </tbody>
+      </table></div>
+<div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>הרכבה, כתוביות אוטומטיות ועיצוב כתוביות</span></li><li><div class="tn"><b><a href="https://turboscribe.ai" target="_blank" rel="noopener">TurboScribe</a></b><span class="pill free">חינם</span><span class="pill limit">מכסה יומית</span></div><span>תמלול הטייק, בו השתמשתי</span></li><li><div class="tn"><b><a href="https://vids.google.com" target="_blank" rel="noopener">Google Vids</a></b><span class="pill free">חינם</span></div><span>עריכה פשוטה בדפדפן</span></li><li><div class="tn"><b><a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code + ffmpeg</a></b><span class="pill paid">בתשלום</span><span class="pill limit">למתקדמים</span></div><span>הרכבה כסקריפט, בו השתמשתי</span></li></ul></div>
+    </article>
     <div class="panel lesson">
       <div class="eyebrow">הטעות המרכזית, והלקח</div>
       <h3>המכונה יודעת מה תכננתי. רק אני יודע מה באמת אמרתי.</h3>
-      <p>בגרסה הראשונה, הכתוביות תוזמנו לפי התסריט שכתבנו, ולא לפי מה שנאמר בצילום. רק בבדיקה התברר ששליש מהתסריט בכלל לא נאמר בטייק. כל הכתוביות נבנו מחדש, לפי התמלול.</p>
+      <p>לתמלל את הטייק לפני שמשבצים משהו. בגרסה הראשונה, הכתוביות, הכותרות והפריימים תוזמנו לפי התסריט שכתבנו, ולא לפי מה שנאמר בצילום. רק בבדיקה התברר ששליש מהתסריט בכלל לא נאמר בטייק. כל הכתוביות נבנו מחדש, לפי התמלול.</p>
       <div class="vs">
         <p><span>תסריט</span>מה שתכננתי לומר</p>
         <p><span>תמלול</span>מה שבאמת אמרתי</p>
