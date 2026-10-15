@@ -1,0 +1,662 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 6 · מטקסט ליצירה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: a night-time studio. Neon storyboard strip of numbered scene frames, then glowing tool "slates" that tilt in 3D, grouped by production stage. Single deliberate dark look. */
+:root{
+  color-scheme:light;
+  --bg:#F2F8FF;
+  --bg2:#E3F0FF;
+  --glass:rgba(255,255,255,.82);
+  --ink:#14213D;
+  --muted:#4A5873;
+  --line:rgba(40,90,170,.16);
+  --s1:#2F6BFF; /* כתיבה */
+  --s2:#D92F66; /* צילום */
+  --s3:#0B8F7D; /* מסך */
+  --s4:#B86A00; /* עריכה */
+  --s5:#7440D8; /* פרסום */
+  --display:"Secular One","Assistant","Arial Hebrew",Arial,sans-serif;
+  --body:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#FFFFFF}
+body{background:linear-gradient(180deg,#FFFFFF 0%,#EEF6FF 45%,#E3F0FF 100%);min-height:100vh;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+
+/* Ambient aurora + star grid */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sky::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(140,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,160,255,.07) 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:drift 22s ease-in-out infinite alternate}
+.b1{width:520px;height:520px;background:var(--s5);top:-180px;inset-inline-end:-120px}
+.b2{width:420px;height:420px;background:var(--s1);top:140px;inset-inline-start:-160px;animation-delay:-7s}
+.b3{width:360px;height:360px;background:var(--s2);top:780px;inset-inline-end:10%;opacity:.25;animation-delay:-12s}
+@keyframes drift{to{transform:translate3d(40px,60px,0) scale(1.12)}}
+
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:36px 64px;display:grid;gap:52px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.2}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--s3);text-shadow:0 0 12px rgba(46,230,200,.6)}
+
+/* Hero */
+.hero{display:grid;gap:16px}
+.hero h1{font-size:clamp(36px,6.4vw,62px);text-shadow:0 0 30px rgba(91,140,255,.35)}
+.hero h1 span{background:linear-gradient(90deg,var(--s2),var(--s5),var(--s1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(255,92,138,.45))}
+.lead{color:var(--muted);max-width:62ch;font-size:19px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;width:max-content;max-width:100%;
+  color:var(--muted);border:1.5px dashed rgba(160,175,255,.35);background:rgba(14,19,48,.6)}
+.play{width:0;height:0;border-block:7px solid transparent;border-inline-end:11px solid var(--s2);filter:drop-shadow(0 0 6px var(--s2))}
+
+/* Section heads */
+.head{display:grid;gap:6px}
+.head h2{font-size:clamp(26px,4vw,36px)}
+.head p{color:var(--muted);max-width:62ch}
+
+/* Glass panels */
+.panel{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:24px}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.did{display:grid;gap:12px}
+.did ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.did li::marker{color:var(--s3);font-weight:700}
+.task{display:grid;gap:10px;border-color:rgba(255,185,56,.55);box-shadow:0 0 0 1px rgba(255,185,56,.25),0 0 40px -8px rgba(255,185,56,.45)}
+.task .eyebrow{color:var(--s4);text-shadow:0 0 12px rgba(255,185,56,.6)}
+.task .q{font-weight:600;border-top:1px solid rgba(255,185,56,.35);padding-top:10px}
+
+/* Storyboard */
+.board{overflow-x:auto;padding:18px 4px 14px;perspective:1400px}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:16px;min-width:1080px;transform-style:preserve-3d}
+.frame{display:grid;gap:8px;transition:transform .35s ease}
+.frame:hover{transform:translateZ(40px) rotateX(6deg)}
+.screen{aspect-ratio:16/10;border-radius:12px;border:1.5px solid var(--c);background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 28%,transparent),rgba(10,14,36,.9) 70%);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--c) 70%,transparent),inset 0 0 22px -8px var(--c)}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.screen .sc{position:absolute;top:8px;inset-inline-start:10px;font-size:12px;font-weight:700;color:var(--c);letter-spacing:.08em;text-shadow:0 0 8px var(--c)}
+.screen svg{width:44%;height:auto;color:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.frame h3{font-size:18px}
+.frame p{font-size:15px;color:var(--muted);line-height:1.45}
+.frame .tool{font-weight:700;color:var(--c);font-size:15px;text-shadow:0 0 10px color-mix(in srgb,var(--c) 60%,transparent)}
+.c1{--c:var(--s1)} .c2{--c:var(--s2)} .c3{--c:var(--s3)} .c4{--c:var(--s4)} .c5{--c:var(--s5)}
+
+/* Tool cards with 3D tilt */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;perspective:1000px}
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;
+  position:relative;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;grid-template-rows:auto 1fr auto;gap:12px;
+  text-decoration:none;color:inherit;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;min-width:0}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s ease;
+  background:radial-gradient(260px circle at var(--mx) var(--my),color-mix(in srgb,var(--c) 30%,transparent),transparent 60%)}
+a.card:hover,a.card:focus-visible,.card.live{border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 18px 50px -18px var(--c),0 0 0 1px color-mix(in srgb,var(--c) 40%,transparent)}
+.card:hover::before{opacity:1}
+a.card:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.top{display:flex;align-items:center;gap:14px;min-width:0;transform:translateZ(30px)}
+.mono{position:relative;flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  font-family:var(--display);font-size:20px;color:#fff;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 85%,#fff 15%),color-mix(in srgb,var(--c) 70%,#000 30%));
+  box-shadow:0 0 22px -4px var(--c),inset 0 1px 0 rgba(255,255,255,.35)}
+.mono img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:8px}
+.name{display:grid;min-width:0}
+.name strong{font-size:19px;line-height:1.2}
+.name span{font-size:14px;color:var(--muted);direction:ltr;text-align:start;overflow-wrap:anywhere}
+.use{font-size:16px;transform:translateZ(16px)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;transform:translateZ(20px)}
+.pill{font-size:13px;font-weight:700;padding:3px 11px;border-radius:999px}
+.pill.free{background:rgba(46,230,200,.14);color:var(--s3);box-shadow:inset 0 0 0 1px rgba(46,230,200,.45)}
+.pill.limit{border:1px solid var(--line);color:var(--muted);font-weight:600}
+.kbd{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:6px;padding:1px 6px;direction:ltr;display:inline-block}
+
+/* Featured: our own teleprompter */
+.feature{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;text-decoration:none;color:inherit;
+  border:1.5px solid color-mix(in srgb,var(--s3) 65%,transparent);
+  box-shadow:0 0 0 1px rgba(46,230,200,.2),0 0 50px -10px rgba(46,230,200,.55);
+  background:linear-gradient(135deg,rgba(46,230,200,.12),rgba(91,140,255,.08) 60%,var(--glass));transition:transform .2s ease,box-shadow .2s ease}
+.feature:hover,.feature:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(46,230,200,.35),0 0 70px -8px rgba(46,230,200,.7)}
+.feature:focus-visible{outline:2px solid var(--s3);outline-offset:3px}
+.feature-text{display:grid;gap:8px;flex:1 1 320px;min-width:0}
+.feature-text .pill{justify-self:start}
+.feature h3{font-size:clamp(22px,3vw,28px)}
+.feature .hint{color:var(--muted);font-size:15px}
+.go{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;
+  background:var(--s3);color:#05221D;box-shadow:0 0 24px -4px var(--s3)}
+@media (prefers-reduced-motion:reduce){.feature{transition:none}}
+
+/* Phone + teleprompter */
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.opt{display:grid;gap:10px;align-content:start;border-top:3px solid var(--c);box-shadow:0 -6px 30px -16px var(--c)}
+.opt h3{font-size:21px}
+.opt .tag{justify-self:start}
+.opt ol{margin:0;padding-inline-start:20px;display:grid;gap:4px;font-size:16px}
+.opt ol li::marker{color:var(--c);font-weight:700}
+.minis{display:flex;flex-wrap:wrap;gap:8px}
+.minis a{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:14px}
+.minis img{width:26px;height:26px;border-radius:7px;background:#fff;object-fit:contain;padding:2px}
+.pill.paid{background:rgba(255,92,138,.14);color:var(--s2);box-shadow:inset 0 0 0 1px rgba(255,92,138,.45)}
+.tips{display:grid;gap:6px;font-size:16px;color:var(--muted)}
+.tips strong{color:var(--ink)}
+
+/* Gear */
+.gear{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.item{display:grid;gap:10px;align-content:start}
+.sketch{height:170px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line);
+  background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c) 22%,transparent),transparent 65%),
+             linear-gradient(rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px,
+             linear-gradient(90deg,rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px}
+.sketch svg{height:140px;width:auto;color:var(--c);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--c) 70%,transparent))}
+.item h3{font-size:20px}
+.price{font-family:var(--display);font-size:22px;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent);font-variant-numeric:tabular-nums}
+.item p{font-size:16px;color:var(--muted)}
+.total{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+.total strong{font-family:var(--display);font-size:24px;color:var(--s3);text-shadow:0 0 14px rgba(46,230,200,.5)}
+
+.pay{display:grid;gap:8px;border-style:dashed}
+.pay h3{font-size:22px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:4px}
+
+/* Light theme overrides */
+.sky::before{background-image:linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px)}
+.blob{opacity:.16}
+.b3{opacity:.1}
+.eyebrow,.task .eyebrow,.hero h1,.frame .tool,.screen .sc{text-shadow:none}
+.hero h1 span{filter:none}
+.btn{background:rgba(255,255,255,.75)}
+.screen{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 16%,transparent),#F8FBFF 70%);box-shadow:0 6px 20px -10px color-mix(in srgb,var(--c) 60%,transparent)}
+.screen::after{background:none}
+.screen svg{filter:none}
+.panel,.card{box-shadow:0 10px 30px -18px rgba(20,60,140,.35)}
+.task{box-shadow:0 0 0 1px rgba(184,106,0,.25),0 14px 36px -18px rgba(184,106,0,.45)}
+.feature{background:linear-gradient(135deg,rgba(11,143,125,.10),rgba(47,107,255,.06) 60%,#FFFFFF);box-shadow:0 14px 40px -18px rgba(11,143,125,.55)}
+.go{color:#FFFFFF}
+.kbd{background:rgba(20,33,61,.06)}
+.opts.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.opts.four{grid-template-columns:1fr}}
+.what{display:grid;gap:10px;border-inline-start:4px solid var(--s3)}
+.what h3{font-size:22px}
+.date{font-weight:700;color:var(--ink);font-size:17px}
+.tocnav{display:grid;gap:12px;max-width:760px}
+.tocnav h2{font-size:24px}
+.tocnav ol{margin:0;padding:0;list-style:none;counter-reset:t;display:flex;flex-wrap:wrap;gap:10px}
+.tocnav li{counter-increment:t}
+.tocnav a{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;text-decoration:none;font-weight:700;font-size:16px;color:var(--ink)}
+.tocnav a::before{content:counter(t);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--s1);color:#fff;font-size:13px}
+.tocnav a:hover{border-color:var(--s1)}
+html{scroll-behavior:smooth}
+.toc{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:17px}
+.toc li::marker{color:var(--s1);font-weight:700}
+.toc a{color:var(--s1);font-weight:700;text-decoration:none}
+.hello{display:grid;gap:10px;max-width:760px;border-inline-start:4px solid var(--s1);font-size:18px}
+.credit{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:16px}
+.credit img{width:28px;height:28px;border-radius:8px;background:#fff;object-fit:contain;flex:none}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.step{display:grid;gap:12px;align-content:start;border-top:3px solid var(--c)}
+.sketch2{border-radius:12px;border:1px solid var(--line);background:#FFFFFF;padding:10px;color:var(--c)}
+.sketch2 svg{width:100%;height:auto;display:block;direction:ltr}
+.step h3{font-size:21px;display:flex;align-items:center;gap:10px}
+.step .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px;flex:none}
+.step ol{margin:0;padding-inline-start:20px;display:grid;gap:6px;font-size:16px}
+.step ol li::marker{color:var(--c);font-weight:700}
+.ui{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(20,33,61,.06);border:1px solid var(--line);border-radius:6px;padding:0 6px;direction:ltr;display:inline-block;white-space:nowrap}
+.prep{border-color:rgba(116,64,216,.45);box-shadow:0 0 0 1px rgba(116,64,216,.2),0 14px 36px -18px rgba(116,64,216,.45)}
+.prep .eyebrow{color:var(--s5)}
+.prep .q{border-top-color:rgba(116,64,216,.35)}
+.task a{color:var(--s5);font-weight:700}
+.tp-logo-img{flex:none;width:88px;height:88px;border-radius:20px;box-shadow:0 10px 24px -10px rgba(20,33,61,.6)}
+.tp-logo{flex:none;width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#0B8F7D,#2F6BFF);box-shadow:0 10px 24px -10px rgba(11,143,125,.7)}
+.tp-logo svg{width:44px;height:44px}
+.made{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--ink)}
+.made img{width:22px;height:22px;border-radius:6px;background:#fff;object-fit:contain}
+
+.vids{display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+@media (max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{margin:0;display:grid;gap:12px;border-top:3px solid var(--c)}
+.vid video{width:100%;border-radius:12px;background:#0B1020;aspect-ratio:16/9}
+.vid video.tall{aspect-ratio:9/16;max-height:560px;justify-self:center}
+.vid figcaption{display:grid;gap:4px}
+.vid figcaption strong{font-size:19px}
+.vid figcaption span{color:var(--muted);font-size:15px}
+.vid figcaption a{color:var(--c);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){
+  .blob{animation:none}
+  .card,.frame{transition:none}
+  .frame:hover{transform:none}
+}
+
+/* Lesson 6 additions */
+.lessons{display:flex;flex-wrap:wrap;gap:8px}
+.lessons a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;text-decoration:none;font-weight:700;font-size:15px;color:var(--muted)}
+.lessons a[aria-current]{background:var(--s1);border-color:var(--s1);color:#fff}
+.recap{display:grid;gap:8px;border-inline-start:4px solid var(--s5)}
+.recap h2{font-size:22px}
+.recap a{color:var(--s5);font-weight:700}
+.opt p{font-size:16px;color:var(--muted)}
+.vids.one{grid-template-columns:minmax(0,760px)}
+.soon{aspect-ratio:16/9;border-radius:12px;display:grid;place-content:center;justify-items:center;gap:12px;color:var(--muted);font-weight:700;
+  background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--c) 16%,transparent),#F8FBFF 70%);border:1.5px dashed color-mix(in srgb,var(--c) 45%,transparent)}
+.soon .play{border-block-width:14px;border-inline-end-width:22px}
+.reveal{border-top:1px solid var(--line);padding-top:10px}
+.reveal summary{cursor:pointer;font-weight:700;color:var(--s3)}
+.reveal ol{margin:10px 0 0;padding-inline-start:22px;display:grid;gap:6px;font-size:16px}
+.verse{margin:0;display:grid;gap:8px;border-inline-start:4px solid var(--s5);text-align:center}
+.verse p{font-family:var(--display);font-size:clamp(22px,3.4vw,30px);line-height:1.45}
+.verse cite{font-style:normal;color:var(--muted);font-size:15px}
+.strip.six{grid-template-columns:repeat(6,minmax(150px,1fr));min-width:960px}
+.prompts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.prompt{display:grid;gap:12px;align-content:start;border-top:3px solid var(--c)}
+.ph{display:flex;align-items:center;gap:10px}
+.ph h3{font-size:20px;flex:1}
+.ph .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px;flex:none}
+.copy{font:inherit;font-size:14px;font-weight:700;padding:5px 14px;border-radius:999px;border:1px solid var(--c);background:#fff;color:var(--c);cursor:pointer}
+.copy:hover{background:color-mix(in srgb,var(--c) 10%,#fff)}
+.prompt pre{margin:0;white-space:pre-wrap;font-family:var(--body);font-size:16px;line-height:1.6;background:rgba(20,33,61,.04);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.prompt .tip{font-size:15px;color:var(--muted)}
+.styles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:760px){.styles{grid-template-columns:repeat(2,1fr)}}
+.styles figure,.gallery figure{margin:0;display:grid;gap:6px}
+.styles img,.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;display:block;box-shadow:0 8px 20px -12px rgba(20,33,61,.5)}
+.styles figcaption,.gallery figcaption{font-size:15px;font-weight:700;color:var(--muted)}
+.styles .pick img{outline:3px solid var(--s4);outline-offset:2px}
+.styles .pick figcaption{color:var(--s4)}
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,32%);gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.gallery figure{scroll-snap-align:start}
+.lessons5{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.vid video{display:block}
+</style>
+
+<div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<div class="wrap" dir="rtl" lang="he">
+
+  <nav class="lessons" aria-label="דפי השיעורים">
+    <a href="../">שיעור 5 · 8.10</a>
+    <a href="./" aria-current="page">שיעור 6 · 15.10</a>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">Creative Content · שיעור 6</div>
+    <h1>מטקסט <span>ליצירה</span></h1>
+    <p class="date">תאריך: 15 באוקטובר 2026</p>
+    <p class="lead">איך לוקחים טקסט קיים, מאמר, פסוק, שיר או הרצאה, ומחיזים אותו לסרטון יצירתי, אותנטי ומעורר מחשבה. שתי דוגמאות, תהליך עבודה מלא, והכלים שאיתם אפשר לעשות את זה בחינם.</p>
+
+    <div class="panel hello">
+      <p><strong>היי לכולם,</strong></p>
+      <p>הנה כל מה שדיברנו עליו במפגש, במקום אחד. הרעיון המרכזי: כל סרטון שאנחנו יוצרים הוא פתח וחלון לשיח ולדיון. הטקסט הוא חומר הגלם, ואנחנו, כיוצרים, כאמנים וכמנהיגים, בוחרים איזו חוויה ליצור ממנו.</p>
+      <p><strong>מה תמצאו בדף:</strong></p>
+      <ol class="toc">
+        <li><a href="#task">המשימה למפגש הבא</a>: להפוך את הטקסט שלכם לסרטון קצר, אותנטי ואישי</li>
+        <li><a href="#text">בחירת טקסט</a>: מה הופך טקסט לחומר טוב לסרטון, ומה אפשר לעשות איתו</li>
+        <li><a href="#ex1">דוגמה 1, אפוק</a>: איך מאמר ארוך הופך לסרטון של שתי דקות</li>
+        <li><a href="#ex2">דוגמה 2, בראשית</a>: איך מחיזים טקסט מקראי</li>
+        <li><a href="#ex3">דוגמה 3, הטקסט שלי</a>: "כוח הדמיון והיציאה מהמערה", ומאחורי הקלעים של הפריימים</li>
+        <li><a href="#textonly">להמחיז בטקסט בלבד</a>: הדרך הכי ישירה להפוך טקסט אישי לסרטון</li>
+        <li><a href="#process">התהליך, צעד אחר צעד</a>: מהטקסט, דרך התסריט והסטוריבורד, ועד התמונות והסאונד, עם פרומפטים מוכנים להעתקה</li>
+        <li><a href="#tools">ארגז הכלים של השיעור</a>, כולל NotebookLM</li>
+      </ol>
+      <p>שאלות? אני כאן. בהצלחה,<br>שגיא</p>
+    </div>
+  </header>
+
+  <section id="task" class="panel task" aria-label="המשימה למפגש הבא">
+    <div class="eyebrow">המשימה למפגש הבא</div>
+    <h2 style="font-size:28px">ליצור: להפוך את הטקסט שלכם לסרטון</h2>
+    <p>בחרו טקסט: הרצאת המשנה שלכם, שיר שכתבתם, פסוק שמלווה אתכם. כל טקסט אמיתי ואישי מתאים. והפכו אותו לסרטון קצר, אותנטי ואישי.</p>
+    <p><b>הבסיס:</b> סרטון של טקסט בלבד. המילים שלכם על המסך, בקצב שלכם, ואם תרצו גם עם הקול שלכם קורא אותן. <a href="#textonly">איך עושים את זה</a></p>
+    <p><b>ומי שרוצה להמשיך:</b> מוסיפים תמונות, לפי התהליך שבדף. או לפחות פריים אחד, תמונה אחת שמחיזה משפט מהטקסט שלכם.</p>
+    <p>אפשר ליצור ב-Google Vids, כמו שלמדנו בתחילת הדרך, או ב-CapCut.</p>
+    <p class="q">המטרה היא לא סרטון מושלם. המטרה היא לעבוד יותר יעיל, יותר יצירתי ויותר אותנטי, עם הכלים שכבר יש לנו.</p>
+  </section>
+
+  <section class="panel recap" aria-labelledby="rc">
+    <h2 id="rc">תזכורת קצרה: העלאה ליוטיוב</h2>
+    <p>נכנסים ל-<b>studio.youtube.com</b>, לוחצים <span class="ui">Create</span> ואז <span class="ui">Upload videos</span>. בשפת הסרטון בוחרים עברית, מעלים כ-<span class="ui">Unlisted</span>, ומתקנים את הכתוביות ב-<span class="ui">Subtitles</span>.</p>
+    <p><a href="../#youtube">ההדרכה המלאה, צעד אחר צעד, נמצאת בדף של שיעור 5</a></p>
+  </section>
+
+  <section id="text" style="display:grid;gap:18px" aria-labelledby="tx">
+    <div class="head">
+      <h2 id="tx">בחירת טקסט</h2>
+      <p>במפגש הקודם ביקשתי מכם לבחור טקסט אישי ועוצמתי. עכשיו השאלה היא מה עושים איתו. אותו טקסט יכול להפוך לסרטונים שונים לגמרי, לפי מה שאנחנו בוחרים לעשות איתו.</p>
+    </div>
+    <div class="opts">
+      <div class="panel opt c1">
+        <h3>לתמצת</h3>
+        <p>לוקחים הרבה טקסט, ומזקקים ממנו את הרעיון המרכזי לסרטון של דקה או שתיים.</p>
+      </div>
+      <div class="panel opt c2">
+        <h3>להמחיז</h3>
+        <p>הופכים מילים לתמונות, לתנועה ולסאונד. הטקסט נשאר, ומקבל חוויה סביבו.</p>
+      </div>
+      <div class="panel opt c3">
+        <h3>להתאים לזמן ולמקום</h3>
+        <p>טקסט ישן יכול לדבר על היום. השאלה היא מה הוא אומר לנו עכשיו, ולמי.</p>
+      </div>
+    </div>
+    <div class="panel what">
+      <h3>מה אנחנו מחפשים בסרטון?</h3>
+      <p>שיהיה יצירתי, אותנטי ומעניין. שיהיה חוויה עבור הצופה, ושיעורר מחשבה והשראה. וכשהוא נגמר, שיפתח שיחה. כאן כבר נוגעים באמנות ובפילוסופיה: מה היצירה שאנחנו מביאים למסך או לבמה, ואילו רעיונות היא מביאה איתה.</p>
+    </div>
+  </section>
+
+  <section id="ex1" style="display:grid;gap:18px" aria-labelledby="e1">
+    <div class="head">
+      <div class="eyebrow">דוגמה 1</div>
+      <h2 id="e1">אפוק: ממאמר ארוך לשתי דקות</h2>
+      <p>הטקסט: כתבה שמעלה רעיון חדש, שאולי מקורה של מחלת האלצהיימר לאו דווקא במוח. המטרה: לקחת הרבה טקסט, ולהציג את הרעיון בשתי דקות, כך שהצופה ירצה לקרוא את הכתבה המלאה.</p>
+    </div>
+    <div class="vids one">
+      <figure class="panel vid c2">
+        <div class="soon"><span class="play" aria-hidden="true"></span><span>הסרטון יעלה לכאן בקרוב</span></div>
+        <figcaption><strong>אפוק · פתיח לכתבה</strong><span>מאמר שהפך לסרטון של כשתי דקות</span></figcaption>
+      </figure>
+    </div>
+    <div class="two">
+      <div class="panel did">
+        <h3 style="font-size:22px">תרגיל צפייה</h3>
+        <p>צפו בסרטון, ונסו לזהות ממה הוא עשוי. אילו אלמנטים יש בו? ברמה הכי פשוטה: מה רואים, מה שומעים, ומה קורא על המסך.</p>
+        <details class="reveal">
+          <summary>ממה הסרטון עשוי? (לפתוח אחרי הצפייה)</summary>
+          <ol>
+            <li><b>צילום</b>: אני מדבר מול מצלמה, על רקע מסך ירוק, כדי שאפשר יהיה להחליף את הרקע</li>
+            <li><b>איורים</b>: נוצרו בכלי תמונה כמו Nano Banana או ChatGPT</li>
+            <li><b>טקסט על המסך</b>: כותרות ומילות מפתח שמחזקות את מה שנאמר</li>
+            <li><b>מוזיקה</b>: שכבת סאונד שמחזיקה את הקצב. עליה נרחיב במפגשים הבאים</li>
+          </ol>
+        </details>
+      </div>
+      <div class="panel did">
+        <h3 style="font-size:22px">איך הוא נבנה</h3>
+        <p>את כל הסרטון בניתי עם Claude Code ועם CapCut. Claude Code הוא כלי מתקדם ובתשלום שאני משתמש בו מאחורי הקלעים.</p>
+        <p>את אותם שלבים בדיוק אפשר לעשות בכלים חינמיים: תסריט ב-Claude, ב-ChatGPT או ב-Gemini, איורים ב-Nano Banana, ועריכה ב-CapCut.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex2" style="display:grid;gap:18px" aria-labelledby="e2">
+    <div class="head">
+      <div class="eyebrow">דוגמה 2</div>
+      <h2 id="e2">בראשית: להמחיז טקסט מקראי</h2>
+      <p>בחרתי בבראשית, פרק א', בדיוק כשאנחנו עוברים לפרשת נח: מבריאת העולם ועד בריאת האדם, בפסוק כ"ז. זה טקסט עוצמתי, עם הרבה רבדים, וכל אחד מהם יכול לפתוח דיון. ובגלל שהוא כל כך מוכר, חשוב במיוחד לבקש מהכלי את הטקסט המדויק והמלא, ולבדוק אותו.</p>
+    </div>
+    <blockquote class="panel verse">
+      <p>ויברא אלהים את האדם בצלמו, בצלם אלהים ברא אתו, זכר ונקבה ברא אתם.</p>
+      <cite>בראשית א', כ"ז</cite>
+    </blockquote>
+    <div class="vids one">
+      <figure class="panel vid c5">
+        <video controls preload="none" playsinline poster="../videos/bereshit.jpg" src="../videos/bereshit.mp4"></video>
+        <figcaption><strong>בראשית, פרק א'</strong><span>בסגנון פלסטלינה, עם הנפשה · 2:31</span><a href="../videos/bereshit.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
+      </figure>
+    </div>
+    <div class="head">
+      <h3 style="font-size:24px">בחירת סגנון: אותה סצנה, שמונה חוויות</h3>
+      <p>לפני שיצרתי את הסרטון, ביקשתי את אותה סצנה, אדם שנברא ומושיט יד אל האור, בסגנונות שונים. כל סגנון מספר סיפור אחר. בחרתי בפלסטלינה, כי זה עניין אותי והיה קצת אחר. עלה לי גם כיוון אחר לגמרי, של אור וצל, יותר מופשט, כמעט ריקוד. מקום שעוד לא ראיתי.</p>
+    </div>
+    <div class="styles">
+      <figure><img src="img/style1.jpg" alt="איור בדיו שחורה על נייר" loading="lazy"><figcaption>דיו</figcaption></figure>
+      <figure><img src="img/style2.jpg" alt="רישום פחם כהה" loading="lazy"><figcaption>פחם</figcaption></figure>
+      <figure><img src="img/style3.jpg" alt="צבעי מים כחולים" loading="lazy"><figcaption>צבעי מים</figcaption></figure>
+      <figure><img src="img/style4.jpg" alt="רישום עיפרון עדין" loading="lazy"><figcaption>עיפרון</figcaption></figure>
+      <figure class="pick"><img src="img/style5.jpg" alt="דמות ונוף מפלסטלינה צבעונית" loading="lazy"><figcaption>פלסטלינה · הבחירה שלי</figcaption></figure>
+      <figure><img src="img/style6.jpg" alt="דמות מחימר באלומת אור" loading="lazy"><figcaption>חימר ואור</figcaption></figure>
+      <figure><img src="img/style7.jpg" alt="צללית רוקדת על קיר" loading="lazy"><figcaption>אור וצל</figcaption></figure>
+      <figure><img src="img/style8.jpg" alt="קרני אור מופשטות" loading="lazy"><figcaption>מופשט</figcaption></figure>
+    </div>
+    <p class="panel credit">התמונות נוצרו ב-Higgsfield. את אותו תרגיל בדיוק אפשר לעשות בחינם ב-Nano Banana או ב-ChatGPT: פרומפט אחד, ומשנים רק את שם הסגנון.</p>
+    <div class="two">
+      <figure class="panel vid c2" style="margin:0">
+        <video autoplay muted loop playsinline preload="metadata" poster="img/kling-light.jpg" src="img/kling-light.mp4"></video>
+        <figcaption><strong>מתמונה לתנועה</strong><span>"ויהי אור": תמונת פלסטלינה שהונפשה ב-Kling</span></figcaption>
+      </figure>
+      <div class="panel what" style="align-content:start">
+        <h3>הנפשה</h3>
+        <p>אחרי שיש תמונות, אפשר להפיח בהן חיים. מעלים את התמונה ל-Kling, מתארים במילים איזו תנועה רוצים, ומקבלים קליפ קצר. כאן ביקשתי תנועה בסגנון סטופ-מושן, כאילו הפלסטלינה זזה פריים אחרי פריים.</p>
+        <p>הגרסה החינמית של Kling נותנת קרדיטים יומיים, עם סימן מים.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ex3" style="display:grid;gap:18px" aria-labelledby="e3">
+    <div class="head">
+      <div class="eyebrow">דוגמה 3</div>
+      <h2 id="e3">הטקסט שלי: "כוח הדמיון והיציאה מהמערה"</h2>
+      <p>הדוגמה השלישית היא טקסט אישי: הרצאה קצרה שלי. הרעיון שבה: הדמיון אינו בריחה מהמציאות, הוא מערכת ההפעלה שלנו, והכלי שממנו נולדה כל מהפכה אנושית. את שתי הדקות האחרונות של ההרצאה הפכתי ל-14 פריימים, משפט אחרי משפט.</p>
+    </div>
+    <div class="gallery" tabindex="0" aria-label="פריימים מההרצאה, גלילה לצדדים">
+      <figure><img src="img/kd_h00a.jpg" alt="צופה באולם הקרנה" loading="lazy"><figcaption>תקשורת חזותית</figcaption></figure>
+      <figure><img src="img/kd_h01.jpg" alt="ראש אדם ובתוכו רשת של אור זהוב" loading="lazy"><figcaption>הדמיון הוא מערכת ההפעלה שלנו</figcaption></figure>
+      <figure><img src="img/kd_h02.jpg" alt="פרח ורוד שנוצר מחלקיקי אור" loading="lazy"><figcaption>דמיינו פרח ורוד</figcaption></figure>
+      <figure><img src="img/kd_h03.jpg" alt="עלי כותרת ורודים בתקריב" loading="lazy"><figcaption>לראות אותו מוחשי, ואפילו להריח</figcaption></figure>
+      <figure><img src="img/kd_h05.jpg" alt="פנורמה מאוירת מהקטר ועד רשת נוירונים" loading="lazy"><figcaption>מהקיטור ועד הבינה המלאכותית</figcaption></figure>
+      <figure><img src="img/kd_h06.jpg" alt="דמות בפתח מערה מול נוף בזריחה" loading="lazy"><figcaption>ואנחנו רק בתחילת הדרך</figcaption></figure>
+      <figure><img src="img/kd_h08.jpg" alt="איור של מטוס ראשון מעל דיונות" loading="lazy"><figcaption>האחים רייט דמיינו לפני שעפו</figcaption></figure>
+      <figure><img src="img/kd_h12.jpg" alt="תוויות נייר נשרפות על קיר מערה" loading="lazy"><figcaption>לא מה שאמרו לכם שאתם יכולים</figcaption></figure>
+      <figure><img src="img/kd_h13.jpg" alt="אדם יוצא מהמערה אל האור" loading="lazy"><figcaption>מה אתם מסוגלים לדמיין?</figcaption></figure>
+      <figure><img src="img/kd_h14.jpg" alt="שרטוט עיר עתידית מקווי אור זהובים" loading="lazy"><figcaption>התוכנית האדריכלית של המציאות</figcaption></figure>
+    </div>
+    <div class="head" style="margin-top:6px">
+      <h3 style="font-size:24px">מאחורי הקלעים: חמישה לקחים ליצירת תמונות</h3>
+    </div>
+    <div class="opts lessons5">
+      <div class="panel opt c1"><h3>מגדירים סגנון פעם אחת</h3><p>משפט סגנון קבוע שמודבק בסוף כל פרומפט, ושומר על אחידות בין 14 תמונות שונות.</p></div>
+      <div class="panel opt c4"><h3>סמל חוזר</h3><p>ניצוץ זהוב קטן מופיע בכל פריים. הוא מחבר בין רעיונות רחוקים, ממערה ועד עיר עתידית.</p></div>
+      <div class="panel opt c3"><h3>סקיצה לפני גימור</h3><p>קודם יוצרים את כל הפריימים באיכות נמוכה וזולה, בודקים אותם יחד, ורק את מה שעובד מייצרים באיכות גבוהה.</p></div>
+      <div class="panel opt c2"><h3>מתקנים במילים פשוטות</h3><p>שני פריימים לא עבדו בפעם הראשונה. ניסוח מחדש, ברור ומפורש, תיקן אותם.</p></div>
+      <div class="panel opt c5"><h3>אומרים גם מה לא</h3><p>"בלי טקסט בתמונה": את הכיתוב מוסיפים בעריכה. ובלי פנים לדמויות היסטוריות.</p></div>
+    </div>
+    <div class="panel prompt c1">
+      <div class="ph"><h3>משפט הסגנון הקבוע שהשתמשתי בו (לפריימים הריאליסטיים)</h3><button type="button" class="copy">העתקה</button></div>
+      <pre dir="ltr" style="text-align:left">Cinematic photorealistic film still, 35mm anamorphic look, deep charcoal-blue shadows with warm amber-gold light, soft volumetric haze, shallow depth of field, subtle film grain. A small warm glowing spark of golden light is present in the frame. Calm empty negative space in the middle of the frame for overlaid typography. No text, no letters, no logos, no watermark.</pre>
+      <p class="tip">מוסיפים לפני המשפט הזה תיאור קצר של מה שרואים בפריים, ומקבלים סדרה של תמונות שנראות כמו סרט אחד.</p>
+    </div>
+  </section>
+
+  <section id="textonly" style="display:grid;gap:18px" aria-labelledby="to">
+    <div class="head">
+      <div class="eyebrow">השלב האחרון</div>
+      <h2 id="to">להמחיז טקסט בטקסט בלבד</h2>
+      <p>לא חייבים תמונות כדי ליצור סרטון חזק. לפעמים המילים לבדן הן החוויה: משפט שמופיע לאט על מסך שקט, מילה אחת שנשארת, ושקט שמאפשר לה לחלחל. זו הדרך הכי ישירה להפוך טקסט אישי, כמו הרצאת משנה, לסרטון אותנטי ואישי. הטקסט שלכם, הקצב שלכם, ואולי גם הקול שלכם.</p>
+    </div>
+    <div class="opts">
+      <div class="panel opt c1">
+        <h3>1. מזקקים</h3>
+        <p>בוחרים את המשפטים החזקים. לא כל ההרצאה, רק מה שחייב להישאר. 8 עד 12 משפטים מספיקים לסרטון של דקה או שתיים.</p>
+      </div>
+      <div class="panel opt c3">
+        <h3>2. מחליטים מה על המסך</h3>
+        <p>לא חייבים את כל המשפט. לפעמים מספיקה מילת מפתח אחת, כשהקול אומר את השאר. רקע אחד, פונט אחד, צבע אחד.</p>
+      </div>
+      <div class="panel opt c4">
+        <h3>3. נותנים קצב</h3>
+        <p>מקליטים את עצמכם קוראים, ומתזמנים כל משפט לקול. או בלי קול, עם מוזיקה שקטה ומספיק זמן לקרוא.</p>
+      </div>
+    </div>
+    <div class="panel prompt c3">
+      <div class="ph"><h3>פרומפט: מטקסט לסרטון של מילים</h3><button type="button" class="copy">העתקה</button></div>
+      <pre>זה טקסט שכתבתי: [הדביקו כאן את הטקסט]
+אני רוצה להפוך אותו לסרטון של דקה וחצי, שכולו טקסט על מסך, בלי תמונות.
+בחר 8 עד 12 משפטים שהם לב הטקסט, בלי לשנות את המילים שלי.
+לכל משפט כתוב: מה יופיע על המסך (המשפט או מילת מפתח ממנו), וכמה שניות הוא יישאר.
+הצע גם צבע רקע, סגנון פונט ואווירה למוזיקה שמתאימים לטקסט.</pre>
+      <p class="tip">את התוצאה בונים ב-Google Vids או ב-CapCut: שקופית אחת לכל משפט, ומעבר רך ביניהן.</p>
+    </div>
+    <p class="panel credit"><img src="../icons/claude.png" alt="">דוגמה לסרטון שכולו טקסט: "נזכור", <a href="../#videos" style="color:var(--s1);font-weight:700">בדף של שיעור 5</a>. מילים ומוזיקה, בלי מילה אחת של קריינות.</p>
+  </section>
+
+  <section id="process" style="display:grid;gap:14px" aria-labelledby="pr">
+    <div class="head">
+      <h2 id="pr">התהליך, צעד אחר צעד</h2>
+      <p>כך נבנה סרטון מטקסט. שבעה שלבים, והכלי שאפשר לעשות איתו כל אחד מהם.</p>
+    </div>
+    <div class="board" tabindex="0" aria-label="שלבי התהליך, גלילה לצדדים">
+      <div class="strip">
+        <div class="frame c1">
+          <div class="screen"><span class="sc">01</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 15h16M16 22h16M16 29h10"/></svg></div>
+          <h3>בחירת טקסט</h3><p>איפה ההתחלה, האמצע והסוף? מה הנושא שלנו?</p>
+        </div>
+        <div class="frame c1">
+          <div class="screen"><span class="sc">02</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 38l4-12L34 8l6 6-18 18z"/><path d="M30 12l6 6"/></svg></div>
+          <h3>תסריט</h3><p class="tool">Claude · ChatGPT · Gemini</p><p>הטקסט המדויק והמלא, בלי קיצורים. ובודקים.</p>
+        </div>
+        <div class="frame c2">
+          <div class="screen"><span class="sc">03</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="17" height="13" rx="2"/><rect x="26" y="9" width="17" height="13" rx="2"/><rect x="5" y="27" width="17" height="13" rx="2"/><rect x="26" y="27" width="17" height="13" rx="2"/></svg></div>
+          <h3>סטוריבורד</h3><p>כמו קומיקס: לכל פריים יש מלל ותמונה.</p>
+        </div>
+        <div class="frame c3">
+          <div class="screen"><span class="sc">04</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="16" r="3"/><circle cx="33" cy="27" r="3"/><path d="M20 33a4 4 0 0 0 4 4"/></svg></div>
+          <h3>בחירת סגנון</h3><p>עיפרון, צבע, טושים, ריאליסטי, סוריאליסטי, פלסטלינה.</p>
+        </div>
+        <div class="frame c4">
+          <div class="screen"><span class="sc">05</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="30" rx="3"/><circle cx="17" cy="19" r="4"/><path d="M6 33l11-9 9 7 6-5 10 8"/></svg></div>
+          <h3>יצירת תמונות</h3><p class="tool">Nano Banana · ChatGPT</p><p>פרומפט מכל פריים בסטוריבורד.</p>
+        </div>
+        <div class="frame c2">
+          <div class="screen"><span class="sc">06</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="3"/><path d="M21 19l9 5-9 5z"/></svg></div>
+          <h3>הנפשה</h3><p class="tool">Kling</p><p>התמונה מקבלת תנועה, לפי תיאור במילים.</p>
+        </div>
+        <div class="frame c5">
+          <div class="screen"><span class="sc">07</span>
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 35V11l20-4v24"/><circle cx="13" cy="35" r="5"/><circle cx="33" cy="31" r="5"/></svg></div>
+          <h3>סאונד</h3><p class="tool">Suno · ElevenLabs</p><p>השכבה האחרונה: מוזיקת רקע וכלי נגינה.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="head" style="margin-top:14px">
+      <h2 style="font-size:26px">פרומפטים מוכנים להעתקה</h2>
+      <p>מחליפים את מה שבסוגריים המרובעים בטקסט שלכם. עובד ב-Claude, ב-ChatGPT וב-Gemini. כל אחד ימצא את הסביבה שנכונה לו.</p>
+    </div>
+    <div class="prompts">
+      <div class="panel prompt c1">
+        <div class="ph"><span class="n">1</span><h3>מטקסט לתסריט</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>זה הטקסט שבחרתי: [הדביקו כאן את הטקסט]
+חלק אותו להתחלה, אמצע וסוף, וכתוב במשפט אחד מה הנושא המרכזי שלו.
+אחר כך הפוך אותו לתסריט לסרטון של דקה אחת.
+חשוב: השתמש בטקסט המדויק והמלא, בלי קיצורים ובלי שינויים.</pre>
+      </div>
+      <div class="panel prompt c2">
+        <div class="ph"><span class="n">2</span><h3>מתסריט לסטוריבורד</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>הפוך את התסריט לסטוריבורד: טבלה שבה כל שורה היא פריים.
+בכל שורה: מספר הפריים, הטקסט שנשמע או מופיע בו, ומה רואים בתמונה.
+פריים אחד לכל משפט או פסוק.</pre>
+      </div>
+      <div class="panel prompt c4">
+        <div class="ph"><span class="n">3</span><h3>מפריים לתמונה</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>צייר את הפריים הזה בסגנון [פלסטלינה / עיפרון / צבעי מים / צילום ריאליסטי], ביחס 16:9:
+[התיאור של הפריים מהסטוריבורד]</pre>
+        <p class="tip">ואפשר גם הכי פשוט: לכתוב "תצייר את הציטוט הזה", להדביק את הפסוק, ולראות מה קורה.</p>
+      </div>
+    </div>
+    <p class="panel credit"><img src="../icons/claude.png" alt="">טיפ: אחרי שהתסריט מוכן, תמיד בדקו אותו מול המקור. במיוחד בטקסט מקראי או בציטוט, כל מילה חשובה.</p>
+  </section>
+
+  <section id="tools" style="display:grid;gap:18px" aria-labelledby="tl">
+    <div class="head">
+      <h2 id="tl">ארגז הכלים של השיעור</h2>
+      <p>לא חייבים לשלם על כלום. ואפשר גם פשוט לקחת דף ועיפרון ולצייר בעצמכם. לחצו על כרטיס כדי לפתוח את הכלי.</p>
+    </div>
+    <div class="grid">
+      <a class="card c1" href="https://claude.ai" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cl<img src="../icons/claude.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Claude</strong><span>claude.ai</span></div></div>
+        <p class="use">מטקסט לתסריט ולסטוריבורד. בו אני עובד, וכל אחד יכול לבחור את הסביבה שלו.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלת שימוש יומית</span></div>
+      </a>
+      <a class="card c3" href="https://chatgpt.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">GP<img src="../icons/chatgpt.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ChatGPT</strong><span>chatgpt.com</span></div></div>
+        <p class="use">תסריט וסטוריבורד, וגם יצירת תמונות מהפרומפט.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלה יומית</span></div>
+      </a>
+      <a class="card c1" href="https://gemini.google.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">NB<img src="../icons/gemini.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Gemini ו-Nano Banana</strong><span>gemini.google.com</span></div></div>
+        <p class="use">כתיבה ב-Gemini, ויצירת תמונות מהסטוריבורד ב-Nano Banana, באותו מקום.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">כ-20 תמונות ביום</span></div>
+      </a>
+      <a class="card c3" href="https://notebooklm.google.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">NL</div><div class="name"><strong>NotebookLM</strong><span>notebooklm.google.com</span></div></div>
+        <p class="use">מעלים מקורות, מאמר, קובץ או קישור, ושואלים עליהם שאלות. מקבלים סיכום ותובנות שמבוססים רק על המקורות שלכם.</p>
+        <div class="meta"><span class="pill free">חינם</span></div>
+      </a>
+      <a class="card c2" href="https://klingai.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Kl<img src="../icons/kling.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Kling</strong><span>klingai.com</span></div></div>
+        <p class="use">הנפשה: מעלים תמונה, מתארים תנועה, ומקבלים קליפ קצר.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div>
+      </a>
+      <a class="card c5" href="https://higgsfield.ai" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Hf</div><div class="name"><strong>Higgsfield</strong><span>higgsfield.ai</span></div></div>
+        <p class="use">פלטפורמה שמרכזת כמה מודלים של תמונה ווידאו. בה יצרתי את התמונות לבראשית ולהרצאה.</p>
+        <div class="meta"><span class="pill paid">בתשלום</span><span class="pill limit">יש חלופות חינמיות בדף</span></div>
+      </a>
+      <a class="card c4" href="https://www.capcut.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Cc<img src="../icons/capcut.png" alt="" onerror="this.remove()"></div><div class="name"><strong>CapCut</strong><span>capcut.com</span></div></div>
+        <p class="use">עריכה: מחברים את התמונות, הטקסט והסאונד לסרטון אחד.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">חלק מהכלים בתשלום</span></div>
+      </a>
+      <a class="card c2" href="https://vids.google.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Vi<img src="../icons/vids.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Google Vids</strong><span>vids.google.com</span></div></div>
+        <p class="use">אפשר ליצור בו את כל הסרטון, כמו שלמדנו בתחילת הקורס.</p>
+        <div class="meta"><span class="pill free">חינם</span></div>
+      </a>
+      <a class="card c2" href="https://suno.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">Su<img src="../icons/suno.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Suno</strong><span>suno.com</span></div></div>
+        <p class="use">מוזיקת רקע או שיר מתיאור במילים. נרחיב על מוזיקה במפגשים הבאים.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · לשימוש לא מסחרי</span></div>
+      </a>
+      <a class="card c4" href="https://elevenlabs.io" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">11<img src="../icons/elevenlabs.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ElevenLabs</strong><span>elevenlabs.io</span></div></div>
+        <p class="use">הקראה בקול טבעי, אפקטים קוליים ומוזיקה.</p>
+        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מכסה חודשית</span></div>
+      </a>
+      <a class="card c5" href="https://www.epidemicsound.com" target="_blank" rel="noopener">
+        <div class="top"><div class="mono" aria-hidden="true">ES</div><div class="name"><strong>Epidemic Sound</strong><span>epidemicsound.com</span></div></div>
+        <p class="use">ספריית מוזיקה ואפקטים מקצועית, עם רישיון לשימוש ברשתות.</p>
+        <div class="meta"><span class="pill paid">בתשלום</span></div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>המגבלות החינמיות נבדקו באוקטובר 2026. כלים חינמיים משנים את התנאים לעתים קרובות, אז בדקו בהרשמה.</p>
+    <p>Creative Content · שגיא אשכנזי</p>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = b.closest('.prompt').querySelector('pre').innerText;
+    var done = function(){ b.textContent = 'הועתק'; setTimeout(function(){ b.textContent = 'העתקה'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function(){ b.textContent = 'סמנו והעתיקו ידנית'; });
+    } else { b.textContent = 'סמנו והעתיקו ידנית'; }
+  });
+});
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  if (!(window.matchMedia && window.matchMedia('(pointer: fine)').matches)) return;
+  document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--ry', ((x - .5) * 14).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+      card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    });
+    card.addEventListener('pointerleave', function(){
+      card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg');
+    });
+  });
+})();
+</script>
