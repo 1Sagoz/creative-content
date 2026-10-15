@@ -267,6 +267,74 @@ html{scroll-behavior:smooth}
 .gallery figure{scroll-snap-align:start}
 .lessons5{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .vid video{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
+.facts .panel{padding:14px 16px;display:grid;gap:2px}
+.facts b{font-family:var(--display);font-size:30px;line-height:1;color:var(--s5);font-weight:400}
+.facts span{color:var(--muted);font-size:15px}
+.strip.eight{grid-template-columns:repeat(8,minmax(130px,1fr));min-width:1100px}
+a.frame{text-decoration:none;color:inherit}
+.stg{display:grid;gap:16px;border-top:4px solid var(--c);scroll-margin-top:16px}
+.stg h3{font-size:clamp(24px,3.4vw,32px)}
+.sn{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--c);font-size:15px;letter-spacing:.04em}
+.sn span{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--c);color:#fff;font-family:var(--display);font-size:22px}
+.lead2{font-size:19px;max-width:66ch}
+.stg p{max-width:72ch}
+.split{display:grid;grid-template-columns:minmax(0,240px) 1fr;gap:20px;align-items:start}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+.split img{width:100%;border-radius:10px;display:block}
+figure.ph,.media2 figure,.sbgrid figure{margin:0;display:grid;gap:6px}
+figure figcaption{font-size:15px;color:var(--muted)}
+.qa{display:grid;gap:10px}
+.toolline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;font-size:16px}
+.toolline>span:first-child{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.tipbox{background:color-mix(in srgb,var(--c) 9%,#fff);border-inline-start:4px solid var(--c);border-radius:10px;padding:12px 16px;font-size:17px}
+.tipbox b{color:var(--c)}
+.tipbox a{color:var(--c);font-weight:700}
+.rounds{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media (max-width:760px){.rounds{grid-template-columns:repeat(3,1fr)}}
+.rounds li{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px;background:#fff;line-height:1.35}
+.rounds li b{display:block;font-family:var(--display);font-size:22px;color:var(--muted);font-weight:400}
+.rounds li.win{border-color:var(--s4);box-shadow:inset 0 0 0 1px var(--s4)}
+.rounds li.win b{color:var(--s4)}
+.media2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.media2 img,.media2 video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;display:block;background:#0B1020}
+.struck img{filter:grayscale(.45) brightness(.9)}
+.struck b{color:var(--s2)}
+.codes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.codes{grid-template-columns:1fr}}
+.code-card{border-radius:14px;padding:16px 18px;color:#F5F1EA}
+.code-card.cc-sky{background:linear-gradient(160deg,#2F6BFF,#1B2A66)}
+.code-card.cc-earth{background:linear-gradient(160deg,#B86A00,#7A3320)}
+.code-card h4{margin:0;font-family:var(--display);font-weight:400;font-size:30px;color:#fff}
+.code-card dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+.code-card dt{opacity:.75}.code-card dd{margin:0}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px;background:#fff;border-radius:10px;overflow:hidden}
+.tbl th,.tbl td{text-align:start;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:13px;color:var(--muted)}
+.tbl td:first-child{font-family:var(--display);font-size:17px;white-space:nowrap}
+.sbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.sbgrid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block}
+.sbgrid figcaption{font-size:14px;line-height:1.35;color:var(--ink)}
+.sbgrid figcaption b{display:block;font-size:13px;color:var(--s2)}
+.sbgrid figcaption span{display:block;color:var(--muted);font-size:13px}
+.sbgrid .lump img{outline:3px solid var(--s4);outline-offset:2px}
+.layers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.layers li{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;font-size:15px}
+.layers i{display:block;height:14px;border-radius:7px;width:var(--w)}
+.layers .l-sky{background:var(--s1)}.layers .earth{background:var(--s4)}.layers .light{background:#E9B949}.layers .days{background:var(--s3)}.layers .all{background:var(--s5)}
+.demo{background:#0F1024;border-radius:14px;padding:36px 16px;text-align:center;display:grid;gap:8px;justify-items:center}
+.born{font-family:"Frank Ruhl Libre","David Libre",Georgia,serif;font-size:clamp(24px,4.4vw,40px);color:#F4EEE4;min-height:1.5em;max-width:none}
+.born .ch{display:inline-block;opacity:0;filter:blur(6px);animation:born .9s ease-out forwards}
+@keyframes born{0%{opacity:0;filter:blur(6px);text-shadow:0 0 18px rgba(242,196,107,.9)}60%{opacity:1;text-shadow:0 0 14px rgba(242,196,107,.7)}100%{opacity:1;filter:blur(0);text-shadow:none}}
+.demo .src{color:#BDB6A8;font-size:14px}
+.replay{font:600 14px var(--body);color:#BDB6A8;background:none;border:1px solid #3A3C5C;border-radius:20px;padding:4px 14px;cursor:pointer}
+.plan{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.plan li{display:grid;grid-template-columns:70px 1fr;gap:10px;font-size:16px}
+.plan b{font-family:var(--display);font-weight:400;color:var(--s4);font-size:18px}
+.pits p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
+@media (prefers-reduced-motion:reduce){.born .ch{animation:none;opacity:1;filter:none}}
 </style>
 
 <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
@@ -292,10 +360,9 @@ html{scroll-behavior:smooth}
         <li><a href="#task">המשימה למפגש הבא</a>: להפוך את הטקסט שלכם לסרטון קצר, אותנטי ואישי</li>
         <li><a href="#text">בחירת טקסט</a>: מה הופך טקסט לחומר טוב לסרטון, ומה אפשר לעשות איתו</li>
         <li><a href="#ex1">דוגמה 1, אפוק</a>: איך מאמר ארוך הופך לסרטון של שתי דקות</li>
-        <li><a href="#ex2">דוגמה 2, בראשית</a>: איך מחיזים טקסט מקראי</li>
+        <li><a href="#ex2">דוגמה 2, בראשית: מפסוק לסרט</a>: הסרט, ו<a href="#process">התהליך בשמונה שלבים</a>, מהרעיון, דרך בחירת הסגנון והסטוריבורד, ועד ההפצה, עם פרומפטים מוכנים להעתקה</li>
         <li><a href="#ex3">דוגמה 3, הטקסט שלי</a>: "כוח הדמיון והיציאה מהמערה", ומאחורי הקלעים של הפריימים</li>
         <li><a href="#textonly">להמחיז בטקסט בלבד</a>: הדרך הכי ישירה להפוך טקסט אישי לסרטון</li>
-        <li><a href="#process">התהליך, צעד אחר צעד</a>: מהטקסט, דרך התסריט והסטוריבורד, ועד התמונות והסאונד, עם פרומפטים מוכנים להעתקה</li>
         <li><a href="#tools">ארגז הכלים של השיעור</a>, כולל NotebookLM</li>
       </ol>
       <p>שאלות? אני כאן. בהצלחה,<br>שגיא</p>
@@ -307,7 +374,7 @@ html{scroll-behavior:smooth}
     <h2 style="font-size:28px">ליצור: להפוך את הטקסט שלכם לסרטון</h2>
     <p>בחרו טקסט: הרצאת המשנה שלכם, שיר שכתבתם, פסוק שמלווה אתכם. כל טקסט אמיתי ואישי מתאים. והפכו אותו לסרטון קצר, אותנטי ואישי.</p>
     <p><b>הבסיס:</b> סרטון של טקסט בלבד. המילים שלכם על המסך, בקצב שלכם, ואם תרצו גם עם הקול שלכם קורא אותן. <a href="#textonly">איך עושים את זה</a></p>
-    <p><b>ומי שרוצה להמשיך:</b> מוסיפים תמונות, לפי התהליך שבדף. או לפחות פריים אחד, תמונה אחת שמחיזה משפט מהטקסט שלכם.</p>
+    <p><b>ומי שרוצה להמשיך:</b> מוסיפים תמונות, לפי <a href="#process">שמונת השלבים</a>. או לפחות פריים אחד, תמונה אחת שמחיזה משפט מהטקסט שלכם.</p>
     <p>אפשר ליצור ב-Google Vids, כמו שלמדנו בתחילת הדרך, או ב-CapCut.</p>
     <p class="q">המטרה היא לא סרטון מושלם. המטרה היא לעבוד יותר יעיל, יותר יצירתי ויותר אותנטי, עם הכלים שכבר יש לנו.</p>
   </section>
@@ -380,43 +447,242 @@ html{scroll-behavior:smooth}
   <section id="ex2" style="display:grid;gap:18px" aria-labelledby="e2">
     <div class="head">
       <div class="eyebrow">דוגמה 2</div>
-      <h2 id="e2">בראשית: להמחיז טקסט מקראי</h2>
+      <h2 id="e2">בראשית: מפסוק לסרט</h2>
       <p>בחרתי בבראשית, פרק א', בדיוק כשאנחנו עוברים לפרשת נח: מבריאת העולם ועד בריאת האדם, בפסוק כ"ז. זה טקסט עוצמתי, עם הרבה רבדים, וכל אחד מהם יכול לפתוח דיון. ובגלל שהוא כל כך מוכר, חשוב במיוחד לבקש מהכלי את הטקסט המדויק והמלא, ולבדוק אותו.</p>
     </div>
-    <blockquote class="panel verse">
-      <p>ויברא אלהים את האדם בצלמו, בצלם אלהים ברא אתו, זכר ונקבה ברא אתם.</p>
-      <cite>בראשית א', כ"ז</cite>
-    </blockquote>
+    <div class="facts">
+      <div class="panel"><b>2:31</b><span>אורך הסרט</span></div>
+      <div class="panel"><b>14</b><span>שוטים</span></div>
+      <div class="panel"><b>27</b><span>פסוקים, א'–כ"ז</span></div>
+      <div class="panel"><b>0 ₪</b><span>במסלול החינמי</span></div>
+    </div>
     <div class="vids one">
       <figure class="panel vid c5">
         <video controls preload="none" playsinline poster="../videos/bereshit.jpg" src="../videos/bereshit.mp4"></video>
-        <figcaption><strong>בראשית, פרק א'</strong><span>בסגנון פלסטלינה, עם הנפשה · 2:31</span><a href="../videos/bereshit.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
+        <figcaption><strong>בראשית, פרק א'</strong><span>בפלסטלינה ואור, עם הנפשה · 2:31</span><a href="../videos/bereshit.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
       </figure>
     </div>
+  </section>
+
+  <section id="process" style="display:grid;gap:22px" aria-labelledby="pr">
     <div class="head">
-      <h3 style="font-size:24px">בחירת סגנון: אותה סצנה, שמונה חוויות</h3>
-      <p>לפני שיצרתי את הסרטון, ביקשתי את אותה סצנה, אדם שנברא ומושיט יד אל האור, בסגנונות שונים. כל סגנון מספר סיפור אחר. בחרתי בפלסטלינה, כי זה עניין אותי והיה קצת אחר. עלה לי גם כיוון אחר לגמרי, של אור וצל, יותר מופשט, כמעט ריקוד. מקום שעוד לא ראיתי.</p>
+      <div class="eyebrow">מאחורי הקלעים</div>
+      <h2 id="pr">התהליך בשמונה שלבים</h2>
+      <p>כך הפכנו את פרק א' לסרט קצר, ואיך תעשו את אותו הדבר עם הטקסט שלכם, בכלים חינמיים. לחצו על שלב כדי לקפוץ אליו.</p>
     </div>
-    <div class="styles">
-      <figure><img src="img/style1.jpg" alt="איור בדיו שחורה על נייר" loading="lazy"><figcaption>דיו</figcaption></figure>
-      <figure><img src="img/style2.jpg" alt="רישום פחם כהה" loading="lazy"><figcaption>פחם</figcaption></figure>
-      <figure><img src="img/style3.jpg" alt="צבעי מים כחולים" loading="lazy"><figcaption>צבעי מים</figcaption></figure>
-      <figure><img src="img/style4.jpg" alt="רישום עיפרון עדין" loading="lazy"><figcaption>עיפרון</figcaption></figure>
-      <figure class="pick"><img src="img/style5.jpg" alt="דמות ונוף מפלסטלינה צבעונית" loading="lazy"><figcaption>פלסטלינה · הבחירה שלי</figcaption></figure>
-      <figure><img src="img/style6.jpg" alt="דמות מחימר באלומת אור" loading="lazy"><figcaption>חימר ואור</figcaption></figure>
-      <figure><img src="img/style7.jpg" alt="צללית רוקדת על קיר" loading="lazy"><figcaption>אור וצל</figcaption></figure>
-      <figure><img src="img/style8.jpg" alt="קרני אור מופשטות" loading="lazy"><figcaption>מופשט</figcaption></figure>
+
+    <div class="board" tabindex="0" aria-label="שמונת השלבים, גלילה לצדדים">
+      <div class="strip eight">
+        <a class="frame c1" href="#s1"><div class="screen"><span class="sc">01</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M24 6a12 12 0 0 0-7 21.7V33h14v-5.3A12 12 0 0 0 24 6Z"/><path d="M19 39h10M21 43h6"/></svg></div><h3>רעיון</h3><p class="tool">Claude · ChatGPT</p></a>
+        <a class="frame c3" href="#s2"><div class="screen"><span class="sc">02</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="16" r="3"/><circle cx="33" cy="27" r="3"/><path d="M20 33a4 4 0 0 0 4 4"/></svg></div><h3>בחירת סגנון</h3><p class="tool">Nano Banana</p></a>
+        <a class="frame c4" href="#s3"><div class="screen"><span class="sc">03</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 20h32M8 30h32M20 8v32"/></svg></div><h3>קודים</h3><p class="tool">דף ועט</p></a>
+        <a class="frame c2" href="#s4"><div class="screen"><span class="sc">04</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="17" height="13" rx="2"/><rect x="26" y="9" width="17" height="13" rx="2"/><rect x="5" y="27" width="17" height="13" rx="2"/><rect x="26" y="27" width="17" height="13" rx="2"/></svg></div><h3>סטוריבורד</h3><p class="tool">Claude + Nano Banana</p></a>
+        <a class="frame c5" href="#s5"><div class="screen"><span class="sc">05</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="3"/><path d="M21 19l9 5-9 5z"/></svg></div><h3>תנועה</h3><p class="tool">Kling</p></a>
+        <a class="frame c1" href="#s6"><div class="screen"><span class="sc">06</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 35V11l20-4v24"/><circle cx="13" cy="35" r="5"/><circle cx="33" cy="31" r="5"/></svg></div><h3>סאונד</h3><p class="tool">Suno · ElevenLabs</p></a>
+        <a class="frame c4" href="#s7"><div class="screen"><span class="sc">07</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="13" cy="14" r="5"/><circle cx="13" cy="34" r="5"/><path d="M17 17l25 15M17 31l25-15"/></svg></div><h3>עריכה וטקסט</h3><p class="tool">CapCut</p></a>
+        <a class="frame c5" href="#s8"><div class="screen"><span class="sc">08</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M13 30h10M27 30h8M13 24h22"/></svg></div><h3>הפצה</h3><p class="tool">YouTube</p></a>
+      </div>
     </div>
-    <p class="panel credit">התמונות נוצרו ב-Higgsfield. את אותו תרגיל בדיוק אפשר לעשות בחינם ב-Nano Banana או ב-ChatGPT: פרומפט אחד, ומשנים רק את שם הסגנון.</p>
+
+    <article class="panel stg c1" id="s1">
+      <div class="sn"><span>1</span>רעיון</div>
+      <h3>מתחילים בשאלות, לא בתסריט</h3>
+      <p class="lead2">המשפט הראשון היה "ניצור סרטון על פרשת בראשית". במקום תסריט, התשובה הייתה ארבע שאלות.</p>
+      <div class="split">
+        <figure class="ph"><img src="img/g/chumash.jpg" alt="דף החומש באור שמש" loading="lazy"><figcaption>הצילום שהתחיל הכול: קרן שמש על "ויבדל בין האור ובין החשך"</figcaption></figure>
+        <div class="qa">
+          <p><b>עצמאי או חלק מפרויקט?</b> עצמאי.</p>
+          <p><b>איזו זווית?</b> פרק א' בלבד, מהבריאה עד הולדת האדם.</p>
+          <p><b>אורך ופורמט?</b> סרט קצר, וגם גרסה אנכית של 60 שניות.</p>
+          <p><b>שפה וקול?</b> וידאו וטקסט, מוזיקה, טון מופשט ופואטי, צמוד לפסוקים המקוריים.</p>
+        </div>
+      </div>
+      <p class="toolline"><span>כלי</span><b>Claude או ChatGPT</b><span class="pill free">חינם, עם מכסה יומית</span></p>
+      <p class="tipbox"><b>למנחים:</b> השאלות שוות יותר מהפרומפט. מי שמבקש "תכתוב לי תסריט" מקבל תסריט גנרי. מי שמבקש "תשאל אותי שאלות עד שיהיה לך מספיק מידע" מקבל סרט שלו.</p>
+    </article>
+
+    <article class="panel stg c3" id="s2">
+      <div class="sn"><span>2</span>בחירת סגנון</div>
+      <h3>מחפשים בתמונות, כי הן זולות</h3>
+      <p class="lead2">שישה סבבי סקיצות. כל סבב בדק את אותו רגע, אדם שנברא ומושיט יד אל האור, בסגנונות שונים. הסגנון שנבחר לא היה אף אחד מהרעיונות הראשונים. הוא נולד מההשוואה.</p>
+      <ol class="rounds">
+        <li><b>1</b>מיתולוגי, מופשט, עכשווי</li>
+        <li><b>2</b>עכשווי פואטי</li>
+        <li><b>3</b>דיו, פחם, שמן</li>
+        <li><b>4</b>צבעי מים, עיפרון, פלסטלינה</li>
+        <li><b>5</b>בוץ, מים, אור וצל</li>
+        <li class="win"><b>6</b>פלסטלינה + אור</li>
+      </ol>
+      <div class="styles">
+        <figure><img src="img/style1.jpg" alt="איור בדיו שחורה על נייר" loading="lazy"><figcaption>דיו</figcaption></figure>
+        <figure><img src="img/style2.jpg" alt="רישום פחם כהה" loading="lazy"><figcaption>פחם</figcaption></figure>
+        <figure><img src="img/style3.jpg" alt="צבעי מים כחולים" loading="lazy"><figcaption>צבעי מים</figcaption></figure>
+        <figure><img src="img/style4.jpg" alt="רישום עיפרון עדין" loading="lazy"><figcaption>עיפרון</figcaption></figure>
+        <figure><img src="img/style6.jpg" alt="דמות מחימר באלומת אור" loading="lazy"><figcaption>בוץ ואור</figcaption></figure>
+        <figure><img src="img/style7.jpg" alt="צללית רוקדת על קיר" loading="lazy"><figcaption>אור וצל</figcaption></figure>
+        <figure><img src="img/style8.jpg" alt="קרני אור מופשטות" loading="lazy"><figcaption>מופשט</figcaption></figure>
+        <figure class="pick"><img src="img/style5.jpg" alt="דמות ונוף מפלסטלינה צבעונית" loading="lazy"><figcaption>פלסטלינה · הבחירה</figcaption></figure>
+      </div>
+      <div class="media2">
+        <figure><img src="img/g/sketch-sky.jpg" alt="דמות פלסטלינה מושיטה יד לשמיים מחימר" loading="lazy"><figcaption>סקיצת המפתח: שמיים מחימר כחול, אדמה בצבעי אוקר</figcaption></figure>
+        <figure><img src="img/g/sketch-sea.jpg" alt="דמות פלסטלינה כורעת מול ים" loading="lazy"><figcaption>הסקיצה השנייה, ששימשה תמונת ייחוס</figcaption></figure>
+      </div>
+      <p class="toolline"><span>כלי</span><b>Nano Banana ב-Gemini</b><span class="pill free">חינם, כ-20 תמונות ביום</span></p>
+      <p class="tipbox"><b>למנחים:</b> אחרי שנבחרו סקיצות, כל תמונה חדשה נוצרה עם אחת מהן מצורפת כתמונת ייחוס. ככה החומר והדמות נשארו זהים לאורך כל הסרט. תנו למשתתפים לייצר רגע אחד בשלושה סגנונות לפני שהם מחליטים.</p>
+    </article>
+
+    <article class="panel stg c4" id="s3">
+      <div class="sn"><span>3</span>קודים</div>
+      <h3>לכל מילה בפסוק יש מראה וצליל</h3>
+      <p class="lead2">זה השלב היחיד שבלי AI, והוא הסיבה שהסרט מרגיש מחובר. לפני כל פרומפט החלטנו מה כל מושג אומר, איך הוא נראה ואיך הוא נשמע.</p>
+      <div class="codes">
+        <div class="code-card cc-sky"><h4>הַשָּׁמַיִם</h4><dl><dt>משמעות</dt><dd>האינסופי, המחשבה, הדמיון</dd><dt>בתמונה</dt><dd>ענני חימר מסתלסלים, אור קר</dd><dt>בצליל</dt><dd>חליל, צליל גבוה</dd></dl></div>
+        <div class="code-card cc-earth"><h4>הָאָרֶץ</h4><dl><dt>משמעות</dt><dd>ידיים, רגליים, צבע, האנושי</dd><dt>בתמונה</dt><dd>חימר אוקר ואדום, טביעות אצבע</dd><dt>בצליל</dt><dd>צ'לו, צליל נמוך</dd></dl></div>
+      </div>
+      <div class="tbl" tabindex="0">
+        <table>
+          <thead><tr><th>מושג</th><th>משמעות</th><th>בתמונה</th><th>בצליל</th></tr></thead>
+          <tbody>
+            <tr><td>תֹהוּ וָבֹהוּ</td><td>מלחמות אחים, מהפכות, שריפות</td><td>חימר שנמרח על עצמו, אש ועשן</td><td>מיתרים מזייפים, תופים, רעם</td></tr>
+            <tr><td>חֹשֶׁךְ עַל פְּנֵי תְהוֹם</td><td>עומק פנימי בלי קרקעית</td><td>ים חימר כמעט שחור</td><td>שקט, קונטרבס אחד</td></tr>
+            <tr><td>רוּחַ אֱלֹהִים</td><td>נוכחות ששומרת בלי לגעת</td><td>אדוות בלבד, שום דבר באוויר</td><td>רוח, חליל לבד</td></tr>
+            <tr><td>אֱלֹהִים</td><td>אור, צל, אוויר, נמצא בכל</td><td>נקודת האור שנוגעת בחימר</td><td>הסרט כולו</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="toolline"><span>כלי</span><b>דף, עט ושיחה</b><span class="pill limit">אפשר להיעזר ב-Claude לניסוח</span></p>
+      <p class="tipbox"><b>למנחים:</b> זה השלב ששווה לתרגל בכיתה. כל משתתף ממלא טבלה כזו לטקסט שלו לפני שהוא פותח כלי כלשהו. שלושה מושגים מספיקים.</p>
+    </article>
+
+    <article class="panel stg c2" id="s4">
+      <div class="sn"><span>4</span>סטוריבורד</div>
+      <h3>שורה לכל רעיון, שוט לכל שורה</h3>
+      <p class="lead2">14 פריימים, פריים לכל פסוק או יום. עד פסוק כ"ז אין בעולם אדם. גוש החימר מהפריים הראשון נשכח, וממנו נולד האדם בסוף. המסגרת המודגשת מסמנת את הגוש.</p>
+      <div class="sbgrid">
+        <figure class="lump"><img src="img/sb/f01.jpg" alt="" loading="lazy"><figcaption><b>1 · א', א'</b>אור נוגע בגוש חימר<span>13 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f02.jpg" alt="" loading="lazy"><figcaption><b>2 · א', ב'</b>החימר נמרח, אש ועשן<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f03.jpg" alt="" loading="lazy"><figcaption><b>3 · א', ב'</b>ים חימר שחור<span>8 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f04.jpg" alt="" loading="lazy"><figcaption><b>4 · א', ב'</b>אדוות על ים כהה<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f05.jpg" alt="" loading="lazy"><figcaption><b>5 · א', ג'</b>הנקודה מתפוצצת לאור<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f06.jpg" alt="" loading="lazy"><figcaption><b>6 · א', ד'–ה'</b>יום ולילה<span>14 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f07.jpg" alt="" loading="lazy"><figcaption><b>7 · א', ו'</b>רקיע בין המים<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f08.jpg" alt="" loading="lazy"><figcaption><b>8 · א', ט'</b>היבשה עולה<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f09.jpg" alt="" loading="lazy"><figcaption><b>9 · א', י"א</b>נבטים ועצי פרי<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f10.jpg" alt="" loading="lazy"><figcaption><b>10 · א', ט"ז</b>שמש, ירח, כוכבים<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f11.jpg" alt="" loading="lazy"><figcaption><b>11 · א', כ"א</b>לוויתן וציפורים<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f12.jpg" alt="" loading="lazy"><figcaption><b>12 · א', כ"ד</b>חיות על הגבעות<span>12 שנ'</span></figcaption></figure>
+        <figure class="lump"><img src="img/sb/f13.jpg" alt="" loading="lazy"><figcaption><b>13 · א', כ"ו</b>הקרן חוזרת לגוש<span>10 שנ'</span></figcaption></figure>
+        <figure class="lump"><img src="img/sb/f14.jpg" alt="" loading="lazy"><figcaption><b>14 · א', כ"ז</b>האדם עולה מהחימר<span>14 שנ'</span></figcaption></figure>
+      </div>
+      <p class="toolline"><span>כלים</span><b>Claude לטבלה, Nano Banana לפריימים</b><span class="pill free">חינם</span></p>
+      <p class="tipbox"><b>למנחים:</b> הטבלה היא התסריט כולו. בקשו מ-Claude לבנות אותה מהטקסט ומטבלת הקודים, ורק אחר כך צרו תמונה לכל שורה.</p>
+    </article>
+
+    <article class="panel stg c5" id="s5">
+      <div class="sn"><span>5</span>תנועה</div>
+      <h3>מתמונה לשוט: הפרומפט מתאר רק תנועה</h3>
+      <p class="lead2">כל פריים מאושר הופך לתמונת פתיחה של שוט. המראה כבר נמצא בתמונה, ולכן הפרומפט מתאר רק מה זז ואיך.</p>
+      <div class="media2">
+        <figure><video autoplay muted loop playsinline preload="metadata" poster="img/kling-light.jpg" src="img/kling-light.mp4"></video><figcaption>"ויהי אור": פריים פלסטלינה שהונפש ב-Kling</figcaption></figure>
+        <figure class="struck"><img src="img/g/struck-cellophane.jpg" alt="סרט צלופן מעופף מעל ים חימר" loading="lazy"><figcaption><b>ירד מהסרט:</b> סרט הצלופן שייצג את הרוח. יפה בתמונה, מיותר בתנועה.</figcaption></figure>
+      </div>
+      <p>שוט "ורוח אלהים" עבר שלושה ניסיונות: עם סרט צלופן באוויר, עם עננים כבדים, ועם קרן אור שמבליחה. בסוף נבחרה הגרסה הפשוטה ביותר: רק אדוות על המים. את הרוח עצמה מספר הסאונד.</p>
+      <p class="toolline"><span>כלי</span><b>Kling</b><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></p>
+      <p class="tipbox"><b>למנחים:</b> הקרדיטים היומיים מספיקים לשניים או שלושה שוטים. הנפישו רק את הרגעים החשובים, ואת השאר השאירו תמונות עם תנועת מצלמה עדינה (זום איטי) בעריכה.</p>
+    </article>
+
+    <article class="panel stg c1" id="s6">
+      <div class="sn"><span>6</span>סאונד</div>
+      <h3>מוזיקה שנבראת בשכבות</h3>
+      <p class="lead2">החליל פותח לבד, הצ'לו נכנס מתחתיו, הכינור נכנס ב"יהי אור" על הצליל שהופך ממינור למז'ור, וכל יום מוסיף כלי. בסוף מקהלה וכל התזמורת.</p>
+      <ol class="layers">
+        <li style="--w:100%"><span>חליל · שמיים</span><i class="l-sky"></i></li>
+        <li style="--w:90%"><span>צ'לו · ארץ</span><i class="earth"></i></li>
+        <li style="--w:70%"><span>כינור · "יהי אור"</span><i class="light"></i></li>
+        <li style="--w:45%"><span>כלי לכל יום</span><i class="days"></i></li>
+        <li style="--w:15%"><span>מקהלה ותזמורת</span><i class="all"></i></li>
+      </ol>
+      <p>מעל המוזיקה: סאונד טבעי (רוח, רעם, גלים, עלים, ציפורים, לוויתן, נשימה ראשונה) וקריינות של הפסוקים, שורה לכל שוט.</p>
+      <p class="toolline"><span>כלים</span><b>Suno למוזיקה · ElevenLabs לקריינות ולאפקטים</b><span class="pill free">חינם, עם מכסה</span><span class="pill limit">Suno לשימוש לא מסחרי</span></p>
+      <p class="tipbox"><b>למנחים:</b> קריינות בעברית מקול AI עלולה להישמע עם מבטא. הפתרון הטוב ביותר הוא קול אמיתי: הקלטה בטלפון, או שיבוט קול מדגימה קצרה. בקשו מהמשתתפים להקשיב לכל מילה לפני שהיא נכנסת לסרט.</p>
+    </article>
+
+    <article class="panel stg c4" id="s7">
+      <div class="sn"><span>7</span>עריכה וטקסט</div>
+      <h3>הפסוק נברא אות אחר אות</h3>
+      <p class="lead2">בגרסה העברית כל אות עולה מתוך טשטוש עם הילת אור, יחד עם הניקוד שלה, בקצב הקריינות. מילה, ואז משפט.</p>
+      <div class="demo">
+        <p class="born" id="demo-verse" data-verse="וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר"></p>
+        <p class="src">בראשית א', ג'</p>
+        <button class="replay" type="button" id="replay-demo">הפעלה חוזרת</button>
+      </div>
+      <p>כל מה שכתוב על המסך זהה מילה במילה למה שנשמע בקריינות.</p>
+      <p class="toolline"><span>כלי</span><b>CapCut</b><span class="pill free">חינם</span><span class="pill limit">חלק מהאפקטים בתשלום</span></p>
+      <p class="tipbox"><b>למנחים:</b> ב-CapCut: <span class="ui">Speed</span> להאטת שוטים (בפלסטלינה האטה נראית כמו סטופ-מושן), <span class="ui">Dissolve</span> למעברים, ואנימציית טקסט <span class="ui">Typewriter</span> או <span class="ui">Blur In</span> במקום האותיות שנבראות. גופן מומלץ לעברית עם ניקוד: Frank Ruhl Libre.</p>
+    </article>
+
+    <article class="panel stg c5" id="s8">
+      <div class="sn"><span>8</span>הפצה</div>
+      <h3>ייצוא, עוצמה, העלאה</h3>
+      <p class="lead2">MP4 לסרט, MP3 נפרד לפסקול, ועוצמת קול שמתאימה לרשתות, כדי שהסרט לא יישמע חלש בפיד.</p>
+      <p class="toolline"><span>כלים</span><b>CapCut לייצוא · YouTube להעלאה</b><span class="pill free">חינם</span></p>
+      <p class="tipbox"><b>למנחים:</b> לפני העלאה, השוו את הפסוקים עם הניקוד לחומש או לאתר מוסמך. ניקוד שנכתב מזיכרון של מודל עלול לטעות. <a href="../#youtube">ההדרכה להעלאה ליוטיוב, בדף של שיעור 5</a></p>
+    </article>
+
     <div class="two">
-      <figure class="panel vid c2" style="margin:0">
-        <video autoplay muted loop playsinline preload="metadata" poster="img/kling-light.jpg" src="img/kling-light.mp4"></video>
-        <figcaption><strong>מתמונה לתנועה</strong><span>"ויהי אור": תמונת פלסטלינה שהונפשה ב-Kling</span></figcaption>
-      </figure>
-      <div class="panel what" style="align-content:start">
-        <h3>הנפשה</h3>
-        <p>אחרי שיש תמונות, אפשר להפיח בהן חיים. מעלים את התמונה ל-Kling, מתארים במילים איזו תנועה רוצים, ומקבלים קליפ קצר. כאן ביקשתי תנועה בסגנון סטופ-מושן, כאילו הפלסטלינה זזה פריים אחרי פריים.</p>
-        <p>הגרסה החינמית של Kling נותנת קרדיטים יומיים, עם סימן מים.</p>
+      <div class="panel did">
+        <h3 style="font-size:22px">מפגש אחד עם הקבוצה שלכם: 90 דקות</h3>
+        <p>במפגש של 90 דקות משתתף מגיע לסטוריבורד מאושר ולשני שוטים מונפשים. את הסאונד והעריכה משאירים לבית.</p>
+        <ol class="plan">
+          <li><b>0–10</b>צפייה בסרט ובסקיצות שלא נבחרו</li>
+          <li><b>10–25</b>בחירת טקסט וטבלת קודים</li>
+          <li><b>25–45</b>רגע אחד בשלושה סגנונות</li>
+          <li><b>45–65</b>סטוריבורד ו-4 עד 6 פריימים</li>
+          <li><b>65–80</b>שני שוטים ב-Kling</li>
+          <li><b>80–90</b>הצגה ומשימה לבית</li>
+        </ol>
+      </div>
+      <div class="panel did pits">
+        <h3 style="font-size:22px">ממה להימנע</h3>
+        <p><b>וידאו לפני שהסגנון נעול:</b> שורף קרדיטים על שוטים שלא ייכנסו.</p>
+        <p><b>דמות שמשתנה בין שוטים:</b> תמיד לצרף תמונת ייחוס, ולהעדיף רגעים בלי דמות.</p>
+        <p><b>אובייקט מיותר בפריים:</b> לפעמים הסאונד מספר טוב יותר מהתמונה.</p>
+        <p><b>קריינות שלא נשמעה:</b> להקשיב לכל מילה לפני העריכה.</p>
+        <p><b>טקסט שלא תואם לקול:</b> מה שכתוב ומה שנשמע הם אותן מילים.</p>
+        <p><b>ניקוד מהזיכרון:</b> להעתיק מחומש או מאתר מוסמך.</p>
+      </div>
+    </div>
+
+    <div class="head" style="margin-top:6px">
+      <h2 style="font-size:26px">פרומפטים מוכנים להעתקה</h2>
+      <p>בסוגריים המרובעים ממלאים את הפרטים שלכם. פרומפטי התמונה והתנועה באנגלית, כי הכלים מבינים אותה טוב יותר.</p>
+    </div>
+    <div class="prompts">
+      <div class="panel prompt c1">
+        <div class="ph"><span class="n">1</span><h3>פתיחת שיחה · Claude / ChatGPT</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>אני רוצה ליצור סרטון קצר על [הטקסט]. לפני שאתה כותב משהו, שאל אותי שאלות על הזווית, הקהל, האורך והשפה החזותית, עד שיהיה לך מספיק מידע. אחר כך הצע שלושה כיוונים שונים לגמרי.</pre>
+      </div>
+      <div class="panel prompt c2">
+        <div class="ph"><span class="n">2</span><h3>סטוריבורד · Claude / ChatGPT</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>הפוך את הטקסט ואת טבלת הקודים לסטוריבורד: טבלה שבה כל שורה היא שוט.
+בכל שורה: מספר השוט, הפסוק או המשפט, מה רואים בתמונה, ומשך בשניות.
+השתמש בטקסט המדויק והמלא, בלי קיצורים ובלי שינויים.</pre>
+      </div>
+      <div class="panel prompt c3">
+        <div class="ph"><span class="n">3</span><h3>סקיצת סגנון · Nano Banana</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation still, handmade plasticine with visible fingerprints. [WHAT HAPPENS IN THE SCENE]. Soft moody lighting, miniature set, poetic, centered, no text.</pre>
+      </div>
+      <div class="panel prompt c3">
+        <div class="ph"><span class="n">4</span><h3>פריים עקבי, עם תמונת ייחוס · Nano Banana</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation still in the exact plasticine style of the reference image, with NO people. [THE NEW SCENE]. Miniature set, centered, no text.</pre>
+      </div>
+      <div class="panel prompt c5">
+        <div class="ph"><span class="n">5</span><h3>תנועה לשוט · Kling</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation. [WHAT MOVES AND HOW, ONE ACTION]. Slow push in. No people, no text, continuous, no cuts.</pre>
+      </div>
+      <div class="panel prompt c1">
+        <div class="ph"><span class="n">6</span><h3>מוזיקה בשכבות · Suno</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Instrumental, slow, meditative orchestral piece. Starts with a solo flute alone, a low cello joins, then a violin enters and the strings slowly build, ending with a soft choir and full orchestra. No vocals, no drums.</pre>
       </div>
     </div>
   </section>
@@ -486,79 +752,6 @@ html{scroll-behavior:smooth}
       <p class="tip">את התוצאה בונים ב-Google Vids או ב-CapCut: שקופית אחת לכל משפט, ומעבר רך ביניהן.</p>
     </div>
     <p class="panel credit"><img src="../icons/claude.png" alt="">דוגמה לסרטון שכולו טקסט: "נזכור", <a href="../#videos" style="color:var(--s1);font-weight:700">בדף של שיעור 5</a>. מילים ומוזיקה, בלי מילה אחת של קריינות.</p>
-  </section>
-
-  <section id="process" style="display:grid;gap:14px" aria-labelledby="pr">
-    <div class="head">
-      <h2 id="pr">התהליך, צעד אחר צעד</h2>
-      <p>כך נבנה סרטון מטקסט. שבעה שלבים, והכלי שאפשר לעשות איתו כל אחד מהם.</p>
-    </div>
-    <div class="board" tabindex="0" aria-label="שלבי התהליך, גלילה לצדדים">
-      <div class="strip">
-        <div class="frame c1">
-          <div class="screen"><span class="sc">01</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 15h16M16 22h16M16 29h10"/></svg></div>
-          <h3>בחירת טקסט</h3><p>איפה ההתחלה, האמצע והסוף? מה הנושא שלנו?</p>
-        </div>
-        <div class="frame c1">
-          <div class="screen"><span class="sc">02</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 38l4-12L34 8l6 6-18 18z"/><path d="M30 12l6 6"/></svg></div>
-          <h3>תסריט</h3><p class="tool">Claude · ChatGPT · Gemini</p><p>הטקסט המדויק והמלא, בלי קיצורים. ובודקים.</p>
-        </div>
-        <div class="frame c2">
-          <div class="screen"><span class="sc">03</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="17" height="13" rx="2"/><rect x="26" y="9" width="17" height="13" rx="2"/><rect x="5" y="27" width="17" height="13" rx="2"/><rect x="26" y="27" width="17" height="13" rx="2"/></svg></div>
-          <h3>סטוריבורד</h3><p>כמו קומיקס: לכל פריים יש מלל ותמונה.</p>
-        </div>
-        <div class="frame c3">
-          <div class="screen"><span class="sc">04</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="16" r="3"/><circle cx="33" cy="27" r="3"/><path d="M20 33a4 4 0 0 0 4 4"/></svg></div>
-          <h3>בחירת סגנון</h3><p>עיפרון, צבע, טושים, ריאליסטי, סוריאליסטי, פלסטלינה.</p>
-        </div>
-        <div class="frame c4">
-          <div class="screen"><span class="sc">05</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="30" rx="3"/><circle cx="17" cy="19" r="4"/><path d="M6 33l11-9 9 7 6-5 10 8"/></svg></div>
-          <h3>יצירת תמונות</h3><p class="tool">Nano Banana · ChatGPT</p><p>פרומפט מכל פריים בסטוריבורד.</p>
-        </div>
-        <div class="frame c2">
-          <div class="screen"><span class="sc">06</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="3"/><path d="M21 19l9 5-9 5z"/></svg></div>
-          <h3>הנפשה</h3><p class="tool">Kling</p><p>התמונה מקבלת תנועה, לפי תיאור במילים.</p>
-        </div>
-        <div class="frame c5">
-          <div class="screen"><span class="sc">07</span>
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 35V11l20-4v24"/><circle cx="13" cy="35" r="5"/><circle cx="33" cy="31" r="5"/></svg></div>
-          <h3>סאונד</h3><p class="tool">Suno · ElevenLabs</p><p>השכבה האחרונה: מוזיקת רקע וכלי נגינה.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="head" style="margin-top:14px">
-      <h2 style="font-size:26px">פרומפטים מוכנים להעתקה</h2>
-      <p>מחליפים את מה שבסוגריים המרובעים בטקסט שלכם. עובד ב-Claude, ב-ChatGPT וב-Gemini. כל אחד ימצא את הסביבה שנכונה לו.</p>
-    </div>
-    <div class="prompts">
-      <div class="panel prompt c1">
-        <div class="ph"><span class="n">1</span><h3>מטקסט לתסריט</h3><button type="button" class="copy">העתקה</button></div>
-        <pre>זה הטקסט שבחרתי: [הדביקו כאן את הטקסט]
-חלק אותו להתחלה, אמצע וסוף, וכתוב במשפט אחד מה הנושא המרכזי שלו.
-אחר כך הפוך אותו לתסריט לסרטון של דקה אחת.
-חשוב: השתמש בטקסט המדויק והמלא, בלי קיצורים ובלי שינויים.</pre>
-      </div>
-      <div class="panel prompt c2">
-        <div class="ph"><span class="n">2</span><h3>מתסריט לסטוריבורד</h3><button type="button" class="copy">העתקה</button></div>
-        <pre>הפוך את התסריט לסטוריבורד: טבלה שבה כל שורה היא פריים.
-בכל שורה: מספר הפריים, הטקסט שנשמע או מופיע בו, ומה רואים בתמונה.
-פריים אחד לכל משפט או פסוק.</pre>
-      </div>
-      <div class="panel prompt c4">
-        <div class="ph"><span class="n">3</span><h3>מפריים לתמונה</h3><button type="button" class="copy">העתקה</button></div>
-        <pre>צייר את הפריים הזה בסגנון [פלסטלינה / עיפרון / צבעי מים / צילום ריאליסטי], ביחס 16:9:
-[התיאור של הפריים מהסטוריבורד]</pre>
-        <p class="tip">ואפשר גם הכי פשוט: לכתוב "תצייר את הציטוט הזה", להדביק את הפסוק, ולראות מה קורה.</p>
-      </div>
-    </div>
-    <p class="panel credit"><img src="../icons/claude.png" alt="">טיפ: אחרי שהתסריט מוכן, תמיד בדקו אותו מול המקור. במיוחד בטקסט מקראי או בציטוט, כל מילה חשובה.</p>
   </section>
 
   <section id="tools" style="display:grid;gap:18px" aria-labelledby="tl">
@@ -660,3 +853,28 @@ document.querySelectorAll('.copy').forEach(function(b){
   });
 })();
 </script>
+<script>
+(function(){
+  var el=document.getElementById('demo-verse'); if(!el) return;
+  var CL=/[\u05D0-\u05EA][\u0591-\u05C7]*|./g;
+  function birth(){
+    var t=el.getAttribute('data-verse'); el.textContent='';
+    var words=t.split(' '); var n=0; words.forEach(function(w){n+=(w.match(CL)||[]).length});
+    var i=0;
+    words.forEach(function(w,wi){
+      var ws=document.createElement('span'); ws.style.whiteSpace='nowrap';
+      (w.match(CL)||[]).forEach(function(p){
+        var c=document.createElement('span'); c.className='ch'; c.textContent=p;
+        c.style.animationDelay=(0.3+3.2*i/Math.max(1,n-1)).toFixed(2)+'s'; i++; ws.appendChild(c);
+      });
+      el.appendChild(ws); if(wi<words.length-1) el.appendChild(document.createTextNode(' '));
+    });
+  }
+  var started=false;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,o){ if(es[0].isIntersecting && !started){started=true;birth();o.disconnect();} },{threshold:.6}).observe(el);
+  } else birth();
+  document.getElementById('replay-demo').addEventListener('click',birth);
+})();
+</script>
+
