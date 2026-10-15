@@ -335,6 +335,20 @@ figure figcaption{font-size:15px;color:var(--muted)}
 .plan b{font-family:var(--display);font-weight:400;color:var(--s4);font-size:18px}
 .pits p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
 @media (prefers-reduced-motion:reduce){.born .ch{animation:none;opacity:1;filter:none}}
+.estages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.estages{grid-template-columns:1fr}}
+.est{display:grid;gap:12px;align-content:start;border-top:4px solid var(--c)}
+.est p{font-size:16px}
+.est .toolline{font-size:15px}
+.est .toolline a{color:var(--s3);font-weight:700}
+.lesson{display:grid;gap:12px;border:1.5px solid rgba(217,47,102,.45);box-shadow:0 14px 36px -18px rgba(217,47,102,.45)}
+.lesson .eyebrow{color:var(--s2)}
+.lesson h3{font-size:clamp(22px,3vw,28px)}
+.lesson .q{font-weight:700;border-top:1px solid rgba(217,47,102,.3);padding-top:10px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vs p{border-radius:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);font-size:16px}
+.vs p span{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.vs p:last-child{border-color:var(--s3);box-shadow:inset 0 0 0 1px var(--s3)}
 </style>
 
 <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
@@ -359,11 +373,9 @@ figure figcaption{font-size:15px;color:var(--muted)}
       <ol class="toc">
         <li><a href="#task">המשימה למפגש הבא</a>: להפוך את הטקסט שלכם לסרטון קצר, אותנטי ואישי</li>
         <li><a href="#text">בחירת טקסט</a>: מה הופך טקסט לחומר טוב לסרטון, ומה אפשר לעשות איתו</li>
-        <li><a href="#ex1">דוגמה 1, אפוק</a>: איך מאמר ארוך הופך לסרטון של שתי דקות</li>
+        <li><a href="#ex1">דוגמה 1, אפוק</a>: איך מאמר ארוך הופך לסרטון של שתי דקות, ו<a href="#epoch-process">התהליך בשישה שלבים</a></li>
         <li><a href="#ex2">דוגמה 2, בראשית: מפסוק לסרט</a>: הסרט, ו<a href="#process">התהליך בשמונה שלבים</a>, מהרעיון, דרך בחירת הסגנון והסטוריבורד, ועד ההפצה, עם פרומפטים מוכנים להעתקה</li>
-        <li><a href="#ex3">דוגמה 3, הטקסט שלי</a>: "כוח הדמיון והיציאה מהמערה", ומאחורי הקלעים של הפריימים</li>
         <li><a href="#textonly">להמחיז בטקסט בלבד</a>: הדרך הכי ישירה להפוך טקסט אישי לסרטון</li>
-        <li><a href="#tools">ארגז הכלים של השיעור</a>, כולל NotebookLM</li>
       </ol>
       <p>שאלות? אני כאן. בהצלחה,<br>שגיא</p>
     </div>
@@ -422,25 +434,74 @@ figure figcaption{font-size:15px;color:var(--muted)}
         <figcaption><strong>אפוק · פתיח לכתבה</strong><span>מאמר שהפך לסרטון של כשתי דקות</span></figcaption>
       </figure>
     </div>
-    <div class="two">
-      <div class="panel did">
-        <h3 style="font-size:22px">תרגיל צפייה</h3>
-        <p>צפו בסרטון, ונסו לזהות ממה הוא עשוי. אילו אלמנטים יש בו? ברמה הכי פשוטה: מה רואים, מה שומעים, ומה קורא על המסך.</p>
-        <details class="reveal">
-          <summary>ממה הסרטון עשוי? (לפתוח אחרי הצפייה)</summary>
-          <ol>
-            <li><b>צילום</b>: אני מדבר מול מצלמה, על רקע מסך ירוק, כדי שאפשר יהיה להחליף את הרקע</li>
-            <li><b>איורים</b>: נוצרו בכלי תמונה כמו Nano Banana או ChatGPT</li>
-            <li><b>טקסט על המסך</b>: כותרות ומילות מפתח שמחזקות את מה שנאמר</li>
-            <li><b>מוזיקה</b>: שכבת סאונד שמחזיקה את הקצב. עליה נרחיב במפגשים הבאים</li>
-          </ol>
-        </details>
+    <div class="facts">
+      <div class="panel"><b>2:08</b><span>אורך הסרטון</span></div>
+      <div class="panel"><b>9:16</b><span>אנכי, לרשתות</span></div>
+      <div class="panel"><b>3</b><span>איורים מונפשים</span></div>
+      <div class="panel"><b>8</b><span>שעות, מקצה לקצה</span></div>
+    </div>
+    <div class="panel did">
+      <h3 style="font-size:22px">תרגיל צפייה</h3>
+      <p>צפו בסרטון, ונסו לזהות ממה הוא עשוי. ברמה הכי פשוטה: מה רואים, מה שומעים, ומה כתוב על המסך.</p>
+      <details class="reveal">
+        <summary>ממה הסרטון עשוי? (לפתוח אחרי הצפייה)</summary>
+        <ol>
+          <li><b>מגיש</b>: אני מדבר למצלמה. צילמתי מול מסך ירוק, והחלפתי אותו ברקע כהה</li>
+          <li><b>שני סוגי תמונות</b>: תמונות קולנועיות שנראות כמו צילום, ואיורים בסגנון עריכתי, אדום על ירוק</li>
+          <li><b>תנועה</b>: שלושה מהאיורים הונפשו</li>
+          <li><b>אינפוגרפיקה וכתוביות</b>: רעיון אחד מוסבר בגרפיקה, והכתוביות צרובות בתוך הווידאו</li>
+          <li><b>קריאה לפעולה</b>: בסוף רואים טלפון שגולל בכתבה המקורית, כדי שהצופה ילך לקרוא</li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="head" id="epoch-process" style="margin-top:8px;scroll-margin-top:16px">
+      <div class="eyebrow">מאחורי הקלעים</div>
+      <h2 style="font-size:clamp(26px,4vw,34px)">איך נבנה סרטון אפוק: שישה שלבים</h2>
+      <p>כתבה מדעית ארוכה הפכה לרילס של שתי דקות, בסגנון העריכה של המגזין. כך זה נבנה, ואיך אפשר לעשות את אותו הדבר בכלים חינמיים.</p>
+    </div>
+    <div class="estages">
+      <article class="panel est c1">
+        <div class="sn"><span>1</span>ניתוח ותסריט</div>
+        <p>נתתי ל-Claude את הכתבה ואת אחד הסרטונים של המגזין כדוגמה לסגנון. ביקשתי ממנו לזקק את הרעיון המרכזי, ואז לכתוב תסריט של שתי דקות: פתיחה שתופסת, הרעיון החדש, הסבר אחד ברור, וסגירה שמזמינה לקרוא.</p>
+        <p class="toolline"><span>כלי</span><b>Claude</b><span class="pill free">חינם, עם מכסה יומית</span></p>
+      </article>
+      <article class="panel est c3">
+        <div class="sn"><span>2</span>צילום</div>
+        <p>צילמתי את עצמי מול מסך ירוק, עם התסריט רץ בטלפרומפטר. מסך ירוק מאפשר להחליף את הרקע אחר כך בכל רקע שרוצים. בלי מסך ירוק, קיר חלק ושקט עובד מצוין.</p>
+        <p class="toolline"><span>כלי</span><b><a href="../teleprompter/">הטלפרומפטר של הקורס</a></b><span class="pill free">חינם</span></p>
+      </article>
+      <article class="panel est c4">
+        <div class="sn"><span>3</span>ויזואלים בשתי ערכות</div>
+        <p>הגדרתי מראש שני סגנונות, וכל תמונה נוצרה באחד מהם: ערכה קולנועית לתמונות שנראות כמו צילום, וערכת איור עריכתי, אדום על ירוק-מרווה. שתי ערכות קבועות הן מה שגורם לכל התמונות להיראות כמו סרטון אחד.</p>
+        <p class="toolline"><span>כלי</span><b>Higgsfield</b><span class="pill paid">בתשלום</span><span class="pill limit">בחינם: Nano Banana או ChatGPT</span></p>
+      </article>
+      <article class="panel est c5">
+        <div class="sn"><span>4</span>הנפשה</div>
+        <p>שלושה איורים בלבד קיבלו תנועה, ברגעים החשובים. כל השאר נשארו תמונות עם תנועת מצלמה עדינה. ככה חוסכים קרדיטים, והתנועה מורגשת דווקא כי היא נדירה.</p>
+        <p class="toolline"><span>כלי</span><b>Kling</b><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></p>
+      </article>
+      <article class="panel est c2">
+        <div class="sn"><span>5</span>תמלול וכתוביות</div>
+        <p>תמללתי את מה שאמרתי בפועל, ומהתמלול נבנו הכתוביות. כאן הייתה הטעות המרכזית של כל הפרויקט, ראו למטה.</p>
+        <p class="toolline"><span>כלי</span><b>TurboScribe</b><span class="pill free">חינם, עם מכסה</span><span class="pill limit">או הכתוביות האוטומטיות של CapCut</span></p>
+      </article>
+      <article class="panel est c1">
+        <div class="sn"><span>6</span>הרכבה</div>
+        <p>הסרת המסך הירוק, החלפת הרקע, הנחת התמונות לפי התסריט, צריבת הכתוביות, ובסוף הדמיה של טלפון שגולל בכתבה המקורית. אני הרכבתי עם Claude Code ו-CapCut. בחינם, הכול אפשרי ב-CapCut לבד, כולל הסרת מסך ירוק (<span class="ui">Chroma key</span>).</p>
+        <p class="toolline"><span>כלים</span><b>Claude Code · CapCut</b><span class="pill paid">Claude Code בתשלום</span><span class="pill free">CapCut חינם</span></p>
+      </article>
+    </div>
+
+    <div class="panel lesson">
+      <div class="eyebrow">הטעות המרכזית, והלקח</div>
+      <h3>המכונה יודעת מה תכננתי. רק אני יודע מה באמת אמרתי.</h3>
+      <p>בגרסה הראשונה, הכתוביות תוזמנו לפי התסריט שכתבנו, ולא לפי מה שנאמר בצילום. רק בבדיקה התברר ששליש מהתסריט בכלל לא נאמר בטייק. כל הכתוביות נבנו מחדש, לפי התמלול.</p>
+      <div class="vs">
+        <p><span>תסריט</span>מה שתכננתי לומר</p>
+        <p><span>תמלול</span>מה שבאמת אמרתי</p>
       </div>
-      <div class="panel did">
-        <h3 style="font-size:22px">איך הוא נבנה</h3>
-        <p>את כל הסרטון בניתי עם Claude Code ועם CapCut. Claude Code הוא כלי מתקדם ובתשלום שאני משתמש בו מאחורי הקלעים.</p>
-        <p>את אותם שלבים בדיוק אפשר לעשות בכלים חינמיים: תסריט ב-Claude, ב-ChatGPT או ב-Gemini, איורים ב-Nano Banana, ועריכה ב-CapCut.</p>
-      </div>
+      <p class="q">הכלל: כתוביות נבנות תמיד ממה שנשמע, לא ממה שנכתב. אני הבמאי, ה-AI הוא העורך.</p>
     </div>
   </section>
 
@@ -687,41 +748,6 @@ figure figcaption{font-size:15px;color:var(--muted)}
     </div>
   </section>
 
-  <section id="ex3" style="display:grid;gap:18px" aria-labelledby="e3">
-    <div class="head">
-      <div class="eyebrow">דוגמה 3</div>
-      <h2 id="e3">הטקסט שלי: "כוח הדמיון והיציאה מהמערה"</h2>
-      <p>הדוגמה השלישית היא טקסט אישי: הרצאה קצרה שלי. הרעיון שבה: הדמיון אינו בריחה מהמציאות, הוא מערכת ההפעלה שלנו, והכלי שממנו נולדה כל מהפכה אנושית. את שתי הדקות האחרונות של ההרצאה הפכתי ל-14 פריימים, משפט אחרי משפט.</p>
-    </div>
-    <div class="gallery" tabindex="0" aria-label="פריימים מההרצאה, גלילה לצדדים">
-      <figure><img src="img/kd_h00a.jpg" alt="צופה באולם הקרנה" loading="lazy"><figcaption>תקשורת חזותית</figcaption></figure>
-      <figure><img src="img/kd_h01.jpg" alt="ראש אדם ובתוכו רשת של אור זהוב" loading="lazy"><figcaption>הדמיון הוא מערכת ההפעלה שלנו</figcaption></figure>
-      <figure><img src="img/kd_h02.jpg" alt="פרח ורוד שנוצר מחלקיקי אור" loading="lazy"><figcaption>דמיינו פרח ורוד</figcaption></figure>
-      <figure><img src="img/kd_h03.jpg" alt="עלי כותרת ורודים בתקריב" loading="lazy"><figcaption>לראות אותו מוחשי, ואפילו להריח</figcaption></figure>
-      <figure><img src="img/kd_h05.jpg" alt="פנורמה מאוירת מהקטר ועד רשת נוירונים" loading="lazy"><figcaption>מהקיטור ועד הבינה המלאכותית</figcaption></figure>
-      <figure><img src="img/kd_h06.jpg" alt="דמות בפתח מערה מול נוף בזריחה" loading="lazy"><figcaption>ואנחנו רק בתחילת הדרך</figcaption></figure>
-      <figure><img src="img/kd_h08.jpg" alt="איור של מטוס ראשון מעל דיונות" loading="lazy"><figcaption>האחים רייט דמיינו לפני שעפו</figcaption></figure>
-      <figure><img src="img/kd_h12.jpg" alt="תוויות נייר נשרפות על קיר מערה" loading="lazy"><figcaption>לא מה שאמרו לכם שאתם יכולים</figcaption></figure>
-      <figure><img src="img/kd_h13.jpg" alt="אדם יוצא מהמערה אל האור" loading="lazy"><figcaption>מה אתם מסוגלים לדמיין?</figcaption></figure>
-      <figure><img src="img/kd_h14.jpg" alt="שרטוט עיר עתידית מקווי אור זהובים" loading="lazy"><figcaption>התוכנית האדריכלית של המציאות</figcaption></figure>
-    </div>
-    <div class="head" style="margin-top:6px">
-      <h3 style="font-size:24px">מאחורי הקלעים: חמישה לקחים ליצירת תמונות</h3>
-    </div>
-    <div class="opts lessons5">
-      <div class="panel opt c1"><h3>מגדירים סגנון פעם אחת</h3><p>משפט סגנון קבוע שמודבק בסוף כל פרומפט, ושומר על אחידות בין 14 תמונות שונות.</p></div>
-      <div class="panel opt c4"><h3>סמל חוזר</h3><p>ניצוץ זהוב קטן מופיע בכל פריים. הוא מחבר בין רעיונות רחוקים, ממערה ועד עיר עתידית.</p></div>
-      <div class="panel opt c3"><h3>סקיצה לפני גימור</h3><p>קודם יוצרים את כל הפריימים באיכות נמוכה וזולה, בודקים אותם יחד, ורק את מה שעובד מייצרים באיכות גבוהה.</p></div>
-      <div class="panel opt c2"><h3>מתקנים במילים פשוטות</h3><p>שני פריימים לא עבדו בפעם הראשונה. ניסוח מחדש, ברור ומפורש, תיקן אותם.</p></div>
-      <div class="panel opt c5"><h3>אומרים גם מה לא</h3><p>"בלי טקסט בתמונה": את הכיתוב מוסיפים בעריכה. ובלי פנים לדמויות היסטוריות.</p></div>
-    </div>
-    <div class="panel prompt c1">
-      <div class="ph"><h3>משפט הסגנון הקבוע שהשתמשתי בו (לפריימים הריאליסטיים)</h3><button type="button" class="copy">העתקה</button></div>
-      <pre dir="ltr" style="text-align:left">Cinematic photorealistic film still, 35mm anamorphic look, deep charcoal-blue shadows with warm amber-gold light, soft volumetric haze, shallow depth of field, subtle film grain. A small warm glowing spark of golden light is present in the frame. Calm empty negative space in the middle of the frame for overlaid typography. No text, no letters, no logos, no watermark.</pre>
-      <p class="tip">מוסיפים לפני המשפט הזה תיאור קצר של מה שרואים בפריים, ומקבלים סדרה של תמונות שנראות כמו סרט אחד.</p>
-    </div>
-  </section>
-
   <section id="textonly" style="display:grid;gap:18px" aria-labelledby="to">
     <div class="head">
       <div class="eyebrow">השלב האחרון</div>
@@ -752,70 +778,6 @@ figure figcaption{font-size:15px;color:var(--muted)}
       <p class="tip">את התוצאה בונים ב-Google Vids או ב-CapCut: שקופית אחת לכל משפט, ומעבר רך ביניהן.</p>
     </div>
     <p class="panel credit"><img src="../icons/claude.png" alt="">דוגמה לסרטון שכולו טקסט: "נזכור", <a href="../#videos" style="color:var(--s1);font-weight:700">בדף של שיעור 5</a>. מילים ומוזיקה, בלי מילה אחת של קריינות.</p>
-  </section>
-
-  <section id="tools" style="display:grid;gap:18px" aria-labelledby="tl">
-    <div class="head">
-      <h2 id="tl">ארגז הכלים של השיעור</h2>
-      <p>לא חייבים לשלם על כלום. ואפשר גם פשוט לקחת דף ועיפרון ולצייר בעצמכם. לחצו על כרטיס כדי לפתוח את הכלי.</p>
-    </div>
-    <div class="grid">
-      <a class="card c1" href="https://claude.ai" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Cl<img src="../icons/claude.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Claude</strong><span>claude.ai</span></div></div>
-        <p class="use">מטקסט לתסריט ולסטוריבורד. בו אני עובד, וכל אחד יכול לבחור את הסביבה שלו.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלת שימוש יומית</span></div>
-      </a>
-      <a class="card c3" href="https://chatgpt.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">GP<img src="../icons/chatgpt.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ChatGPT</strong><span>chatgpt.com</span></div></div>
-        <p class="use">תסריט וסטוריבורד, וגם יצירת תמונות מהפרומפט.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מגבלה יומית</span></div>
-      </a>
-      <a class="card c1" href="https://gemini.google.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">NB<img src="../icons/gemini.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Gemini ו-Nano Banana</strong><span>gemini.google.com</span></div></div>
-        <p class="use">כתיבה ב-Gemini, ויצירת תמונות מהסטוריבורד ב-Nano Banana, באותו מקום.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">כ-20 תמונות ביום</span></div>
-      </a>
-      <a class="card c3" href="https://notebooklm.google.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">NL</div><div class="name"><strong>NotebookLM</strong><span>notebooklm.google.com</span></div></div>
-        <p class="use">מעלים מקורות, מאמר, קובץ או קישור, ושואלים עליהם שאלות. מקבלים סיכום ותובנות שמבוססים רק על המקורות שלכם.</p>
-        <div class="meta"><span class="pill free">חינם</span></div>
-      </a>
-      <a class="card c2" href="https://klingai.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Kl<img src="../icons/kling.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Kling</strong><span>klingai.com</span></div></div>
-        <p class="use">הנפשה: מעלים תמונה, מתארים תנועה, ומקבלים קליפ קצר.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div>
-      </a>
-      <a class="card c5" href="https://higgsfield.ai" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Hf</div><div class="name"><strong>Higgsfield</strong><span>higgsfield.ai</span></div></div>
-        <p class="use">פלטפורמה שמרכזת כמה מודלים של תמונה ווידאו. בה יצרתי את התמונות לבראשית ולהרצאה.</p>
-        <div class="meta"><span class="pill paid">בתשלום</span><span class="pill limit">יש חלופות חינמיות בדף</span></div>
-      </a>
-      <a class="card c4" href="https://www.capcut.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Cc<img src="../icons/capcut.png" alt="" onerror="this.remove()"></div><div class="name"><strong>CapCut</strong><span>capcut.com</span></div></div>
-        <p class="use">עריכה: מחברים את התמונות, הטקסט והסאונד לסרטון אחד.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">חלק מהכלים בתשלום</span></div>
-      </a>
-      <a class="card c2" href="https://vids.google.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Vi<img src="../icons/vids.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Google Vids</strong><span>vids.google.com</span></div></div>
-        <p class="use">אפשר ליצור בו את כל הסרטון, כמו שלמדנו בתחילת הקורס.</p>
-        <div class="meta"><span class="pill free">חינם</span></div>
-      </a>
-      <a class="card c2" href="https://suno.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">Su<img src="../icons/suno.png" alt="" onerror="this.remove()"></div><div class="name"><strong>Suno</strong><span>suno.com</span></div></div>
-        <p class="use">מוזיקת רקע או שיר מתיאור במילים. נרחיב על מוזיקה במפגשים הבאים.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · לשימוש לא מסחרי</span></div>
-      </a>
-      <a class="card c4" href="https://elevenlabs.io" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">11<img src="../icons/elevenlabs.png" alt="" onerror="this.remove()"></div><div class="name"><strong>ElevenLabs</strong><span>elevenlabs.io</span></div></div>
-        <p class="use">הקראה בקול טבעי, אפקטים קוליים ומוזיקה.</p>
-        <div class="meta"><span class="pill free">חינם</span><span class="pill limit">מכסה חודשית</span></div>
-      </a>
-      <a class="card c5" href="https://www.epidemicsound.com" target="_blank" rel="noopener">
-        <div class="top"><div class="mono" aria-hidden="true">ES</div><div class="name"><strong>Epidemic Sound</strong><span>epidemicsound.com</span></div></div>
-        <p class="use">ספריית מוזיקה ואפקטים מקצועית, עם רישיון לשימוש ברשתות.</p>
-        <div class="meta"><span class="pill paid">בתשלום</span></div>
-      </a>
-    </div>
   </section>
 
   <footer>
