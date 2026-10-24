@@ -1,0 +1,735 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>בראשית: מפסוק לסרט</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: a night-time studio. Neon storyboard strip of numbered scene frames, then glowing tool "slates" that tilt in 3D, grouped by production stage. Single deliberate dark look. */
+:root{
+  color-scheme:light;
+  --bg:#F2F8FF;
+  --bg2:#E3F0FF;
+  --glass:rgba(255,255,255,.82);
+  --ink:#14213D;
+  --muted:#4A5873;
+  --line:rgba(40,90,170,.16);
+  --s1:#2F6BFF; /* כתיבה */
+  --s2:#D92F66; /* צילום */
+  --s3:#0B8F7D; /* מסך */
+  --s4:#B86A00; /* עריכה */
+  --s5:#7440D8; /* פרסום */
+  --display:"Secular One","Assistant","Arial Hebrew",Arial,sans-serif;
+  --body:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#FFFFFF}
+body{background:linear-gradient(180deg,#FFFFFF 0%,#EEF6FF 45%,#E3F0FF 100%);min-height:100vh;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+
+/* Ambient aurora + star grid */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.sky::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(140,160,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,160,255,.07) 1px,transparent 1px);
+  background-size:48px 48px;mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:drift 22s ease-in-out infinite alternate}
+.b1{width:520px;height:520px;background:var(--s5);top:-180px;inset-inline-end:-120px}
+.b2{width:420px;height:420px;background:var(--s1);top:140px;inset-inline-start:-160px;animation-delay:-7s}
+.b3{width:360px;height:360px;background:var(--s2);top:780px;inset-inline-end:10%;opacity:.25;animation-delay:-12s}
+@keyframes drift{to{transform:translate3d(40px,60px,0) scale(1.12)}}
+
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:36px 64px;display:grid;gap:52px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.2}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--s3);text-shadow:0 0 12px rgba(46,230,200,.6)}
+
+/* Hero */
+.hero{display:grid;gap:16px}
+.hero h1{font-size:clamp(36px,6.4vw,62px);text-shadow:0 0 30px rgba(91,140,255,.35)}
+.hero h1 span{background:linear-gradient(90deg,var(--s2),var(--s5),var(--s1));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(255,92,138,.45))}
+.lead{color:var(--muted);max-width:62ch;font-size:19px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;text-decoration:none;width:max-content;max-width:100%;
+  color:var(--muted);border:1.5px dashed rgba(160,175,255,.35);background:rgba(14,19,48,.6)}
+.play{width:0;height:0;border-block:7px solid transparent;border-inline-end:11px solid var(--s2);filter:drop-shadow(0 0 6px var(--s2))}
+
+/* Section heads */
+.head{display:grid;gap:6px}
+.head h2{font-size:clamp(26px,4vw,36px)}
+.head p{color:var(--muted);max-width:62ch}
+
+/* Glass panels */
+.panel{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:18px;padding:24px}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.did{display:grid;gap:12px}
+.did ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.did li::marker{color:var(--s3);font-weight:700}
+.task{display:grid;gap:10px;border-color:rgba(255,185,56,.55);box-shadow:0 0 0 1px rgba(255,185,56,.25),0 0 40px -8px rgba(255,185,56,.45)}
+.task .eyebrow{color:var(--s4);text-shadow:0 0 12px rgba(255,185,56,.6)}
+.task .q{font-weight:600;border-top:1px solid rgba(255,185,56,.35);padding-top:10px}
+
+/* Storyboard */
+.board{overflow-x:auto;padding:18px 4px 14px;perspective:1400px}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:16px;min-width:1080px;transform-style:preserve-3d}
+.frame{display:grid;gap:8px;transition:transform .35s ease}
+.frame:hover{transform:translateZ(40px) rotateX(6deg)}
+.screen{aspect-ratio:16/10;border-radius:12px;border:1.5px solid var(--c);background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 28%,transparent),rgba(10,14,36,.9) 70%);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--c) 70%,transparent),inset 0 0 22px -8px var(--c)}
+.screen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.screen .sc{position:absolute;top:8px;inset-inline-start:10px;font-size:12px;font-weight:700;color:var(--c);letter-spacing:.08em;text-shadow:0 0 8px var(--c)}
+.screen svg{width:44%;height:auto;color:var(--c);filter:drop-shadow(0 0 6px var(--c))}
+.frame h3{font-size:18px}
+.frame p{font-size:15px;color:var(--muted);line-height:1.45}
+.frame .tool{font-weight:700;color:var(--c);font-size:15px;text-shadow:0 0 10px color-mix(in srgb,var(--c) 60%,transparent)}
+.c1{--c:var(--s1)} .c2{--c:var(--s2)} .c3{--c:var(--s3)} .c4{--c:var(--s4)} .c5{--c:var(--s5)}
+
+/* Tool cards with 3D tilt */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;perspective:1000px}
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;
+  position:relative;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;grid-template-rows:auto 1fr auto;gap:12px;
+  text-decoration:none;color:inherit;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;min-width:0}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s ease;
+  background:radial-gradient(260px circle at var(--mx) var(--my),color-mix(in srgb,var(--c) 30%,transparent),transparent 60%)}
+a.card:hover,a.card:focus-visible,.card.live{border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 18px 50px -18px var(--c),0 0 0 1px color-mix(in srgb,var(--c) 40%,transparent)}
+.card:hover::before{opacity:1}
+a.card:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.top{display:flex;align-items:center;gap:14px;min-width:0;transform:translateZ(30px)}
+.mono{position:relative;flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;overflow:hidden;
+  font-family:var(--display);font-size:20px;color:#fff;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 85%,#fff 15%),color-mix(in srgb,var(--c) 70%,#000 30%));
+  box-shadow:0 0 22px -4px var(--c),inset 0 1px 0 rgba(255,255,255,.35)}
+.mono img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:8px}
+.name{display:grid;min-width:0}
+.name strong{font-size:19px;line-height:1.2}
+.name span{font-size:14px;color:var(--muted);direction:ltr;text-align:start;overflow-wrap:anywhere}
+.use{font-size:16px;transform:translateZ(16px)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;transform:translateZ(20px)}
+.pill{font-size:13px;font-weight:700;padding:3px 11px;border-radius:999px}
+.pill.free{background:rgba(46,230,200,.14);color:var(--s3);box-shadow:inset 0 0 0 1px rgba(46,230,200,.45)}
+.pill.limit{border:1px solid var(--line);color:var(--muted);font-weight:600}
+.kbd{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:6px;padding:1px 6px;direction:ltr;display:inline-block}
+
+/* Featured: our own teleprompter */
+.feature{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;text-decoration:none;color:inherit;
+  border:1.5px solid color-mix(in srgb,var(--s3) 65%,transparent);
+  box-shadow:0 0 0 1px rgba(46,230,200,.2),0 0 50px -10px rgba(46,230,200,.55);
+  background:linear-gradient(135deg,rgba(46,230,200,.12),rgba(91,140,255,.08) 60%,var(--glass));transition:transform .2s ease,box-shadow .2s ease}
+.feature:hover,.feature:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(46,230,200,.35),0 0 70px -8px rgba(46,230,200,.7)}
+.feature:focus-visible{outline:2px solid var(--s3);outline-offset:3px}
+.feature-text{display:grid;gap:8px;flex:1 1 320px;min-width:0}
+.feature-text .pill{justify-self:start}
+.feature h3{font-size:clamp(22px,3vw,28px)}
+.feature .hint{color:var(--muted);font-size:15px}
+.go{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;font-weight:700;
+  background:var(--s3);color:#05221D;box-shadow:0 0 24px -4px var(--s3)}
+@media (prefers-reduced-motion:reduce){.feature{transition:none}}
+
+/* Phone + teleprompter */
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.opt{display:grid;gap:10px;align-content:start;border-top:3px solid var(--c);box-shadow:0 -6px 30px -16px var(--c)}
+.opt h3{font-size:21px}
+.opt .tag{justify-self:start}
+.opt ol{margin:0;padding-inline-start:20px;display:grid;gap:4px;font-size:16px}
+.opt ol li::marker{color:var(--c);font-weight:700}
+.minis{display:flex;flex-wrap:wrap;gap:8px}
+.minis a{display:inline-flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border-radius:999px;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:14px}
+.minis img{width:26px;height:26px;border-radius:7px;background:#fff;object-fit:contain;padding:2px}
+.pill.paid{background:rgba(255,92,138,.14);color:var(--s2);box-shadow:inset 0 0 0 1px rgba(255,92,138,.45)}
+.tips{display:grid;gap:6px;font-size:16px;color:var(--muted)}
+.tips strong{color:var(--ink)}
+
+/* Gear */
+.gear{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.item{display:grid;gap:10px;align-content:start}
+.sketch{height:170px;border-radius:14px;display:grid;place-items:center;border:1px solid var(--line);
+  background:radial-gradient(circle at 50% 55%,color-mix(in srgb,var(--c) 22%,transparent),transparent 65%),
+             linear-gradient(rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px,
+             linear-gradient(90deg,rgba(140,160,255,.06) 1px,transparent 1px) 0 0/16px 16px}
+.sketch svg{height:140px;width:auto;color:var(--c);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--c) 70%,transparent))}
+.item h3{font-size:20px}
+.price{font-family:var(--display);font-size:22px;color:var(--c);text-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent);font-variant-numeric:tabular-nums}
+.item p{font-size:16px;color:var(--muted)}
+.total{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline}
+.total strong{font-family:var(--display);font-size:24px;color:var(--s3);text-shadow:0 0 14px rgba(46,230,200,.5)}
+
+.pay{display:grid;gap:8px;border-style:dashed}
+.pay h3{font-size:22px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px;display:grid;gap:4px}
+
+/* Light theme overrides */
+.sky::before{background-image:linear-gradient(rgba(47,107,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(47,107,255,.06) 1px,transparent 1px)}
+.blob{opacity:.16}
+.b3{opacity:.1}
+.eyebrow,.task .eyebrow,.hero h1,.frame .tool,.screen .sc{text-shadow:none}
+.hero h1 span{filter:none}
+.btn{background:rgba(255,255,255,.75)}
+.screen{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 16%,transparent),#F8FBFF 70%);box-shadow:0 6px 20px -10px color-mix(in srgb,var(--c) 60%,transparent)}
+.screen::after{background:none}
+.screen svg{filter:none}
+.panel,.card{box-shadow:0 10px 30px -18px rgba(20,60,140,.35)}
+.task{box-shadow:0 0 0 1px rgba(184,106,0,.25),0 14px 36px -18px rgba(184,106,0,.45)}
+.feature{background:linear-gradient(135deg,rgba(11,143,125,.10),rgba(47,107,255,.06) 60%,#FFFFFF);box-shadow:0 14px 40px -18px rgba(11,143,125,.55)}
+.go{color:#FFFFFF}
+.kbd{background:rgba(20,33,61,.06)}
+.opts.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.opts.four{grid-template-columns:1fr}}
+.what{display:grid;gap:10px;border-inline-start:4px solid var(--s3)}
+.what h3{font-size:22px}
+.date{font-weight:700;color:var(--ink);font-size:17px}
+.tocnav{display:grid;gap:12px;max-width:760px}
+.tocnav h2{font-size:24px}
+.tocnav ol{margin:0;padding:0;list-style:none;counter-reset:t;display:flex;flex-wrap:wrap;gap:10px}
+.tocnav li{counter-increment:t}
+.tocnav a{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;text-decoration:none;font-weight:700;font-size:16px;color:var(--ink)}
+.tocnav a::before{content:counter(t);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--s1);color:#fff;font-size:13px}
+.tocnav a:hover{border-color:var(--s1)}
+html{scroll-behavior:smooth}
+.toc{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:17px}
+.toc li::marker{color:var(--s1);font-weight:700}
+.toc a{color:var(--s1);font-weight:700;text-decoration:none}
+.hello{display:grid;gap:10px;max-width:760px;border-inline-start:4px solid var(--s1);font-size:18px}
+.credit{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:16px}
+.credit img{width:28px;height:28px;border-radius:8px;background:#fff;object-fit:contain;flex:none}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.step{display:grid;gap:12px;align-content:start;border-top:3px solid var(--c)}
+.sketch2{border-radius:12px;border:1px solid var(--line);background:#FFFFFF;padding:10px;color:var(--c)}
+.sketch2 svg{width:100%;height:auto;display:block;direction:ltr}
+.step h3{font-size:21px;display:flex;align-items:center;gap:10px}
+.step .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px;flex:none}
+.step ol{margin:0;padding-inline-start:20px;display:grid;gap:6px;font-size:16px}
+.step ol li::marker{color:var(--c);font-weight:700}
+.ui{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:rgba(20,33,61,.06);border:1px solid var(--line);border-radius:6px;padding:0 6px;direction:ltr;display:inline-block;white-space:nowrap}
+.prep{border-color:rgba(116,64,216,.45);box-shadow:0 0 0 1px rgba(116,64,216,.2),0 14px 36px -18px rgba(116,64,216,.45)}
+.prep .eyebrow{color:var(--s5)}
+.prep .q{border-top-color:rgba(116,64,216,.35)}
+.task a{color:var(--s5);font-weight:700}
+.tp-logo-img{flex:none;width:88px;height:88px;border-radius:20px;box-shadow:0 10px 24px -10px rgba(20,33,61,.6)}
+.tp-logo{flex:none;width:72px;height:72px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,#0B8F7D,#2F6BFF);box-shadow:0 10px 24px -10px rgba(11,143,125,.7)}
+.tp-logo svg{width:44px;height:44px}
+.made{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;color:var(--ink)}
+.made img{width:22px;height:22px;border-radius:6px;background:#fff;object-fit:contain}
+
+.vids{display:grid;grid-template-columns:2fr 1fr;gap:18px;align-items:start}
+@media (max-width:760px){.vids{grid-template-columns:1fr}}
+.vid{margin:0;display:grid;gap:12px;border-top:3px solid var(--c)}
+.vid video{width:100%;border-radius:12px;background:#0B1020;aspect-ratio:16/9}
+.vid video.tall{aspect-ratio:9/16;max-height:560px;justify-self:center}
+.vid figcaption{display:grid;gap:4px}
+.vid figcaption strong{font-size:19px}
+.vid figcaption span{color:var(--muted);font-size:15px}
+.vid figcaption a{color:var(--c);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){
+  .blob{animation:none}
+  .card,.frame{transition:none}
+  .frame:hover{transform:none}
+}
+
+/* Lesson 6 additions */
+.lessons{display:flex;flex-wrap:wrap;gap:8px}
+.lessons a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;text-decoration:none;font-weight:700;font-size:15px;color:var(--muted)}
+.lessons a[aria-current]{background:var(--s1);border-color:var(--s1);color:#fff}
+.recap{display:grid;gap:8px;border-inline-start:4px solid var(--s5)}
+.recap h2{font-size:22px}
+.recap a{color:var(--s5);font-weight:700}
+.opt p{font-size:16px;color:var(--muted)}
+.vids.one{grid-template-columns:minmax(0,760px)}
+.soon{aspect-ratio:16/9;border-radius:12px;display:grid;place-content:center;justify-items:center;gap:12px;color:var(--muted);font-weight:700;
+  background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--c) 16%,transparent),#F8FBFF 70%);border:1.5px dashed color-mix(in srgb,var(--c) 45%,transparent)}
+.soon .play{border-block-width:14px;border-inline-end-width:22px}
+.reveal{border-top:1px solid var(--line);padding-top:10px}
+.reveal summary{cursor:pointer;font-weight:700;color:var(--s3)}
+.reveal ol{margin:10px 0 0;padding-inline-start:22px;display:grid;gap:6px;font-size:16px}
+.verse{margin:0;display:grid;gap:8px;border-inline-start:4px solid var(--s5);text-align:center}
+.verse p{font-family:var(--display);font-size:clamp(22px,3.4vw,30px);line-height:1.45}
+.verse cite{font-style:normal;color:var(--muted);font-size:15px}
+.strip.six{grid-template-columns:repeat(6,minmax(150px,1fr));min-width:960px}
+.prompts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.prompt{display:grid;gap:12px;align-content:start;border-top:3px solid var(--c)}
+.ph{display:flex;align-items:center;gap:10px}
+.ph h3{font-size:20px;flex:1}
+.ph .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px;flex:none}
+.copy{font:inherit;font-size:14px;font-weight:700;padding:5px 14px;border-radius:999px;border:1px solid var(--c);background:#fff;color:var(--c);cursor:pointer}
+.copy:hover{background:color-mix(in srgb,var(--c) 10%,#fff)}
+.prompt pre{margin:0;white-space:pre-wrap;font-family:var(--body);font-size:16px;line-height:1.6;background:rgba(20,33,61,.04);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.prompt .tip{font-size:15px;color:var(--muted)}
+.styles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:760px){.styles{grid-template-columns:repeat(2,1fr)}}
+.styles figure,.gallery figure{margin:0;display:grid;gap:6px}
+.styles img,.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;display:block;box-shadow:0 8px 20px -12px rgba(20,33,61,.5)}
+.styles figcaption,.gallery figcaption{font-size:15px;font-weight:700;color:var(--muted)}
+.styles .pick img{outline:3px solid var(--s4);outline-offset:2px}
+.styles .pick figcaption{color:var(--s4)}
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,32%);gap:14px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.gallery figure{scroll-snap-align:start}
+.lessons5{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.vid video{display:block}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,1fr)}}
+.facts .panel{padding:14px 16px;display:grid;gap:2px}
+.facts b{font-family:var(--display);font-size:30px;line-height:1;color:var(--s5);font-weight:400}
+.facts span{color:var(--muted);font-size:15px}
+.strip.eight{grid-template-columns:repeat(8,minmax(130px,1fr));min-width:1100px}
+a.frame{text-decoration:none;color:inherit}
+.stg{display:grid;gap:16px;border-top:4px solid var(--c);scroll-margin-top:16px}
+.stg h3{font-size:clamp(24px,3.4vw,32px)}
+.sn{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--c);font-size:15px;letter-spacing:.04em}
+.sn span{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--c);color:#fff;font-family:var(--display);font-size:22px}
+.lead2{font-size:19px;max-width:66ch}
+.stg p{max-width:72ch}
+.split{display:grid;grid-template-columns:minmax(0,240px) 1fr;gap:20px;align-items:start}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+.split img{width:100%;border-radius:10px;display:block}
+figure.ph,.media2 figure,.sbgrid figure{margin:0;display:grid;gap:6px}
+figure figcaption{font-size:15px;color:var(--muted)}
+.qa{display:grid;gap:10px}
+.toolline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;font-size:16px}
+.toolline>span:first-child{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.tipbox{background:color-mix(in srgb,var(--c) 9%,#fff);border-inline-start:4px solid var(--c);border-radius:10px;padding:12px 16px;font-size:17px}
+.tipbox b{color:var(--c)}
+.tipbox a{color:var(--c);font-weight:700}
+.rounds{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+@media (max-width:760px){.rounds{grid-template-columns:repeat(3,1fr)}}
+.rounds li{border:1px solid var(--line);border-radius:10px;padding:10px;font-size:14px;background:#fff;line-height:1.35}
+.rounds li b{display:block;font-family:var(--display);font-size:22px;color:var(--muted);font-weight:400}
+.rounds li.win{border-color:var(--s4);box-shadow:inset 0 0 0 1px var(--s4)}
+.rounds li.win b{color:var(--s4)}
+.media2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.media2 img,.media2 video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;display:block;background:#0B1020}
+.struck img{filter:grayscale(.45) brightness(.9)}
+.struck b{color:var(--s2)}
+.codes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.codes{grid-template-columns:1fr}}
+.code-card{border-radius:14px;padding:16px 18px;color:#F5F1EA}
+.code-card.cc-sky{background:linear-gradient(160deg,#2F6BFF,#1B2A66)}
+.code-card.cc-earth{background:linear-gradient(160deg,#B86A00,#7A3320)}
+.code-card h4{margin:0;font-family:var(--display);font-weight:400;font-size:30px;color:#fff}
+.code-card dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+.code-card dt{opacity:.75}.code-card dd{margin:0}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px;background:#fff;border-radius:10px;overflow:hidden}
+.tbl th,.tbl td{text-align:start;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:13px;color:var(--muted)}
+.tbl td:first-child{font-family:var(--display);font-size:17px;white-space:nowrap}
+.sbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.sbgrid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block}
+.sbgrid figcaption{font-size:14px;line-height:1.35;color:var(--ink)}
+.sbgrid figcaption b{display:block;font-size:13px;color:var(--s2)}
+.sbgrid figcaption span{display:block;color:var(--muted);font-size:13px}
+.sbgrid .lump img{outline:3px solid var(--s4);outline-offset:2px}
+.layers{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.layers li{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;font-size:15px}
+.layers i{display:block;height:14px;border-radius:7px;width:var(--w)}
+.layers .l-sky{background:var(--s1)}.layers .earth{background:var(--s4)}.layers .light{background:#E9B949}.layers .days{background:var(--s3)}.layers .all{background:var(--s5)}
+.demo{background:#0F1024;border-radius:14px;padding:36px 16px;text-align:center;display:grid;gap:8px;justify-items:center}
+.born{font-family:"Frank Ruhl Libre","David Libre",Georgia,serif;font-size:clamp(24px,4.4vw,40px);color:#F4EEE4;min-height:1.5em;max-width:none}
+.born .ch{display:inline-block;opacity:0;filter:blur(6px);animation:born .9s ease-out forwards}
+@keyframes born{0%{opacity:0;filter:blur(6px);text-shadow:0 0 18px rgba(242,196,107,.9)}60%{opacity:1;text-shadow:0 0 14px rgba(242,196,107,.7)}100%{opacity:1;filter:blur(0);text-shadow:none}}
+.demo .src{color:#BDB6A8;font-size:14px}
+.replay{font:600 14px var(--body);color:#BDB6A8;background:none;border:1px solid #3A3C5C;border-radius:20px;padding:4px 14px;cursor:pointer}
+.plan{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.plan li{display:grid;grid-template-columns:70px 1fr;gap:10px;font-size:16px}
+.plan b{font-family:var(--display);font-weight:400;color:var(--s4);font-size:18px}
+.pits p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
+@media (prefers-reduced-motion:reduce){.born .ch{animation:none;opacity:1;filter:none}}
+.estages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.estages{grid-template-columns:1fr}}
+.est{display:grid;gap:12px;align-content:start;border-top:4px solid var(--c)}
+.est p{font-size:16px}
+.est .toolline{font-size:15px}
+.est .toolline a{color:var(--s3);font-weight:700}
+.lesson{display:grid;gap:12px;border:1.5px solid rgba(217,47,102,.45);box-shadow:0 14px 36px -18px rgba(217,47,102,.45)}
+.lesson .eyebrow{color:var(--s2)}
+.lesson h3{font-size:clamp(22px,3vw,28px)}
+.lesson .q{font-weight:700;border-top:1px solid rgba(217,47,102,.3);padding-top:10px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vs p{border-radius:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);font-size:16px}
+.vs p span{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.vs p:last-child{border-color:var(--s3);box-shadow:inset 0 0 0 1px var(--s3)}
+.toolset{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;display:grid;gap:8px}
+.toolset .tl{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.toolset ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 18px}
+.toolset li{display:grid;gap:2px;font-size:14px;color:var(--muted);line-height:1.4}
+.tn{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.tn b{font-size:16px;color:var(--ink)}
+.tn a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+.tn a:hover{text-decoration-color:var(--ink)}
+.tn .pill{font-size:11px;padding:1px 8px}
+.pill.rec{background:var(--s4);color:#fff}
+.est .toolset ul{grid-template-columns:1fr}
+.sl{display:grid;gap:12px;border-inline-start:4px solid var(--c);padding-inline-start:16px}
+.sl h4{margin:0;font-family:var(--display);font-weight:400;font-size:22px;display:flex;align-items:center;gap:10px}
+.sl h4 span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:#fff;font-size:16px}
+.steps2{margin:0;padding-inline-start:22px;display:grid;gap:6px;font-size:16px}
+.steps2 li::marker{color:var(--c);font-weight:700}
+.strip.nine{grid-template-columns:repeat(9,minmax(116px,1fr));min-width:1080px}
+.strip.nine .screen{aspect-ratio:16/8}
+.strip.nine .screen .sc{position:static;font-size:22px;font-family:var(--display)}
+.quote2{margin:0;border-inline-start:4px solid var(--s1);padding:6px 16px;display:grid;gap:6px}
+.quote2 p{font-family:var(--display);font-size:clamp(20px,2.6vw,24px);line-height:1.4}
+.quote2 cite{font-style:normal;color:var(--muted);font-size:15px}
+a.inl{color:var(--c);font-weight:700}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.compare{grid-template-columns:1fr}}
+.dir{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.dir img,.dir .noimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.dir .noimg{display:grid;place-items:center;text-align:center;padding:16px;background:linear-gradient(160deg,#1B2235,#3A2A2A);color:#C9C2B8;font-size:15px}
+.dir .db{padding:14px 16px;display:grid;gap:6px}
+.dir h4{margin:0;font-family:var(--display);font-weight:400;font-size:21px}
+.dir p{font-size:15px;color:var(--muted)}
+.dir .verdict{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.dir.chosen{border-color:var(--s4);box-shadow:inset 0 0 0 1px var(--s4)}
+.dir.chosen .verdict{color:var(--s4)}
+.ladder{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.ladder li{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.ladder li:last-child{border-bottom:0}
+@media (max-width:640px){.ladder li{grid-template-columns:1fr;gap:6px}}
+.ladder .who{font-size:13px;font-weight:700;color:var(--c);line-height:1.35}
+.ladder .who em{display:block;font-style:normal;font-weight:400;color:var(--muted)}
+.ladder .what{min-width:0;display:grid;gap:4px}
+.ladder .what b{font-family:var(--display);font-weight:400;font-size:18px}
+.ladder .what p{font-size:16px}
+.asis{font-size:15px;background:color-mix(in srgb,var(--c) 7%,#fff);border:1px solid var(--line);border-radius:8px;padding:9px 11px;white-space:pre-wrap;overflow-wrap:anywhere}
+.tallgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tallgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:640px){.tallgrid,.tallgrid.three{grid-template-columns:1fr 1fr}}
+.tallgrid figure{margin:0;display:grid;gap:6px;min-width:0}
+.tallgrid img,.tallgrid video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:10px;display:block;background:#E6EADD}
+.pits2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.pits2{grid-template-columns:1fr}}
+.pits2 p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
+pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+</style>
+
+<div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="wrap" dir="rtl" lang="he">
+  <nav class="lessons" aria-label="דפי השיעורים">
+    <a href="../">שיעור 5 · 8.10</a>
+    <a href="./">שיעור 6 · 15.10</a>
+    <a href="bereshit.html" aria-current="page">להעמקה: בראשית</a>
+  </nav>
+  <section id="ex2" style="display:grid;gap:18px" aria-labelledby="e2">
+    <div class="head">
+      <div class="eyebrow">דוגמה 2</div>
+      <h1 id="e2" style="font-size:clamp(32px,5vw,48px)">בראשית: מפסוק לסרט</h1>
+      <p>בחרתי בבראשית, פרק א', בדיוק כשאנחנו עוברים לפרשת נח: מבריאת העולם ועד בריאת האדם, בפסוק כ"ז. זה טקסט עוצמתי, עם הרבה רבדים, וכל אחד מהם יכול לפתוח דיון. ובגלל שהוא כל כך מוכר, חשוב במיוחד לבקש מהכלי את הטקסט המדויק והמלא, ולבדוק אותו.</p>
+    </div>
+  </section>
+
+  <section id="process" style="display:grid;gap:22px" aria-labelledby="pr">
+    <div class="head">
+      <div class="eyebrow">מאחורי הקלעים</div>
+      <h2 id="pr">התהליך בשמונה שלבים</h2>
+      <p>כך הפכנו את פרק א' לסרט קצר, ואיך תעשו את אותו הדבר עם הטקסט שלכם, בכלים חינמיים. לחצו על שלב כדי לקפוץ אליו.</p>
+    </div>
+
+    <div class="board" tabindex="0" aria-label="שמונת השלבים, גלילה לצדדים">
+      <div class="strip eight">
+        <a class="frame c1" href="#s1"><div class="screen"><span class="sc">01</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M24 6a12 12 0 0 0-7 21.7V33h14v-5.3A12 12 0 0 0 24 6Z"/><path d="M19 39h10M21 43h6"/></svg></div><h3>רעיון</h3><p class="tool">Claude · ChatGPT</p></a>
+        <a class="frame c3" href="#s2"><div class="screen"><span class="sc">02</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="16" r="3"/><circle cx="33" cy="27" r="3"/><path d="M20 33a4 4 0 0 0 4 4"/></svg></div><h3>מחקר ויזואלי</h3><p class="tool">Nano Banana</p></a>
+        <a class="frame c4" href="#s3"><div class="screen"><span class="sc">03</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 20h32M8 30h32M20 8v32"/></svg></div><h3>קודים</h3><p class="tool">דף ועט</p></a>
+        <a class="frame c2" href="#s4"><div class="screen"><span class="sc">04</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="17" height="13" rx="2"/><rect x="26" y="9" width="17" height="13" rx="2"/><rect x="5" y="27" width="17" height="13" rx="2"/><rect x="26" y="27" width="17" height="13" rx="2"/></svg></div><h3>סטוריבורד</h3><p class="tool">Claude + Nano Banana</p></a>
+        <a class="frame c5" href="#s5"><div class="screen"><span class="sc">05</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="36" height="26" rx="3"/><path d="M21 19l9 5-9 5z"/></svg></div><h3>תנועה</h3><p class="tool">Kling</p></a>
+        <a class="frame c1" href="#s6"><div class="screen"><span class="sc">06</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 35V11l20-4v24"/><circle cx="13" cy="35" r="5"/><circle cx="33" cy="31" r="5"/></svg></div><h3>סאונד וקריינות</h3><p class="tool">Suno · ElevenLabs</p></a>
+        <a class="frame c4" href="#s7"><div class="screen"><span class="sc">07</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="13" cy="14" r="5"/><circle cx="13" cy="34" r="5"/><path d="M17 17l25 15M17 31l25-15"/></svg></div><h3>עריכה וטקסט</h3><p class="tool">CapCut</p></a>
+        <a class="frame c5" href="#s8"><div class="screen"><span class="sc">08</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="6" y="10" width="36" height="28" rx="4"/><path d="M13 30h10M27 30h8M13 24h22"/></svg></div><h3>הפצה</h3><p class="tool">YouTube</p></a>
+      </div>
+    </div>
+
+    <article class="panel stg c1" id="s1">
+      <div class="sn"><span>1</span>רעיון</div>
+      <h3>מתחילים בשאלות, לא בתסריט</h3>
+      <p class="lead2">המשפט הראשון היה "ניצור סרטון על פרשת בראשית". במקום תסריט, התשובה הייתה ארבע שאלות.</p>
+      <div class="split">
+        <figure class="ph"><img src="img/g/chumash.jpg" alt="דף החומש באור שמש" loading="lazy"><figcaption>הצילום שהתחיל הכול: קרן שמש על "ויבדל בין האור ובין החשך"</figcaption></figure>
+        <div class="qa">
+          <p><b>עצמאי או חלק מפרויקט?</b> עצמאי.</p>
+          <p><b>איזו זווית?</b> פרק א' בלבד, מהבריאה עד הולדת האדם.</p>
+          <p><b>אורך ופורמט?</b> סרט קצר, וגם גרסה אנכית של 60 שניות.</p>
+          <p><b>שפה וקול?</b> וידאו וטקסט, מוזיקה, טון מופשט ופואטי, צמוד לפסוקים המקוריים.</p>
+        </div>
+      </div>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span></div><span>חלופה מלאה ל-Claude, גם ליצירת תמונות</span></li><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></b><span class="pill free">חינם</span></div><span>של Google, עם חשבון Gmail</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> השאלות שוות יותר מהפרומפט. מי שמבקש "תכתוב לי תסריט" מקבל תסריט גנרי. מי שמבקש "תשאל אותי שאלות עד שיהיה לך מספיק מידע" מקבל סרט שלו.</p>
+    </article>
+
+    <article class="panel stg c3" id="s2">
+      <div class="sn"><span>2</span>מחקר ויזואלי</div>
+      <h3>מחקר ויזואלי: בחירת החומר</h3>
+      <p class="lead2"><b>החומר משפיע על התחושה.</b> פלסטלינה מרגישה אחרת מדיו, ופחם מרגיש אחרת מאור. לכן לפני שמחליטים, בודקים. שישה סבבי סקיצות. כל סבב בדק את אותו רגע, אדם שנברא ומושיט יד אל האור, בסגנונות שונים. הסגנון שנבחר לא היה אף אחד מהרעיונות הראשונים. הוא נולד מההשוואה.</p>
+      <ol class="rounds">
+        <li><b>1</b>מיתולוגי, מופשט, עכשווי</li>
+        <li><b>2</b>עכשווי פואטי</li>
+        <li><b>3</b>דיו, פחם, שמן</li>
+        <li><b>4</b>צבעי מים, עיפרון, פלסטלינה</li>
+        <li><b>5</b>בוץ, מים, אור וצל</li>
+        <li class="win"><b>6</b>פלסטלינה + אור</li>
+      </ol>
+      <div class="styles">
+        <figure><img src="img/style1.jpg" alt="איור בדיו שחורה על נייר" loading="lazy"><figcaption>דיו</figcaption></figure>
+        <figure><img src="img/style2.jpg" alt="רישום פחם כהה" loading="lazy"><figcaption>פחם</figcaption></figure>
+        <figure><img src="img/style3.jpg" alt="צבעי מים כחולים" loading="lazy"><figcaption>צבעי מים</figcaption></figure>
+        <figure><img src="img/style4.jpg" alt="רישום עיפרון עדין" loading="lazy"><figcaption>עיפרון</figcaption></figure>
+        <figure><img src="img/style6.jpg" alt="דמות מחימר באלומת אור" loading="lazy"><figcaption>בוץ ואור</figcaption></figure>
+        <figure><img src="img/style7.jpg" alt="צללית רוקדת על קיר" loading="lazy"><figcaption>אור וצל</figcaption></figure>
+        <figure><img src="img/style8.jpg" alt="קרני אור מופשטות" loading="lazy"><figcaption>מופשט</figcaption></figure>
+        <figure class="pick"><img src="img/style5.jpg" alt="דמות ונוף מפלסטלינה צבעונית" loading="lazy"><figcaption>פלסטלינה · הבחירה</figcaption></figure>
+      </div>
+      <div class="media2">
+        <figure><img src="img/g/sketch-sky.jpg" alt="דמות פלסטלינה מושיטה יד לשמיים מחימר" loading="lazy"><figcaption>סקיצת המפתח: שמיים מחימר כחול, אדמה בצבעי אוקר</figcaption></figure>
+        <figure><img src="img/g/sketch-sea.jpg" alt="דמות פלסטלינה כורעת מול ים" loading="lazy"><figcaption>הסקיצה השנייה, ששימשה תמונת ייחוס</figcaption></figure>
+      </div>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">כ-20 תמונות ביום</span></div><span>תמונות, עם תמונת ייחוס לשמירה על עקביות</span></li><li><div class="tn"><b><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></b><span class="pill free">חינם</span><span class="pill limit">מגבלה יומית</span></div><span>יצירת תמונות, טוב גם עם כיתוב</span></li><li><div class="tn"><b><a href="https://higgsfield.ai" target="_blank" rel="noopener">Higgsfield</a></b><span class="pill paid">בתשלום</span></div><span>כמה מודלים של תמונה ווידאו במקום אחד</span></li><li><div class="tn"><b><a href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney</a></b><span class="pill paid">בתשלום</span></div><span>איכות אמנותית גבוהה</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> אחרי שנבחרו סקיצות, כל תמונה חדשה נוצרה עם אחת מהן מצורפת כתמונת ייחוס. ככה החומר והדמות נשארו זהים לאורך כל הסרט. תנו למשתתפים לייצר רגע אחד בשלושה סגנונות לפני שהם מחליטים.</p>
+    </article>
+
+    <article class="panel stg c4" id="s3">
+      <div class="sn"><span>3</span>קודים</div>
+      <h3>לכל מילה בפסוק יש מראה וצליל</h3>
+      <p class="lead2">זה השלב היחיד שבלי AI, והוא הסיבה שהסרט מרגיש מחובר. לפני כל פרומפט החלטנו מה כל מושג אומר, איך הוא נראה ואיך הוא נשמע.</p>
+      <div class="codes">
+        <div class="code-card cc-sky"><h4>הַשָּׁמַיִם</h4><dl><dt>משמעות</dt><dd>האינסופי, המחשבה, הדמיון</dd><dt>בתמונה</dt><dd>ענני חימר מסתלסלים, אור קר</dd><dt>בצליל</dt><dd>חליל, צליל גבוה</dd></dl></div>
+        <div class="code-card cc-earth"><h4>הָאָרֶץ</h4><dl><dt>משמעות</dt><dd>ידיים, רגליים, צבע, האנושי</dd><dt>בתמונה</dt><dd>חימר אוקר ואדום, טביעות אצבע</dd><dt>בצליל</dt><dd>צ'לו, צליל נמוך</dd></dl></div>
+      </div>
+      <div class="tbl" tabindex="0">
+        <table>
+          <thead><tr><th>מושג</th><th>משמעות</th><th>בתמונה</th><th>בצליל</th></tr></thead>
+          <tbody>
+            <tr><td>תֹהוּ וָבֹהוּ</td><td>מלחמות אחים, מהפכות, שריפות</td><td>חימר שנמרח על עצמו, אש ועשן</td><td>מיתרים מזייפים, תופים, רעם</td></tr>
+            <tr><td>חֹשֶׁךְ עַל פְּנֵי תְהוֹם</td><td>עומק פנימי בלי קרקעית</td><td>ים חימר כמעט שחור</td><td>שקט, קונטרבס אחד</td></tr>
+            <tr><td>רוּחַ אֱלֹהִים</td><td>נוכחות ששומרת בלי לגעת</td><td>אדוות בלבד, שום דבר באוויר</td><td>רוח, חליל לבד</td></tr>
+            <tr><td>אֱלֹהִים</td><td>אור, צל, אוויר, נמצא בכל</td><td>נקודת האור שנוגעת בחימר</td><td>הסרט כולו</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b>דף ועט</b><span class="pill rec">מומלץ</span></div><span>השלב הכי חשוב, בלי מסך</span></li><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://docs.google.com" target="_blank" rel="noopener">Google Docs</a></b><span class="pill free">חינם</span></div><span>טבלה משותפת לקבוצה</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> זה השלב ששווה לתרגל בכיתה. כל משתתף ממלא טבלה כזו לטקסט שלו לפני שהוא פותח כלי כלשהו. שלושה מושגים מספיקים.</p>
+    </article>
+
+    <article class="panel stg c2" id="s4">
+      <div class="sn"><span>4</span>סטוריבורד</div>
+      <h3>שורה לכל רעיון, שוט לכל שורה</h3>
+      <p class="lead2">14 פריימים, פריים לכל פסוק או יום. עד פסוק כ"ז אין בעולם אדם. גוש החימר מהפריים הראשון נשכח, וממנו נולד האדם בסוף. המסגרת המודגשת מסמנת את הגוש.</p>
+      <div class="sbgrid">
+        <figure class="lump"><img src="img/sb/f01.jpg" alt="" loading="lazy"><figcaption><b>1 · א', א'</b>אור נוגע בגוש חימר<span>13 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f02.jpg" alt="" loading="lazy"><figcaption><b>2 · א', ב'</b>החימר נמרח, אש ועשן<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f03.jpg" alt="" loading="lazy"><figcaption><b>3 · א', ב'</b>ים חימר שחור<span>8 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f04.jpg" alt="" loading="lazy"><figcaption><b>4 · א', ב'</b>אדוות על ים כהה<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f05.jpg" alt="" loading="lazy"><figcaption><b>5 · א', ג'</b>הנקודה מתפוצצת לאור<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f06.jpg" alt="" loading="lazy"><figcaption><b>6 · א', ד'–ה'</b>יום ולילה<span>14 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f07.jpg" alt="" loading="lazy"><figcaption><b>7 · א', ו'</b>רקיע בין המים<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f08.jpg" alt="" loading="lazy"><figcaption><b>8 · א', ט'</b>היבשה עולה<span>10 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f09.jpg" alt="" loading="lazy"><figcaption><b>9 · א', י"א</b>נבטים ועצי פרי<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f10.jpg" alt="" loading="lazy"><figcaption><b>10 · א', ט"ז</b>שמש, ירח, כוכבים<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f11.jpg" alt="" loading="lazy"><figcaption><b>11 · א', כ"א</b>לוויתן וציפורים<span>12 שנ'</span></figcaption></figure>
+        <figure><img src="img/sb/f12.jpg" alt="" loading="lazy"><figcaption><b>12 · א', כ"ד</b>חיות על הגבעות<span>12 שנ'</span></figcaption></figure>
+        <figure class="lump"><img src="img/sb/f13.jpg" alt="" loading="lazy"><figcaption><b>13 · א', כ"ו</b>הקרן חוזרת לגוש<span>10 שנ'</span></figcaption></figure>
+        <figure class="lump"><img src="img/sb/f14.jpg" alt="" loading="lazy"><figcaption><b>14 · א', כ"ז</b>האדם עולה מהחימר<span>14 שנ'</span></figcaption></figure>
+      </div>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill free">חינם</span></div><span>תמונות, עם תמונת ייחוס לשמירה על עקביות</span></li><li><div class="tn"><b><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></b><span class="pill free">חינם</span><span class="pill limit">חלק מהתבניות בתשלום</span></div><span>סידור פריימים ושקופיות, וגם עריכת וידאו</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> הטבלה היא התסריט כולו. בקשו מ-Claude לבנות אותה מהטקסט ומטבלת הקודים, ורק אחר כך צרו תמונה לכל שורה.</p>
+    </article>
+
+    <article class="panel stg c5" id="s5">
+      <div class="sn"><span>5</span>תנועה</div>
+      <h3>מתמונה לשוט: הפרומפט מתאר רק תנועה</h3>
+      <p class="lead2">כל פריים מאושר הופך לתמונת פתיחה של שוט. המראה כבר נמצא בתמונה, ולכן הפרומפט מתאר רק מה זז ואיך.</p>
+      <div class="media2">
+        <figure><video autoplay muted loop playsinline preload="metadata" poster="img/kling-light.jpg" src="img/kling-light.mp4"></video><figcaption>"ויהי אור": פריים פלסטלינה שהונפש ב-Kling</figcaption></figure>
+        <figure class="struck"><img src="img/g/struck-cellophane.jpg" alt="סרט צלופן מעופף מעל ים חימר" loading="lazy"><figcaption><b>ירד מהסרט:</b> סרט הצלופן שייצג את הרוח. יפה בתמונה, מיותר בתנועה.</figcaption></figure>
+      </div>
+      <p>שוט "ורוח אלהים" עבר שלושה ניסיונות: עם סרט צלופן באוויר, עם עננים כבדים, ועם קרן אור שמבליחה. בסוף נבחרה הגרסה הפשוטה ביותר: רק אדוות על המים. את הרוח עצמה מספר הסאונד.</p>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://klingai.com" target="_blank" rel="noopener">Kling</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים · סימן מים</span></div><span>מתמונה לווידאו, תנועה לפי תיאור</span></li><li><div class="tn"><b><a href="https://dreamina.capcut.com" target="_blank" rel="noopener">Dreamina (Seedance)</a></b><span class="pill free">חינם</span><span class="pill limit">קרדיטים יומיים</span></div><span>של CapCut, וידאו מתמונה או מטקסט</span></li><li><div class="tn"><b><a href="https://runwayml.com" target="_blank" rel="noopener">Runway</a></b><span class="pill paid">בתשלום</span><span class="pill limit">ניסיון חינמי</span></div><span>כלי וידאו מקצועי, קרדיטים חינמיים לניסיון</span></li><li><div class="tn"><b><a href="https://higgsfield.ai" target="_blank" rel="noopener">Higgsfield</a></b><span class="pill paid">בתשלום</span></div><span>כמה מודלים של תמונה ווידאו במקום אחד</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> הקרדיטים היומיים מספיקים לשניים או שלושה שוטים. הנפישו רק את הרגעים החשובים, ואת השאר השאירו תמונות עם תנועת מצלמה עדינה (זום איטי) בעריכה.</p>
+    </article>
+
+    <article class="panel stg c1" id="s6">
+      <div class="sn"><span>6</span>סאונד וקריינות</div>
+      <h3>הצליל הוא חצי מהחוויה</h3>
+      <p class="lead2">צופים סולחים על תמונה לא מושלמת, אבל לא על סאונד רע. בסרט יש שלוש שכבות קול, וכל אחת נבנית בנפרד: מוזיקה, סאונד וקריינות.</p>
+
+      <div class="sl c1">
+        <h4><span>א</span>מוזיקה: נבראת בשכבות</h4>
+        <p>החליל פותח לבד, הצ'לו נכנס מתחתיו, הכינור נכנס ב"יהי אור" על הצליל שהופך ממינור למז'ור, וכל יום מוסיף כלי. בסוף מקהלה וכל התזמורת. המוזיקה מספרת את אותו סיפור כמו התמונה: מאחד לרבים.</p>
+        <ol class="layers">
+          <li style="--w:100%"><span>חליל · שמיים</span><i class="l-sky"></i></li>
+          <li style="--w:90%"><span>צ'לו · ארץ</span><i class="earth"></i></li>
+          <li style="--w:70%"><span>כינור · "יהי אור"</span><i class="light"></i></li>
+          <li style="--w:45%"><span>כלי לכל יום</span><i class="days"></i></li>
+          <li style="--w:15%"><span>מקהלה ותזמורת</span><i class="all"></i></li>
+        </ol>
+        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://suno.com" target="_blank" rel="noopener">Suno</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">לשימוש לא מסחרי</span></div><span>שיר או מוזיקה מתיאור במילים</span></li><li><div class="tn"><b><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs Music</a></b><span class="pill free">חינם</span><span class="pill limit">מכסה חודשית</span></div><span>מוזיקה מתיאור, באותו מקום עם הקריינות</span></li><li><div class="tn"><b><a href="https://studio.youtube.com" target="_blank" rel="noopener">YouTube Audio Library</a></b><span class="pill free">חינם</span></div><span>מוזיקה מוכנה ברישיון חופשי, בתוך YouTube Studio</span></li><li><div class="tn"><b><a href="https://www.epidemicsound.com" target="_blank" rel="noopener">Epidemic Sound</a></b><span class="pill paid">בתשלום</span></div><span>ספרייה מקצועית עם רישיון לרשתות</span></li></ul></div>
+      </div>
+
+      <div class="sl c3">
+        <h4><span>ב</span>סאונד: העולם שמסביב</h4>
+        <p>רוח, רעם, גלים, עלים, ציפורים, לוויתן, ונשימה ראשונה של האדם. אפקט אחד במקום הנכון שווה יותר מעשרה. וכמו בשוט של "ורוח אלהים", לפעמים הצליל מספר את מה שהתמונה לא צריכה להראות.</p>
+        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs Sound Effects</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">מכסה חודשית</span></div><span>כותבים "גלים שקטים בלילה" ומקבלים צליל</span></li><li><div class="tn"><b><a href="https://pixabay.com/sound-effects/" target="_blank" rel="noopener">Pixabay</a></b><span class="pill free">חינם</span></div><span>ספריית אפקטים חינמית</span></li><li><div class="tn"><b><a href="https://freesound.org" target="_blank" rel="noopener">Freesound</a></b><span class="pill free">חינם</span></div><span>ספרייה ענקית, לבדוק רישיון לכל צליל</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill free">חינם</span></div><span>ספריית צלילים מובנית בעורך</span></li></ul></div>
+      </div>
+
+      <div class="sl c2">
+        <h4><span>ג</span>קריינות: הקול שלכם</h4>
+        <p>הקריינות קוראת את הפסוקים, שורה לכל שוט. כאן יש בחירה אמיתית: הקול שלכם, או קול שנוצר ב-AI. קריינות בעברית מקול AI עלולה להישמע עם מבטא או עם הטעמה שגויה, ולכן לטקסט אישי, הקול שלכם הוא כמעט תמיד הבחירה הנכונה.</p>
+        <ol class="steps2">
+          <li><b>מקליטים</b> בטלפון, בחדר שקט עם שטיח או וילון, 15 עד 20 ס"מ מהפה. משפט אחד בכל פעם.</li>
+          <li><b>מנקים</b> רעשי רקע והד בכלי שיפור קול.</li>
+          <li><b>מקשיבים</b> לכל מילה לפני שהיא נכנסת לסרט, ובודקים הטעמה וניקוד.</li>
+        </ol>
+        <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b>הקלטה בטלפון</b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>אפליקציית ההקלטות המובנית. הכי אותנטי</span></li><li><div class="tn"><b><a href="https://podcast.adobe.com/enhance" target="_blank" rel="noopener">Adobe Podcast Enhance</a></b><span class="pill free">חינם</span><span class="pill limit">מכסה יומית</span></div><span>מנקה רעש והד מהקלטה בלחיצה</span></li><li><div class="tn"><b><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a></b><span class="pill free">חינם</span><span class="pill limit">שיבוט קול בתשלום</span></div><span>קריינות AI, ושיבוט הקול שלכם מדגימה קצרה</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill free">חינם</span></div><span>הקלטה ישירה בתוך העורך, והפחתת רעש</span></li></ul></div>
+      </div>
+
+      <div class="sl c4">
+        <h4><span>ד</span>מיקס: איך שלוש השכבות חיות יחד</h4>
+        <ol class="steps2">
+          <li><b>הקול מעל הכול.</b> כשמישהו מדבר, המוזיקה יורדת. כשהוא שותק, היא יכולה לעלות.</li>
+          <li><b>המוזיקה מתחת.</b> בערך רבע מעוצמת הקול, כך שמרגישים אותה ולא שומעים אותה מתחרה במילים.</li>
+          <li><b>האפקטים בנקודות.</b> רגע קצר, ואז שקט. שקט הוא גם צליל.</li>
+          <li><b>בודקים באוזניות ובטלפון.</b> רוב הצופים ישמעו את הסרט מרמקול קטן של טלפון.</li>
+        </ol>
+      </div>
+
+      <p class="tipbox"><b>למנחים:</b> בקשו מכל משתתף להקליט את הטקסט שלו בקולו, עוד לפני שיש תמונה אחת. הקול האישי הוא מה שהופך סרטון גנרי לסרטון אותנטי, ולעתים קרובות הוא מספיק כדי לבנות סביבו סרטון של טקסט בלבד.</p>
+    </article>
+
+    <article class="panel stg c4" id="s7">
+      <div class="sn"><span>7</span>עריכה וטקסט</div>
+      <h3>הפסוק נברא אות אחר אות</h3>
+      <p class="lead2">בגרסה העברית כל אות עולה מתוך טשטוש עם הילת אור, יחד עם הניקוד שלה, בקצב הקריינות. מילה, ואז משפט.</p>
+      <div class="demo">
+        <p class="born" id="demo-verse" data-verse="וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי אוֹר"></p>
+        <p class="src">בראשית א', ג'</p>
+        <button class="replay" type="button" id="replay-demo">הפעלה חוזרת</button>
+      </div>
+      <p>כל מה שכתוב על המסך זהה מילה במילה למה שנשמע בקריינות.</p>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span><span class="pill limit">חלק מהאפקטים בתשלום</span></div><span>עריכה במחשב ובטלפון, כתוביות אוטומטיות</span></li><li><div class="tn"><b><a href="https://vids.google.com" target="_blank" rel="noopener">Google Vids</a></b><span class="pill free">חינם</span></div><span>עריכה פשוטה בדפדפן, למדנו בשיעור 2</span></li><li><div class="tn"><b><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></b><span class="pill free">חינם</span></div><span>סידור פריימים ושקופיות, וגם עריכת וידאו</span></li><li><div class="tn"><b><a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener">DaVinci Resolve</a></b><span class="pill free">חינם</span><span class="pill limit">למתקדמים</span></div><span>עריכה מקצועית, למתקדמים</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> ב-CapCut: <span class="ui">Speed</span> להאטת שוטים (בפלסטלינה האטה נראית כמו סטופ-מושן), <span class="ui">Dissolve</span> למעברים, ואנימציית טקסט <span class="ui">Typewriter</span> או <span class="ui">Blur In</span> במקום האותיות שנבראות. גופן מומלץ לעברית עם ניקוד: Frank Ruhl Libre.</p>
+    </article>
+
+    <article class="panel stg c5" id="s8">
+      <div class="sn"><span>8</span>הפצה</div>
+      <h3>ייצוא, עוצמה, העלאה</h3>
+      <p class="lead2">MP4 לסרט, MP3 נפרד לפסקול, ועוצמת קול שמתאימה לרשתות, כדי שהסרט לא יישמע חלש בפיד.</p>
+      <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://studio.youtube.com" target="_blank" rel="noopener">YouTube Studio</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>העלאה, כתוביות ונתונים</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut</a></b><span class="pill free">חינם</span><span class="pill limit">ייצוא</span></div><span>עריכה במחשב ובטלפון, כתוביות אוטומטיות</span></li><li><div class="tn"><b>Instagram / Facebook</b><span class="pill free">חינם</span></div><span>רילס, בגרסה האנכית</span></li></ul></div>
+      <p class="tipbox"><b>למנחים:</b> לפני העלאה, השוו את הפסוקים עם הניקוד לחומש או לאתר מוסמך. ניקוד שנכתב מזיכרון של מודל עלול לטעות. <a href="../#youtube">ההדרכה להעלאה ליוטיוב, בדף של שיעור 5</a></p>
+    </article>
+
+    <div class="two">
+      <div class="panel did">
+        <h3 style="font-size:22px">מפגש אחד עם הקבוצה שלכם: 90 דקות</h3>
+        <p>במפגש של 90 דקות משתתף מגיע לסטוריבורד מאושר ולשני שוטים מונפשים. את הסאונד והעריכה משאירים לבית.</p>
+        <ol class="plan">
+          <li><b>0–10</b>צפייה בסרט ובסקיצות שלא נבחרו</li>
+          <li><b>10–25</b>בחירת טקסט וטבלת קודים</li>
+          <li><b>25–45</b>רגע אחד בשלושה סגנונות</li>
+          <li><b>45–65</b>סטוריבורד ו-4 עד 6 פריימים</li>
+          <li><b>65–80</b>שני שוטים ב-Kling</li>
+          <li><b>80–90</b>הצגה ומשימה לבית</li>
+        </ol>
+      </div>
+      <div class="panel did pits">
+        <h3 style="font-size:22px">ממה להימנע</h3>
+        <p><b>וידאו לפני שהסגנון נעול:</b> שורף קרדיטים על שוטים שלא ייכנסו.</p>
+        <p><b>דמות שמשתנה בין שוטים:</b> תמיד לצרף תמונת ייחוס, ולהעדיף רגעים בלי דמות.</p>
+        <p><b>אובייקט מיותר בפריים:</b> לפעמים הסאונד מספר טוב יותר מהתמונה.</p>
+        <p><b>קריינות שלא נשמעה:</b> להקשיב לכל מילה לפני העריכה.</p>
+        <p><b>טקסט שלא תואם לקול:</b> מה שכתוב ומה שנשמע הם אותן מילים.</p>
+        <p><b>ניקוד מהזיכרון:</b> להעתיק מחומש או מאתר מוסמך.</p>
+      </div>
+    </div>
+
+    <div class="head" style="margin-top:6px">
+      <h2 style="font-size:26px">פרומפטים מוכנים להעתקה</h2>
+      <p>בסוגריים המרובעים ממלאים את הפרטים שלכם. פרומפטי התמונה והתנועה באנגלית, כי הכלים מבינים אותה טוב יותר.</p>
+    </div>
+    <div class="prompts">
+      <div class="panel prompt c1">
+        <div class="ph"><span class="n">1</span><h3>פתיחת שיחה · Claude / ChatGPT</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>אני רוצה ליצור סרטון קצר על [הטקסט]. לפני שאתה כותב משהו, שאל אותי שאלות על הזווית, הקהל, האורך והשפה החזותית, עד שיהיה לך מספיק מידע. אחר כך הצע שלושה כיוונים שונים לגמרי.</pre>
+      </div>
+      <div class="panel prompt c2">
+        <div class="ph"><span class="n">2</span><h3>סטוריבורד · Claude / ChatGPT</h3><button type="button" class="copy">העתקה</button></div>
+        <pre>הפוך את הטקסט ואת טבלת הקודים לסטוריבורד: טבלה שבה כל שורה היא שוט.
+בכל שורה: מספר השוט, הפסוק או המשפט, מה רואים בתמונה, ומשך בשניות.
+השתמש בטקסט המדויק והמלא, בלי קיצורים ובלי שינויים.</pre>
+      </div>
+      <div class="panel prompt c3">
+        <div class="ph"><span class="n">3</span><h3>סקיצת סגנון · Nano Banana</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation still, handmade plasticine with visible fingerprints. [WHAT HAPPENS IN THE SCENE]. Soft moody lighting, miniature set, poetic, centered, no text.</pre>
+      </div>
+      <div class="panel prompt c3">
+        <div class="ph"><span class="n">4</span><h3>פריים עקבי, עם תמונת ייחוס · Nano Banana</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation still in the exact plasticine style of the reference image, with NO people. [THE NEW SCENE]. Miniature set, centered, no text.</pre>
+      </div>
+      <div class="panel prompt c5">
+        <div class="ph"><span class="n">5</span><h3>תנועה לשוט · Kling</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Stop-motion claymation. [WHAT MOVES AND HOW, ONE ACTION]. Slow push in. No people, no text, continuous, no cuts.</pre>
+      </div>
+      <div class="panel prompt c1">
+        <div class="ph"><span class="n">6</span><h3>מוזיקה בשכבות · Suno</h3><button type="button" class="copy">העתקה</button></div>
+        <pre dir="ltr">Instrumental, slow, meditative orchestral piece. Starts with a solo flute alone, a low cello joins, then a violin enters and the strings slowly build, ending with a soft choir and full orchestra. No vocals, no drums.</pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>דוגמה להעמקה, שמלווה את <a href="./">שיעור 6, "מטקסט ליצירה"</a>. מגבלות הכלים החינמיים נבדקו באוקטובר 2026 ועשויות להשתנות.</p>
+    <p>Creative Content · שגיא אשכנזי</p>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = b.closest('.prompt').querySelector('pre').innerText;
+    var done = function(){ b.textContent = 'הועתק'; setTimeout(function(){ b.textContent = 'העתקה'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, function(){ b.textContent = 'סמנו והעתיקו ידנית'; });
+    } else { b.textContent = 'סמנו והעתיקו ידנית'; }
+  });
+});
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  if (!(window.matchMedia && window.matchMedia('(pointer: fine)').matches)) return;
+  document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--ry', ((x - .5) * 14).toFixed(2) + 'deg');
+      card.style.setProperty('--rx', ((.5 - y) * 12).toFixed(2) + 'deg');
+      card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    });
+    card.addEventListener('pointerleave', function(){
+      card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg');
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var el=document.getElementById('demo-verse'); if(!el) return;
+  var CL=/[\u05D0-\u05EA][\u0591-\u05C7]*|./g;
+  function birth(){
+    var t=el.getAttribute('data-verse'); el.textContent='';
+    var words=t.split(' '); var n=0; words.forEach(function(w){n+=(w.match(CL)||[]).length});
+    var i=0;
+    words.forEach(function(w,wi){
+      var ws=document.createElement('span'); ws.style.whiteSpace='nowrap';
+      (w.match(CL)||[]).forEach(function(p){
+        var c=document.createElement('span'); c.className='ch'; c.textContent=p;
+        c.style.animationDelay=(0.3+3.2*i/Math.max(1,n-1)).toFixed(2)+'s'; i++; ws.appendChild(c);
+      });
+      el.appendChild(ws); if(wi<words.length-1) el.appendChild(document.createTextNode(' '));
+    });
+  }
+  var started=false;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es,o){ if(es[0].isIntersecting && !started){started=true;birth();o.disconnect();} },{threshold:.6}).observe(el);
+  } else birth();
+  document.getElementById('replay-demo').addEventListener('click',birth);
+})();
+</script>
+
