@@ -402,6 +402,8 @@ a.inl{color:var(--c);font-weight:700}
 @media (max-width:640px){.pits2{grid-template-columns:1fr}}
 .pits2 p{font-size:16px;border-inline-start:3px solid var(--s2);padding-inline-start:10px}
 pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
+.doclink{display:inline-flex;align-items:center;gap:8px;justify-self:start;width:max-content;max-width:100%;padding:8px 16px;border-radius:999px;border:1.5px solid var(--c,var(--s1));color:var(--c,var(--s1));background:#fff;font-weight:700;font-size:15px;text-decoration:none}
+.doclink:hover{background:color-mix(in srgb,var(--c,var(--s1)) 8%,#fff)}
 </style>
 
 <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
@@ -428,7 +430,7 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
 
     <div class="board" tabindex="0" aria-label="שמונת השלבים, גלילה לצדדים">
       <div class="strip eight">
-        <a class="frame c1" href="#s1"><div class="screen"><span class="sc">01</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M24 6a12 12 0 0 0-7 21.7V33h14v-5.3A12 12 0 0 0 24 6Z"/><path d="M19 39h10M21 43h6"/></svg></div><h3>רעיון</h3><p class="tool">Claude · ChatGPT</p></a>
+        <a class="frame c1" href="#s1"><div class="screen"><span class="sc">01</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M24 6a12 12 0 0 0-7 21.7V33h14v-5.3A12 12 0 0 0 24 6Z"/><path d="M19 39h10M21 43h6"/></svg></div><h3>נושא וטקסט</h3><p class="tool">Claude · ChatGPT</p></a>
         <a class="frame c3" href="#s2"><div class="screen"><span class="sc">02</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="24" cy="24" r="17"/><circle cx="17" cy="18" r="3"/><circle cx="29" cy="16" r="3"/><circle cx="33" cy="27" r="3"/><path d="M20 33a4 4 0 0 0 4 4"/></svg></div><h3>מחקר ויזואלי</h3><p class="tool">Nano Banana</p></a>
         <a class="frame c4" href="#s3"><div class="screen"><span class="sc">03</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 20h32M8 30h32M20 8v32"/></svg></div><h3>קודים</h3><p class="tool">דף ועט</p></a>
         <a class="frame c2" href="#s4"><div class="screen"><span class="sc">04</span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="9" width="17" height="13" rx="2"/><rect x="26" y="9" width="17" height="13" rx="2"/><rect x="5" y="27" width="17" height="13" rx="2"/><rect x="26" y="27" width="17" height="13" rx="2"/></svg></div><h3>סטוריבורד</h3><p class="tool">Claude + Nano Banana</p></a>
@@ -440,9 +442,10 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
     </div>
 
     <article class="panel stg c1" id="s1">
-      <div class="sn"><span>1</span>רעיון</div>
-      <h3>מתחילים בשאלות, לא בתסריט</h3>
-      <p class="lead2">המשפט הראשון היה "ניצור סרטון על פרשת בראשית". במקום תסריט, התשובה הייתה ארבע שאלות.</p>
+      <div class="sn"><span>1</span>נושא וטקסט</div>
+      <h3>בוחרים נושא וטקסט, מתמצתים, ושואלים</h3>
+      <p class="lead2">זה תמיד השלב הראשון: בוחרים נושא, ובוחרים את הטקסט שיהיה התסריט. כאן הנושא הוא פרשת בראשית, והטקסט הוא פרק א', מהבריאה ועד הולדת האדם.</p>
+      <p>אחרי הבחירה מתמצתים: קוראים את הטקסט עד הסוף, מנסחים את הרעיון במשפט אחד, ומסמנים את משפטי המפתח. בבראשית התמצות הוביל ל-14 רגעים מתוך הפרק, פריים לכל פסוק או יום. ורק אז מתחילים לעבוד עם Claude, שבמקום לכתוב תסריט שאל ארבע שאלות.</p>
       <div class="split">
         <figure class="ph"><img src="img/g/chumash.jpg" alt="דף החומש באור שמש" loading="lazy"><figcaption>הצילום שהתחיל הכול: קרן שמש על "ויבדל בין האור ובין החשך"</figcaption></figure>
         <div class="qa">
@@ -529,6 +532,7 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
         <figure class="lump"><img src="img/sb/f13.jpg" alt="" loading="lazy"><figcaption><b>13 · א', כ"ו</b>הקרן חוזרת לגוש<span>10 שנ'</span></figcaption></figure>
         <figure class="lump"><img src="img/sb/f14.jpg" alt="" loading="lazy"><figcaption><b>14 · א', כ"ז</b>האדם עולה מהחימר<span>14 שנ'</span></figcaption></figure>
       </div>
+      <a class="doclink" href="https://docs.google.com/document/d/1TYjE_fByyPwxAXqEBIdy5f3Fr-dHleHK8FUOtjE7jzo/edit?usp=sharing" target="_blank" rel="noopener"><span aria-hidden="true">✎</span>הפרומפט של כל אחד מ-14 הפריימים, עם התמונה לצדו</a>
       <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill free">חינם</span></div><span>תמונות, עם תמונת ייחוס לשמירה על עקביות</span></li><li><div class="tn"><b><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></b><span class="pill free">חינם</span><span class="pill limit">חלק מהתבניות בתשלום</span></div><span>סידור פריימים ושקופיות, וגם עריכת וידאו</span></li></ul></div>
       <p class="tipbox"><b>למנחים:</b> הטבלה היא התסריט כולו. בקשו מ-Claude לבנות אותה מהטקסט ומטבלת הקודים, ורק אחר כך צרו תמונה לכל שורה.</p>
     </article>
