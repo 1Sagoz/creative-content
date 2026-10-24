@@ -404,6 +404,10 @@ a.inl{color:var(--c);font-weight:700}
 pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left}
 .doclink{display:inline-flex;align-items:center;gap:8px;justify-self:start;width:max-content;max-width:100%;padding:8px 16px;border-radius:999px;border:1.5px solid var(--c,var(--s1));color:var(--c,var(--s1));background:#fff;font-weight:700;font-size:15px;text-decoration:none}
 .doclink:hover{background:color-mix(in srgb,var(--c,var(--s1)) 8%,#fff)}
+.doclink.cta{--c:var(--s2);background:var(--c);color:#fff;border-color:var(--c);font-size:17px;padding:12px 22px;box-shadow:0 8px 22px -8px var(--c);transition:transform .15s,box-shadow .15s}
+.doclink.cta:hover{background:var(--c);transform:translateY(-2px);box-shadow:0 12px 28px -8px var(--c)}
+.doclink.cta .arr{transition:transform .15s}.doclink.cta:hover .arr{transform:translateX(-4px)}
+@media (prefers-reduced-motion:reduce){.doclink.cta,.doclink.cta .arr{transition:none}}
 </style>
 
 <div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
@@ -514,7 +518,8 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
 
     <article class="panel stg c2" id="s4">
       <div class="sn"><span>4</span>סטוריבורד</div>
-      <h3>שורה לכל רעיון, שוט לכל שורה</h3>
+      <h3>מטקסט לתמונה</h3>
+      <a class="doclink cta" href="https://docs.google.com/document/d/1TYjE_fByyPwxAXqEBIdy5f3Fr-dHleHK8FUOtjE7jzo/edit?usp=sharing" target="_blank" rel="noopener"><span aria-hidden="true">✎</span>הפרומפט של כל אחד מ-14 הפריימים, עם התמונה לצדו<span class="arr" aria-hidden="true">←</span></a>
       <p class="lead2">14 פריימים, פריים לכל פסוק או יום. עד פסוק כ"ז אין בעולם אדם. גוש החימר מהפריים הראשון נשכח, וממנו נולד האדם בסוף. המסגרת המודגשת מסמנת את הגוש.</p>
       <div class="sbgrid">
         <figure class="lump"><img src="img/sb/f01.jpg" alt="" loading="lazy"><figcaption><b>1 · א', א'</b>אור נוגע בגוש חימר<span>13 שנ'</span></figcaption></figure>
@@ -532,7 +537,6 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
         <figure class="lump"><img src="img/sb/f13.jpg" alt="" loading="lazy"><figcaption><b>13 · א', כ"ו</b>הקרן חוזרת לגוש<span>10 שנ'</span></figcaption></figure>
         <figure class="lump"><img src="img/sb/f14.jpg" alt="" loading="lazy"><figcaption><b>14 · א', כ"ז</b>האדם עולה מהחימר<span>14 שנ'</span></figcaption></figure>
       </div>
-      <a class="doclink" href="https://docs.google.com/document/d/1TYjE_fByyPwxAXqEBIdy5f3Fr-dHleHK8FUOtjE7jzo/edit?usp=sharing" target="_blank" rel="noopener"><span aria-hidden="true">✎</span>הפרומפט של כל אחד מ-14 הפריימים, עם התמונה לצדו</a>
       <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>תסריט, ניתוח טקסט, שאלות הבהרה</span></li><li><div class="tn"><b><a href="https://gemini.google.com" target="_blank" rel="noopener">Nano Banana (ב-Gemini)</a></b><span class="pill free">חינם</span></div><span>תמונות, עם תמונת ייחוס לשמירה על עקביות</span></li><li><div class="tn"><b><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></b><span class="pill free">חינם</span><span class="pill limit">חלק מהתבניות בתשלום</span></div><span>סידור פריימים ושקופיות, וגם עריכת וידאו</span></li></ul></div>
       <p class="tipbox"><b>למנחים:</b> הטבלה היא התסריט כולו. בקשו מ-Claude לבנות אותה מהטקסט ומטבלת הקודים, ורק אחר כך צרו תמונה לכל שורה.</p>
     </article>
