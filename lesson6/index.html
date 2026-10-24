@@ -416,6 +416,7 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
 @media (max-width:760px){.defs{grid-template-columns:1fr}}
 .def{display:grid;gap:10px;align-content:start;border-top:4px solid var(--c)}
 .def h3{font-size:22px;color:var(--c)}
+.hlogo{display:flex;align-items:center;gap:10px}.hlogo img{width:40px;height:40px;flex:none}
 .def .note{font-size:15px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px}
 .def .note a{color:var(--c);font-weight:700}
 .epvid{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:18px;align-items:start}
@@ -439,7 +440,7 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
 .g2s,.ba{grid-template-columns:repeat(2,minmax(0,1fr))}
 .ba{max-width:460px}
 .g4 figure,.g5 figure,.g3v figure,.g2s figure,.ba figure,.g2 figure{margin:0;display:grid;gap:4px;min-width:0}
-.g4 img,.g5 img,.g3v img,.g3v video,.g2s img,.g2s video,.ba img,.g2 img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;background:#E6EADD}
+.g4 img,.g5 img,.g3v img,.g3v video,.g2s img,.g2s video,.ba img,.g2 img,.g2 video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;display:block;background:#E6EADD}
 .g4 figcaption,.g5 figcaption,.g3v figcaption,.g2s figcaption,.ba figcaption,.g2 figcaption{font-size:13px;color:var(--muted)}
 .g2{display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:18px;align-items:start}
 @media (max-width:560px){.g2{grid-template-columns:1fr}.g2 figure{max-width:200px}}
@@ -560,7 +561,7 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
     </div>
     <div class="defs">
       <div class="panel def c1">
-        <h3>מהו Claude?</h3>
+        <h3 class="hlogo"><img src="img/claude.svg" alt="הלוגו של Claude" width="40" height="40">מהו Claude?</h3>
         <p>עוזר בינה מלאכותית של חברת Anthropic. כותבים לו בשפה רגילה, בעברית, והוא קורא, מנתח, כותב, מתכנן ויוצר. בתהליך שלנו הוא שותף העבודה: מנתח את הכתבה, כותב את התסריט, ומנסח את הפרומפטים לשאר הכלים.</p>
         <p class="note">נכנסים ב-<a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, באתר או באפליקציה. יש גרסה חינמית, עם מגבלת שימוש.</p>
       </div>
@@ -591,11 +592,11 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
     <div class="epvid">
       <figure class="panel vid c2">
         <video class="tall" controls preload="none" playsinline poster="../videos/epoch.jpg" src="../videos/epoch.mp4"></video>
-        <figcaption><strong>אפוק · מכתבה לרילס</strong><span>אנכי, לרשתות · 2:43</span><a href="../videos/epoch.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
+        <figcaption><strong>אפוק · מכתבה לרילס</strong><span>אנכי, לרשתות · 2:08</span><a href="../videos/epoch.mp4" target="_blank" rel="noopener">פתיחה בחלון נפרד</a></figcaption>
       </figure>
       <div style="display:grid;gap:14px;align-content:start">
         <div class="facts two-col">
-          <div class="panel"><b>2:43</b><span>אורך הסרטון</span></div>
+          <div class="panel"><b>2:08</b><span>אורך הסרטון</span></div>
           <div class="panel"><b>20</b><span>תמונות שנוצרו ב-AI</span></div>
           <div class="panel"><b>3</b><span>איורים מונפשים</span></div>
           <div class="panel"><b>8</b><span>שעות, מקצה לקצה</span></div>
@@ -688,10 +689,10 @@ pre.code{margin:8px 0;background:#14182A;color:#E9E6DE;border-radius:10px;paddin
       <div class="sn"><span>6</span>צילום</div>
       <h3>צילום: טלפון, חצובה ומסך ירוק</h3>
       <p class="lead2">צילמתי את עצמי בטלפון על חצובה, מול מסך ירוק, כשהטקסט רץ מולי באפליקציית טלפרומפטר.</p>
-      <div class="g2"><figure><img src="img/ep/green.jpg" alt="הצילום המקורי, מול המסך הירוק" loading="lazy"><figcaption>הצילום המקורי, מול המסך הירוק</figcaption></figure><div class="list">
+      <div class="g2"><figure><video src="img/ep/green-take.mp4" poster="img/ep/green-take.jpg" controls playsinline preload="none"></video><figcaption>20 שניות מהצילום המקורי מול המסך הירוק, עם טלפרומפטר</figcaption></figure><div class="list">
         <p><b>טלפון על חצובה,</b> בגובה העיניים, במצלמה האחורית או הקדמית.</p>
         <p><b>מסך ירוק מאחור,</b> מואר באחידות, ומטר לפחות ממני, כדי שהירוק לא יחזור על השיער.</p>
-        <p><b>טלפרומפטר:</b> התסריט רץ על המסך, ואני מסתכל לעדשה.</p>
+        <p><b>טלפרומפטר:</b> התסריט רץ על המסך, ואני מסתכל לעדשה. איך עובדים איתו הסברנו <a href="../#ph" target="_blank" rel="noopener">בשיעור הקודם</a>, ואפשר לפתוח מיד את <a href="../teleprompter/" target="_blank" rel="noopener">הטלפרומפטר של הקורס</a>.</p>
         <p><b>טייק אחד רצוף,</b> ושנייה של שקט בין משפט למשפט, כדי שיהיה נוח לחתוך.</p>
       </div></div>
       <div class="toolset"><p class="tl">במה להשתמש</p><ul><li><div class="tn"><b><a href="../teleprompter/" target="_blank" rel="noopener">הטלפרומפטר של הקורס</a></b><span class="pill rec">מומלץ</span><span class="pill free">חינם</span></div><span>בטלפון או במחשב, בלי התקנה</span></li><li><div class="tn"><b><a href="https://cueprompter.com" target="_blank" rel="noopener">CuePrompter</a></b><span class="pill free">חינם</span></div><span>טלפרומפטר בדפדפן, בלי הרשמה</span></li><li><div class="tn"><b><a href="https://www.capcut.com" target="_blank" rel="noopener">CapCut (טלפון)</a></b><span class="pill free">חינם</span></div><span>טלפרומפטר מעל המצלמה הקדמית</span></li></ul></div>
