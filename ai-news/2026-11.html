@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>מה חדש ב-AI · נובמבר 2026</title>
+<meta name="description" content="מאמר עומק: סוכנים, למידה אישית, יצירת כלים בשפה טבעית, מודלי עולם, אימוץ בארגונים ואמון בעולם של תוכן מלאכותי, ומה אפשר לעשות עם כל אלה כבר היום.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --ink:#14213D;
+  --muted:#4A5873;
+  --line:rgba(40,90,170,.16);
+  --glass:rgba(255,255,255,.86);
+  --s1:#2F6BFF; --s2:#D92F66; --s3:#0B8F7D; --s4:#B86A00; --s5:#7440D8;
+  --display:"Secular One","Assistant","Arial Hebrew",Arial,sans-serif;
+  --body:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#fff;scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#FFFFFF 0%,#EEF6FF 45%,#E3F0FF 100%);min-height:100vh;color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.75;overflow-x:hidden}
+.wrap{max-width:780px;margin:0 auto;padding:32px 16px 72px;display:grid;gap:40px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.25;text-wrap:balance}
+p{margin:0}
+a{color:var(--s1)}
+.navbar{display:flex;flex-wrap:wrap;gap:8px}
+.navbar a{padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);text-decoration:none;font-weight:700;font-size:15px}
+.navbar a[aria-current]{background:var(--s1);border-color:var(--s1);color:#fff}
+
+.hero{display:grid;gap:14px}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--s3)}
+.hero h1{font-size:clamp(34px,6vw,54px)}
+.hero h1 span{background:linear-gradient(90deg,var(--s2),var(--s5),var(--s1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.meta{color:var(--muted);font-size:15px;font-weight:600}
+.lead{font-size:20px;color:var(--muted)}
+
+.prose{display:grid;gap:18px}
+.prose h2{font-size:clamp(25px,4vw,32px);padding-top:8px}
+.prose h2 small{display:block;font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--c,var(--s1))}
+.prose h3{font-size:22px}
+.prose ul{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.src{font-size:14px;font-weight:700;white-space:nowrap}
+section{display:grid;gap:18px;scroll-margin-top:16px}
+
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 30px -18px rgba(20,60,140,.35)}
+.callout{border-inline-start:4px solid var(--c,var(--s1));display:grid;gap:8px}
+.callout strong:first-child{color:var(--c,var(--s1))}
+.warn{--c:var(--s4)}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.compare .panel{display:grid;gap:6px;border-top:3px solid var(--c)}
+.compare h3{font-size:19px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:700}
+.flow span{padding:2px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c)}
+.flow i{font-style:normal;color:var(--muted)}
+.compare p{font-size:16px;color:var(--muted)}
+@media (max-width:640px){.compare{grid-template-columns:1fr}}
+
+.ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ideas .panel{display:grid;gap:6px;align-content:start;border-top:3px solid var(--c);padding:18px}
+.ideas h3{font-size:19px}
+.ideas p{font-size:16px;color:var(--muted);line-height:1.6}
+@media (max-width:700px){.ideas{grid-template-columns:1fr}}
+
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.steps3 div{padding:14px 10px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;gap:2px}
+.steps3 strong{font-family:var(--display);font-weight:400;font-size:19px;color:var(--s5)}
+.steps3 span{font-size:15px;color:var(--muted)}
+@media (max-width:520px){.steps3{grid-template-columns:1fr}}
+
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{display:grid;gap:4px}
+.stat b{font-family:var(--display);font-weight:400;font-size:46px;line-height:1;color:var(--c);font-variant-numeric:tabular-nums}
+.stat span{font-size:16px}
+.stat small{font-size:14px;color:var(--muted)}
+@media (max-width:520px){.stats{grid-template-columns:1fr}}
+
+.prompt{display:grid;gap:12px;--c:var(--s3);border-inline-start:4px solid var(--c)}
+.prompt-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.prompt-head strong{color:var(--c)}
+.prompt pre{margin:0;white-space:pre-wrap;font-family:var(--body);font-size:17px;line-height:1.7;background:#F6FAFF;border:1px solid var(--line);border-radius:12px;padding:16px}
+.copy{font:inherit;font-size:15px;font-weight:700;padding:7px 16px;border-radius:999px;border:0;background:var(--c,var(--s1));color:#fff;cursor:pointer}
+.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:540px}
+th,td{text-align:start;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#F2F7FF;font-weight:700}
+tr:last-child td{border-bottom:0}
+td:nth-child(2){direction:ltr;text-align:right}
+
+.challenge{display:grid;gap:14px;--c:var(--s5);border-top:3px solid var(--c)}
+.ch-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ch-head h3{font-size:22px}
+.progress{font-weight:700;color:var(--c);font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:999px;background:#EAE4FA;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--c);transition:width .3s ease}
+.days{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.days label{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;cursor:pointer}
+.days input{margin-top:6px;width:18px;height:18px;accent-color:var(--s5);flex:none}
+.days b{flex:none;color:var(--c);min-width:48px}
+.days input:checked ~ span{color:var(--muted);text-decoration:line-through}
+
+.sources{display:grid;gap:10px}
+.sources ul{margin:0;padding-inline-start:22px;display:grid;gap:8px;font-size:16px}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}
+.toast{position:fixed;bottom:20px;inset-inline:0;margin:auto;width:max-content;max-width:90vw;background:var(--ink);color:#fff;padding:8px 18px;border-radius:999px;font-weight:700;font-size:15px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}
+.toast.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i,.toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="navbar" aria-label="ניווט">
+    <a href="../">שיעור 5</a>
+    <a href="../lesson6/">שיעור 6</a>
+    <a href="./">מה חדש ב-AI</a>
+    <a href="2026-11.html" aria-current="page">נובמבר 2026</a>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">מה חדש ב-AI · גיליון נובמבר 2026</div>
+    <h1>מה חדש ב-AI <span>ומה אפשר לעשות עם זה?</span></h1>
+    <p class="meta">מאמר עומק · 4 בנובמבר 2026 · טכנולוגיה, למידה, יצירתיות ועתיד העבודה</p>
+    <p class="lead">עד לא מזמן השאלה המרכזית סביב בינה מלאכותית הייתה מה אפשר לשאול אותה. היום השאלה מעניינת הרבה יותר: מה אפשר לעשות איתה?</p>
+  </header>
+
+  <article class="prose">
+    <p>בשנים האחרונות התרגלנו לכך שמחשב יכול לכתוב טקסט, לענות על שאלות, לתרגם ולייצר תמונות. ההתפתחויות של 2026 מצביעות על שינוי עמוק יותר: מערכות AI מתחילות לפעול בתוך תוכנות, לתכנן תהליכים ארוכים, ללמוד מתוך חומרי מקור, לבנות יישומים ולשתף פעולה עם בני אדם לאורך זמן.</p>
+    <p>השינוי אינו רק טכנולוגי. הוא נוגע לדרך שבה אנחנו לומדים, עובדים, יוצרים ומגדירים מומחיות.</p>
+    <p>במאמר נבחן את ההתפתחויות המרכזיות, נפריד בין יכולות שכבר זמינות לבין הבטחות לעתיד, ובעיקר נשאל שאלה מעשית: איך אדם בלי רקע טכנולוגי יכול להתחיל להשתמש במהפכה הזאת כבר היום?</p>
+
+    <!-- 1 -->
+    <section id="agents" style="--c:var(--s1)">
+      <h2><small>מגמה 1</small>מ-AI שעונה ל-AI שמבצע</h2>
+      <p>ב-29 בספטמבר 2026 הציגה OpenAI בכנס DevDay את <strong>dots</strong>, סוכנים שממשיכים לעבוד גם אחרי שהמשתמש סוגר את החלון. dots מיועדים למשימות מתמשכות: הם מתחברים לאפליקציות, מתקדמים בפרויקטים, מבצעים מחקר ברקע וחוזרים למשתמש עם תוצאות או שאלות. ההפצה התחילה במנויי Pro ו-Business Premium, ובארגונים מסוג Enterprise ו-Edu היא זמינה לאחר הפעלה של מנהל המערכת. <a class="src" href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" target="_blank" rel="noopener">TechCrunch</a></p>
+      <p>זה אחד השינויים החשובים ביותר להבנת עתיד ה-AI. בעבר נתנו למערכת שאלה וקיבלנו תשובה. היום אפשר, במערכות מתאימות, להגדיר יעד ולתת לסוכן לבצע חלק מהשלבים בדרך אליו.</p>
+
+      <div class="compare">
+        <div class="panel" style="--c:var(--muted)">
+          <h3>המודל המסורתי</h3>
+          <div class="flow"><span>שאלה</span><i>←</i><span>תשובה</span></div>
+          <p>האדם אחראי לרוב שלבי הביצוע.</p>
+        </div>
+        <div class="panel" style="--c:var(--s1)">
+          <h3>המודל הסוכני</h3>
+          <div class="flow"><span>מטרה</span><i>←</i><span>תכנון ופעולות</span><i>←</i><span>תוצר ובקרה</span></div>
+          <p>האדם מגדיר גבולות ומאשר פעולות משמעותיות.</p>
+        </div>
+      </div>
+
+      <h3>מה אפשר לעשות עם זה?</h3>
+      <p>נניח שאתם עצמאים שמעבירים סדנאות. במקום לבקש מ-AI רק לכתוב תיאור לסדנה, אפשר לבקש ממנו לתכנן תהליך: לחקור את הנושא, להציע מבנה, להכין חומרי הדרכה, ליצור רשימת משימות ולרכז משוב.</p>
+      <p>לא כל סוכן יכול לבצע את כל הפעולות האלה, והיכולת תלויה בחיבורים ובהרשאות שקיבל. אבל זו בדיוק המשמעות של המעבר מחשיבה על כלי בודד לחשיבה על תהליך עבודה.</p>
+      <div class="panel callout">
+        <strong>המיומנות החדשה</strong>
+        <p>לדעת להגדיר מטרה, לפרק אותה לשלבים, לתת למערכת הקשר מתאים, לבדוק את התוצרים ולהחליט אילו פעולות דורשות אישור אנושי.</p>
+      </div>
+      <div class="panel callout warn">
+        <strong>שימו לב</strong>
+        <p>סוכן שמחובר למידע ולמערכות יכול גם לטעות, לחשוף מידע או לבצע פעולה לא רצויה. התחילו בהרשאות מצומצמות ובמשימות הפיכות, ובדקו כל פעולה שיש לה השלכות ממשיות.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="learning" style="--c:var(--s3)">
+      <h2><small>מגמה 2</small>הבינה המלאכותית הופכת למורה אישי</h2>
+      <p>אחת ההתפתחויות המעניינות ביותר אינה קשורה לכך ש-AI נותן תשובות טובות יותר, אלא לכך שהוא מתחיל ללוות תהליך למידה.</p>
+      <p>בסתיו 2026 הוסיפה גוגל יכולות למידה ל-<strong>Gemini Notebook</strong>, המוצר שנקרא עד יולי השנה NotebookLM: סקירות למידה אינטראקטיביות, בחנים עם סוגי שאלות מגוונים (תשובה קצרה, בחירה מרובה, השלמת חסר) ושיחה על תוצאות הבוחן כדי להחליט מה לחזור עליו, לצד סרטוני הסבר קצרים בלמעלה מ-80 שפות. באוקטובר נוסף תהליך יצירה מודרך לסרטונים ולמצגות, וכן אפשרות להוסיף ספרי לימוד פתוחים כמקור. <a class="src" href="https://www.digitaltrends.com/computing/gemini-notebooks-latest-update-makes-it-a-better-study-companion/" target="_blank" rel="noopener">Digital Trends</a> <a class="src" href="https://workspaceupdates.googleblog.com/2026/10/gain-more-creative-control-over-slide-Decks-and-Video-Overviews-in-Gemini-Notebook.html" target="_blank" rel="noopener">Google Workspace</a></p>
+      <p>ב-28 באוקטובר השיקה גוגל באפליקציית Gemini את <strong>Immersive Explorations</strong>, ספריית שיעורים חזותיים ואינטראקטיביים שבהם לוחצים על חלקים בסצנה ומעמיקים שכבה אחר שכבה, למשל במבנה של מנוע סילון או בפיזיקה של ברק. נכון להשקה החוויה זמינה בשש שפות, ומשתמשים בשפות אחרות, כולל עברית, מקבלים אותה באנגלית. <a class="src" href="https://blog.google/innovation-and-ai/products/gemini-app/immersive-explorations-student-hub/" target="_blank" rel="noopener">Google</a></p>
+
+      <h3>אבל האם AI באמת עוזר לנו ללמוד?</h3>
+      <p>זו שאלה חשובה יותר מהשאלה אם הוא מסוגל לסכם ספר. דו"ח Digital Education Outlook 2026 של ה-OECD, שפורסם בינואר, מצביע על הבחנה מרכזית: כלי AI כלליים יכולים לשפר את הביצוע של משימה בלי לשפר בהכרח את הלמידה עצמה. לעומת זאת, שימוש שמתוכנן לפי עקרונות הוראה ברורים, כמו שאלות מנחות, משוב ותרגול, עשוי לתמוך בלמידה משמעותית. <a class="src" href="https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html" target="_blank" rel="noopener">OECD</a></p>
+      <p>נניח שמישהו רוצה ללמוד צילום. בגישה הראשונה הוא מבקש מה-AI להסביר מהי מהירות תריס, מקבל תשובה יפה וקורא אותה. בגישה השנייה הוא מבקש הסבר קצר, יוצא לצלם שלוש תמונות במהירויות שונות, מנסה להסביר את ההבדלים, מקבל משוב וחוזר על התרגיל למחרת. הגישה השנייה אינה צריכת מידע. היא תהליך למידה שכולל התנסות, שליפה, משוב ותיקון.</p>
+
+      <h3>מה אפשר לעשות כבר עכשיו?</h3>
+      <p>בחרו נושא שתרצו ללמוד, והדביקו את הפרומפט הבא ב-ChatGPT, ב-Claude או ב-Gemini:</p>
+      <div class="panel prompt">
+        <div class="prompt-head"><strong>פרומפט: הפכו את ה-AI לחונך אישי</strong><button class="copy" type="button" data-copy="p1">העתקה</button></div>
+<pre id="p1">אני רוצה ללמוד [נושא] כדי לרכוש בו יכולת מעשית.
+פעל כחונך אישי. שאל אותי תחילה שלוש שאלות קצרות כדי להבין את הרמה שלי.
+בנה תוכנית לימוד לשבוע. בכל שלב הסבר מושג אחד, תן דוגמה, ואז בקש ממני לפתור תרגיל בעצמי.
+אל תגלה מיד את הפתרון. תן משוב על התשובה שלי, בקש ממני להסביר במילים שלי את מה שלמדתי, והצע חזרה על החומר בעוד יומיים.
+ציין אי-ודאות כשצריך.</pre>
+      </div>
+      <p>אותה שיטה מתאימה ללימוד שפה, מוזיקה, ניהול עסק, תכנות, כתיבה או הכנה למבחן. העיקרון פשוט: AI צריך לעזור לנו לפתח יכולת, ולא רק לייצר בשבילנו תשובה.</p>
+    </section>
+
+    <!-- 3 -->
+    <section id="build" style="--c:var(--s4)">
+      <h2><small>מגמה 3</small>יצירת תוכנות בלי להתחיל מלימודי תכנות</h2>
+      <p>בעבר, מי שרצה לפתח אפליקציה נדרש בדרך כלל ללמוד שפת תכנות או לשכור מתכנת. היום צומחת גישה שמכונה <strong>Vibe Coding</strong>: מתארים למערכת בשפה טבעית מה רוצים לבנות, והיא עוזרת ליצור קוד, ממשק ותפקוד ראשוני.</p>
+      <p>ב-2026 התקדמו גם הכלים עצמם. OpenAI הרחיבה את Codex, כולל עבודה עם כמה סוכנים במקביל וסקירת קוד אוטומטית, ובכנס DevDay הציגה את Codex Cloud. Anthropic השיקה בין סוף ספטמבר לתחילת אוקטובר את משפחת Claude 5.5 (Opus, Sonnet ו-Haiku), עם דגש על תכנות ועבודת ידע. גוגל מאפשרת לבנות יישומים מתיאור טקסטואלי ב-AI Studio, ובכלי Project Genie אפשר ליצור עולמות אינטראקטיביים דמויי משחק מטקסט או מתמונה. <a class="src" href="https://www.business-standard.com/technology/tech-news/openai-devday-2026-dots-gpt-6-1-sol-codex-developer-tools-126093000396_1.html" target="_blank" rel="noopener">Business Standard</a> <a class="src" href="https://en.wikipedia.org/wiki/Claude_(language_model)" target="_blank" rel="noopener">Wikipedia</a></p>
+
+      <h3>מה אפשר לעשות עם זה?</h3>
+      <div class="ideas">
+        <div class="panel" style="--c:var(--s1)"><h3>לסטודנטים: אפליקציית כרטיסיות</h3><p>מעלים שאלות ותשובות, בונים מערכת תרגול ומוסיפים מעקב התקדמות.</p></div>
+        <div class="panel" style="--c:var(--s3)"><h3>למנחים: ניהול סדנאות</h3><p>אב-טיפוס לרישום משתתפים, לוח מפגשים ומשימות, תחילה עם נתוני דמה.</p></div>
+        <div class="panel" style="--c:var(--s4)"><h3>לעצמאים: מחשבון תמחור</h3><p>מגדירים הוצאות, זמן עבודה ורווח רצוי, ומקבלים מחשבון מותאם.</p></div>
+      </div>
+      <p>חשוב להבחין בין אב-טיפוס שעובד בהדגמה לבין מוצר שאפשר להפעיל בבטחה. קוד שנוצר בעזרת AI עדיין דורש בדיקות אבטחה, טיפול נכון בנתונים, נגישות ותחזוקה, ולעיתים גם בדיקה של איש מקצוע. לכן כדאי להתחיל במחשבון פשוט או בכלי אישי שאינו שומר מידע רגיש.</p>
+      <p>המשמעות הרחבה יותר היא שהיכולת להגדיר בעיה, לתאר פתרון ולבדוק תוצאה הופכת לחשובה מאוד, גם למי שאינו מתכנת.</p>
+    </section>
+
+    <!-- 4 -->
+    <section id="worlds" style="--c:var(--s5)">
+      <h2><small>מגמה 4</small>מתמונות וסרטונים לעולמות שאפשר לפעול בתוכם</h2>
+      <p>ב-27 באוקטובר 2026 הכריזה Google DeepMind על <strong>Genie 4</strong>, מודל עולם שיוצר סימולציות אינטראקטיביות בזמן אמת, כולל קול מובנה, ומאפשר לשנות את הסביבה בהוראות בשפה טבעית: להזיז מצלמה, לשנות מזג אוויר או להכניס דמויות חדשות. לפי הדיווחים הוא שומר על עקביות של סצנה עד כשתי דקות. נכון להכרזה המודל זמין כתצוגה מחקרית לקבוצת בודקים מוגבלת, ובהמשך אמור להגיע למנויי Google AI Ultra דרך Project Genie. <a class="src" href="https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/" target="_blank" rel="noopener">TechCrunch</a></p>
+      <p>כדי להבין את המשמעות, כדאי להבחין בין שלושה שלבים בהתפתחות היצירה הגנרטיבית:</p>
+      <div class="steps3">
+        <div><strong>יצירת תמונה</strong><span>רגע חזותי אחד</span></div>
+        <div><strong>יצירת וידאו</strong><span>רצף לאורך זמן</span></div>
+        <div><strong>מודל עולם</strong><span>סביבה שאפשר לשנות</span></div>
+      </div>
+      <p>מודל עולם אינו בהכרח סימולציה מדעית מדויקת של הפיזיקה, וגם DeepMind מציינת מגבלות כמו שמירה על קביעות אובייקטים וטקסט קריא. אבל הוא מסמן כיוון מעניין: מעבר מתוכן שאנחנו צופים בו לתוכן שאנחנו יכולים להשפיע עליו.</p>
+
+      <h3>מה זה עשוי לאפשר בעתיד?</h3>
+      <p>בחינוך אפשר לדמיין תלמידה שחוקרת מערכת אקולוגית ומשנה תנאים כדי להבין את ההשלכות. בהכשרה מקצועית אפשר לדמיין תרגול מצבים בסביבה מדומה. בקולנוע אפשר לחשוב על תכנון סצנות, ניסוי זוויות צילום ובחינת תנועת מצלמה בתוך עולם וירטואלי. אלה יישומים אפשריים שעוד צריך לבדוק, ולא יכולות שהוכח שהן מתאימות לכל אחת מהמטרות.</p>
+      <p>ההתפתחות הזאת מעוררת גם שאלה תרבותית: אם אפשר לייצר דימויים משכנעים של מציאות שלא התרחשה, איך נבחין בין תיעוד, שחזור ויצירה בדיונית? עבור יוצרים דוקומנטריים, שקיפות לגבי שימוש ב-AI עשויה להפוך לחלק מרכזי מהאמון בין היוצר לצופה.</p>
+    </section>
+
+    <!-- 5 -->
+    <section id="work" style="--c:var(--s2)">
+      <h2><small>מגמה 5</small>AI משתלב בעבודה, אבל לא כל הבטחה מתממשת</h2>
+      <p>ההתפתחויות הטכנולוגיות מרשימות, אבל חשוב לשאול מה קורה כשארגונים ואנשים מנסים להשתמש בהן בפועל.</p>
+      <p>דו"ח AI Index 2026 של אוניברסיטת סטנפורד, שפורסם באפריל, מצביע על צמיחה מהירה באימוץ. לפי נתוני סקר McKinsey שהדו"ח מביא, 88% מהארגונים השתמשו ב-AI לפחות בתחום פעילות אחד ב-2025, אבל הטמעה של סוכנים אוטונומיים נותרה בשיעורים חד-ספרתיים ברוב תחומי הפעילות. <a class="src" href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">Stanford HAI</a></p>
+      <div class="stats">
+        <div class="panel stat" style="--c:var(--s1)"><b>88%</b><span>מהארגונים השתמשו ב-AI בתחום אחד לפחות</span><small>Stanford AI Index 2026, על בסיס סקר McKinsey לשנת 2025</small></div>
+        <div class="panel stat" style="--c:var(--s3)"><b>80%</b><span>מהמשיבים דיווחו על שיפור בפרודוקטיביות האישית</span><small>McKinsey, The State of AI 2026</small></div>
+      </div>
+      <p>בסקר McKinsey שפורסם בסוף אוגוסט 2026 (1,719 משיבים מ-97 מדינות), 80% מהמשיבים דיווחו ש-AI שיפר את הפרודוקטיביות האישית שלהם. לעומת זאת, רק 37% ייחסו ל-AI השפעה כלשהי על הרווח התפעולי (EBIT) של הארגון, שיעור דומה לשנה הקודמת, ורק כ-6% דיווחו שלפחות 5% מהרווח התפעולי מגיעים מ-AI. אלה מדדים שונים שמבוססים על דיווח עצמי של משיבים, ולא הוכחה לכך שהטכנולוגיה יצרה שיפור בכל מקרה. <a class="src" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey</a></p>
+
+      <h3>מה אפשר ללמוד מהפער?</h3>
+      <p>ייתכן שעובד חוסך זמן בכתיבת מיילים או בהכנת מצגות, אבל הארגון עדיין לא שינה את תהליכי העבודה שלו. לעיתים הטכנולוגיה מזרזת שלב אחד, בזמן שהשלבים האחרים נשארים מסורבלים. לכן לא מספיק לשאול אם AI מסוגל לבצע משימה. צריך לשאול:</p>
+      <ul>
+        <li>האם התוצאה איכותית מספיק?</li>
+        <li>כמה זמן נדרש כדי לבדוק ולתקן אותה?</li>
+        <li>האם היא משתלבת בתהליך העבודה הקיים?</li>
+        <li>האם השימוש בה מפתח את היכולת של האדם או מחליש אותה?</li>
+      </ul>
+      <div class="panel callout" style="--c:var(--s2)">
+        <strong>תרגיל מעשי: בחרו תהליך אחד</strong>
+        <p>קחו משימה שחוזרת אצלכם מדי שבוע: הכנת מערך שיעור, סיכום פגישה, כתיבת הצעת מחיר או ארגון חומרי לימוד. מדדו כמה זמן היא לוקחת בלי AI. אחר כך בצעו אותה בעזרת כלי אחד, כולל הזמן שהשקעתם בבדיקת התוצאה. המדד החשוב אינו רק מהירות ההפקה, אלא איכות התוצר והזמן הכולל שנחסך.</p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="trust" style="--c:var(--s4)">
+      <h2><small>מגמה 6</small>בעולם של תוכן מלאכותי, אמון הופך למיומנות</h2>
+      <p>ככל שקל יותר ליצור טקסטים, תמונות, קולות וסרטונים משכנעים, כך עולה החשיבות של היכולת לבדוק את מקור המידע.</p>
+      <p>ב-7 באוקטובר פתחה גוגל לציבור הרחב, בחינם ובאנגלית, את <strong>SynthID Detector</strong>, כלי שבודק אם תמונה, סרטון או קטע שמע נושאים סימון מים דיגיטלי של SynthID, כולל סימונים של שותפות כמו OpenAI ו-NVIDIA. עם זאת, זה אינו מבחן אוניברסלי: הכלי מזהה רק תוכן שסומן בטכנולוגיה הזאת, אינו בודק טקסט ואינו מבחין בין תוכן שנוצר ב-AI לבין תוכן שרק נערך בעזרתו. <a class="src" href="https://www.macrumors.com/2026/10/07/google-synthid-detector/" target="_blank" rel="noopener">MacRumors</a></p>
+      <p>האתגר רחב יותר מזיהוי תמונות מזויפות. גם מערכת שמבצעת פעולות יכולה להיתקל בהוראות זדוניות בתוך מסמך, אתר או הודעה שהיא קוראת. בהנחיות משותפות שפרסמו באביב 2026 CISA, ה-NSA וסוכנויות סייבר מאוסטרליה, קנדה, בריטניה וניו זילנד, הומלץ להתחיל בשימושים בסיכון נמוך, להגביל את עצמאות הסוכנים ואת הגישה שלהם למידע רגיש, ולשמור על פיקוח אנושי. <a class="src" href="https://content.govdelivery.com/accounts/USDHSCISA/bulletins/41544ff" target="_blank" rel="noopener">CISA</a></p>
+      <div class="panel callout warn">
+        <strong>שלושה הרגלים שכדאי לאמץ</strong>
+        <p>לא להעלות מידע רגיש בלי להבין את תנאי השירות, לבדוק מקורות לפני שמפיצים טענות, ולא לאפשר לסוכן לבצע פעולות משמעותיות בחשבון בלי בקרה מתאימה.</p>
+      </div>
+      <p>היכולת החשובה אינה רק לזהות מתי AI טועה. היא לדעת מתי צריך לעצור, לבדוק ולחשוב בעצמנו.</p>
+    </section>
+
+    <!-- 7 -->
+    <section id="tools" style="--c:var(--s1)">
+      <h2><small>ארגז כלים</small>באילו כלים כדאי להתחיל?</h2>
+      <p>אין צורך ללמוד עשרות מערכות. לרוב האנשים עדיף לבחור כלי אחד מכל משפחת שימושים, ללמוד אותו היטב ורק אחר כך להרחיב.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>הצורך</th><th>כלים שכדאי לבחון</th><th>משימה ראשונה</th></tr></thead>
+          <tbody>
+            <tr><td>ללמוד נושא חדש</td><td>ChatGPT, Claude, Gemini</td><td>לבנות שיעור עם תרגול</td></tr>
+            <tr><td>ללמוד מתוך מסמכים</td><td>Gemini Notebook</td><td>להפוך חומר לבוחן</td></tr>
+            <tr><td>לחקור מידע</td><td>Perplexity, Elicit</td><td>להצליב שלושה מקורות</td></tr>
+            <tr><td>לנהל פרויקט</td><td>Google Drive, Docs, Notion</td><td>לבנות תיקיית עבודה</td></tr>
+            <tr><td>ליצור תוכן חזותי</td><td>Canva, CapCut</td><td>להפיק סרטון הסבר קצר</td></tr>
+            <tr><td>לבנות כלי אישי</td><td>Claude Code, Codex, AI Studio</td><td>ליצור מחשבון פשוט</td></tr>
+            <tr><td>לבצע אוטומציה</td><td>Make, Zapier, n8n</td><td>לחבר שתי פעולות חוזרות</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>הרשימה אינה דירוג איכות. חלק מהיכולות דורשות מנוי, ידע נוסף או זמינות אזורית, וכדאי לבדוק את תנאי השימוש לפני שמתחילים.</p>
+    </section>
+
+    <!-- 8 -->
+    <section id="challenge" style="--c:var(--s5)">
+      <h2><small>התנסות</small>שבעה ימים בעולם ה-AI</h2>
+      <p>מסלול קצר שהופך את המאמר להתנסות אמיתית. סמנו כל יום שהשלמתם. הסימון נשמר בדפדפן שלכם בלבד.</p>
+      <div class="panel challenge">
+        <div class="ch-head"><h3>אתגר 7 הימים</h3><span class="progress" id="prog" aria-live="polite">0/7 הושלמו</span></div>
+        <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+        <ol class="days" id="days">
+          <li><label><input type="checkbox"><b>יום 1</b><span>בחרו משימה אחת שאתם רוצים לשפר.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 2</b><span>בקשו מ-AI להסביר מושג חדש ולבחון אתכם.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 3</b><span>ארגנו את חומרי הלמידה בתיקייה אחת.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 4</b><span>הפכו מסמך לשאלות תרגול ולסיכום.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 5</b><span>צרו תוצר קטן: מצגת, תמונה או מחשבון.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 6</b><span>בדקו עובדה אחת בעזרת שני מקורות עצמאיים.</span></label></li>
+          <li><label><input type="checkbox"><b>יום 7</b><span>בצעו מחדש את המשימה המקורית והעריכו מה השתפר.</span></label></li>
+        </ol>
+        <button class="copy" type="button" id="copyChallenge" style="justify-self:start">העתקת האתגר</button>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section id="future" style="--c:var(--s3)">
+      <h2><small>לסיום</small>מה נצטרך לדעת בעולם החדש?</h2>
+      <p>החידושים שסקרנו מצביעים על שינוי ביחסים שבין ידע, מומחיות ופעולה. בעבר, היכולת לבצע משימה הייתה תלויה במידה רבה בכמות המידע והמיומנויות שאדם רכש. היום חלק מהפעולות נגישות בשפה טבעית, ולעיתים בלי הכשרה טכנית ארוכה.</p>
+      <p>אבל מכאן לא נובע שהמומחיות האנושית מתייתרת. להפך: כשקל יותר לייצר תשובות ותוצרים, גדלה החשיבות של בחירת השאלות, הבנת ההקשר, שיפוט האיכות והאחריות לתוצאה. מי שמכיר היטב את התחום שלו יכול להשתמש ב-AI כדי להרחיב את יכולותיו. מי שאינו מבין את התחום עלול לקבל תוצר משכנע בלי לזהות את הפגמים שבו.</p>
+      <p>זה אולי האתגר החינוכי המרכזי של התקופה: ללמד אנשים לעבוד עם מערכות חכמות בלי לאבד את היכולת לחשוב, ללמוד ולפעול באופן עצמאי.</p>
+      <p>וזו גם הזדמנות גדולה. מורה יכול לפתח דרכי הוראה חדשות. מנחה יכולה ליצור תרגילים מותאמים. עצמאי יכול לבנות כלים שעד לא מזמן היו מחוץ להישג ידו. יוצרת יכולה להתנסות בשפות חזותיות חדשות. סטודנט יכול לקבל משוב זמין ולבנות שגרת למידה אישית. האפשרויות אינן מבטלות את המגבלות, אבל הן מרחיבות את מרחב הפעולה.</p>
+      <p>העתיד לא ייקבע רק לפי השאלה מי מחזיק במודל החזק ביותר, אלא גם לפי השאלה מי יודע להשתמש בטכנולוגיה באופן מושכל, יצירתי ואחראי. בעולם שבו הכלים משתנים כל הזמן, המיומנות החשובה ביותר עשויה להיות היכולת ללמוד מחדש.</p>
+    </section>
+
+    <section class="panel sources" id="sources">
+      <h2 style="font-size:24px">מקורות מרכזיים להעמקה</h2>
+      <p style="font-size:16px;color:var(--muted)">המאמר מבוסס בעיקר על הכרזות רשמיות, דו"חות מחקר וסקרים שפורסמו ב-2026. כדאי להבחין בין דיווחי החברות על המוצרים שלהן לבין מחקר עצמאי על השפעת הטכנולוגיה.</p>
+      <ul>
+        <li><a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">Stanford HAI, AI Index Report 2026</a>: התקדמות טכנולוגית, אימוץ, כלכלה, חינוך וסיכונים.</li>
+        <li><a href="https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html" target="_blank" rel="noopener">OECD, Digital Education Outlook 2026</a>: מה באמת ידוע על למידה בעזרת AI.</li>
+        <li><a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" target="_blank" rel="noopener">OpenAI DevDay 2026 (סיקור TechCrunch)</a>: dots, סוכנים וכלי פיתוח.</li>
+        <li><a href="https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-october-2026/" target="_blank" rel="noopener">Google, עדכוני AI לאוקטובר 2026</a>: מודלים, למידה, Genie 4 ו-SynthID.</li>
+        <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">McKinsey, The State of AI 2026</a>: אימוץ בארגונים, פרודוקטיביות ותוצאות עסקיות.</li>
+        <li><a href="https://content.govdelivery.com/accounts/USDHSCISA/bulletins/41544ff" target="_blank" rel="noopener">CISA, Careful Adoption of Agentic AI Services</a>: אבטחה, הרשאות ופיקוח על סוכנים.</li>
+      </ul>
+    </section>
+  </article>
+
+  <footer>מה חדש ב-AI, ומה אפשר לעשות עם זה? · פינה חודשית · שגיא אשכנזי · המידע נכון ל-4 בנובמבר 2026</footer>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'),tt;
+  function say(t){toast.textContent=t;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('on')},1800)}
+  function copy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){say('הועתק')},function(){fallback(text)});
+    } else fallback(text);
+  }
+  function fallback(text){
+    var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');say('הועתק')}catch(e){say('לא הצלחנו להעתיק')}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){copy(document.getElementById(b.dataset.copy).textContent)});
+  });
+
+  var KEY='ai-news-2026-11-challenge';
+  var boxes=[].slice.call(document.querySelectorAll('#days input'));
+  var saved=[];
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+  boxes.forEach(function(b,i){b.checked=!!saved[i];b.addEventListener('change',update)});
+  function update(){
+    var s=boxes.map(function(b){return b.checked}),n=s.filter(Boolean).length;
+    document.getElementById('prog').textContent=n+'/7 הושלמו';
+    document.getElementById('bar').style.width=(n/7*100)+'%';
+    try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}
+  }
+  update();
+  document.getElementById('copyChallenge').addEventListener('click',function(){
+    var lines=[].slice.call(document.querySelectorAll('#days label')).map(function(l){
+      return l.querySelector('b').textContent+': '+l.querySelector('span').textContent});
+    copy('אתגר 7 הימים בעולם ה-AI\n'+lines.join('\n'));
+  });
+})();
+</script>
+</body>
+</html>
