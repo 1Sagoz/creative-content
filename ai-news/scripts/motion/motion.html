@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>קליפי מושן · מה חדש ב-AI · נובמבר 2026</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--ink:#14213D;--muted:#4A5873;--line:rgba(40,90,170,.16);
+  --s1:#2F6BFF;--s2:#D92F66;--s3:#0B8F7D;--s4:#B86A00;--s5:#7440D8;--ok:#18B47B;--bad:#E0384F;--hl:#FFB020;
+  --display:"Secular One","Assistant",Arial,sans-serif;--body:"Assistant",Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--body);color:var(--ink);background:#E9EEF6}
+body.render{background:transparent}
+
+/* ---- stage ---- */
+.stage{position:relative;width:1920px;height:1080px;overflow:hidden;direction:rtl;font-family:var(--body);color:var(--ink)}
+.stage.alpha{background:transparent}
+.plate{position:absolute;inset:0;background:
+  linear-gradient(rgba(47,107,255,.07) 2px,transparent 2px) 0 0/76px 76px,
+  linear-gradient(90deg,rgba(47,107,255,.07) 2px,transparent 2px) 0 0/76px 76px,
+  radial-gradient(circle at 78% 22%,color-mix(in srgb,var(--c) 20%,transparent),transparent 58%),
+  linear-gradient(180deg,#FFFFFF,#EAF2FF)}
+.plate.solid{background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--c) 78%,#fff),var(--c) 55%,color-mix(in srgb,var(--c) 70%,#000))}
+.area{position:absolute;top:150px;right:90px;width:1060px;bottom:170px;display:grid;align-content:center;gap:34px}
+.center{position:absolute;inset:0;display:grid;place-items:center;align-content:center;text-align:center;gap:26px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:400;line-height:1.1}
+.h1{font-family:var(--display);font-size:104px;line-height:1.05}
+.h2{font-family:var(--display);font-size:66px;line-height:1.1}
+.sub{font-size:38px;font-weight:600;color:var(--muted)}
+.c{color:var(--c)}
+
+/* ---- seekable CSS animations (paused + currentTime set by seek) ---- */
+.a{animation-duration:var(--du,.7s);animation-delay:var(--d,0s);animation-fill-mode:both;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+.up{animation-name:up}@keyframes up{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+.fade{animation-name:fade}@keyframes fade{from{opacity:0}to{opacity:1}}
+.pop{animation-name:pop;animation-timing-function:cubic-bezier(.34,1.56,.64,1)}@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.fromR{animation-name:fromR}@keyframes fromR{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
+.drop{animation-name:drop;animation-timing-function:cubic-bezier(.34,1.4,.64,1)}@keyframes drop{from{opacity:0;transform:translateY(-420px) rotate(-14deg)}to{opacity:1;transform:none}}
+.grow{animation-name:grow;transform-origin:right center}@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.growY{animation-name:growY;transform-origin:center bottom}@keyframes growY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.dim{animation-name:dim;animation-fill-mode:forwards}@keyframes dim{from{opacity:1}to{opacity:.32}}
+.lit{animation-name:lit}@keyframes lit{from{background:#fff;color:var(--muted)}to{background:var(--c);color:#fff}}
+.pulse{animation-name:pulse;animation-duration:.9s}@keyframes pulse{0%,100%{transform:none}45%{transform:scale(1.08)}}
+.mark{animation-name:mark;animation-fill-mode:both;background-repeat:no-repeat;background-image:linear-gradient(#FFD34D,#FFD34D);background-position:100% 88%}
+@keyframes mark{from{background-size:0% 34%}to{background-size:100% 34%}}
+.toYellow{animation-name:toYellow}@keyframes toYellow{from{color:#fff}to{color:#FFD166}}
+
+/* ---- components ---- */
+.chip{display:inline-flex;align-items:center;gap:14px;font-size:44px;font-weight:800;padding:14px 34px;border-radius:999px;background:color-mix(in srgb,var(--cc,var(--c)) 13%,#fff);color:var(--cc,var(--c));border:4px solid color-mix(in srgb,var(--cc,var(--c)) 38%,transparent)}
+.flow{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.arr{font-size:54px;font-weight:800;color:var(--muted)}
+.card{background:#fff;border-radius:28px;padding:30px;display:grid;gap:14px;align-content:start;border-top:10px solid var(--cc,var(--c));box-shadow:0 22px 60px -28px rgba(20,60,140,.55)}
+.card b{font-size:42px}
+.card small{font-size:30px;color:var(--muted);font-weight:600}
+.logo{width:96px;height:96px;border-radius:22px;background:#fff;object-fit:contain;padding:10px;box-shadow:0 0 0 2px var(--line)}
+.txtlogo{display:inline-grid;place-items:center;height:96px;padding:0 30px;border-radius:22px;background:#111;color:#fff;font-weight:800;font-size:38px}
+.row{display:flex;gap:28px;align-items:stretch}
+.row > .card{flex:1 1 0;min-width:0}
+.num{display:inline-grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--cc,var(--c));color:#fff;font-family:var(--display);font-size:36px}
+.quote{font-family:var(--display);font-size:92px;line-height:1.2;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.55)}
+.qmark{font-family:var(--display);font-size:200px;line-height:.6;color:#FFD166;text-shadow:0 6px 30px rgba(0,0,0,.4)}
+.cubes{display:flex;gap:22px;justify-content:center}
+.cubes i{width:118px;height:118px;border-radius:26px;display:block;box-shadow:0 20px 40px -16px rgba(0,0,0,.45)}
+.line{height:8px;border-radius:8px;background:var(--c);flex:1 1 60px;min-width:40px}
+.step{position:absolute;top:56px;right:90px;display:flex;align-items:center;gap:26px;background:#fff;padding:14px 46px 14px 16px;border-radius:999px;box-shadow:0 18px 50px -18px rgba(0,0,0,.55)}
+.step i{width:108px;height:108px;border-radius:50%;background:var(--c);color:#fff;font-style:normal;font-family:var(--display);font-size:66px;display:grid;place-items:center}
+.step b{font-size:58px;font-weight:800}
+.step small{display:block;font-size:26px;color:var(--muted);font-weight:700}
+.pills{display:flex;gap:16px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:12px;font-size:34px;font-weight:800;padding:10px 26px 10px 12px;border-radius:999px;background:#fff;color:var(--muted);box-shadow:0 10px 30px -16px rgba(0,0,0,.4)}
+.pill i{width:52px;height:52px;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,#fff);color:var(--c);font-style:normal;display:grid;place-items:center;font-size:28px}
+.pill.lit i{background:#fff}
+.box2{background:#fff;border-radius:30px;padding:40px;display:grid;gap:18px;align-content:center;box-shadow:0 22px 60px -28px rgba(20,60,140,.55);position:relative}
+.stamp{position:absolute;top:-40px;left:-30px;width:120px;height:120px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:72px;font-weight:800}
+.fld{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;font-size:34px;font-weight:700;padding:12px 0;border-bottom:2px dashed var(--line)}
+.fld span{background:#F2F5FA;border-radius:12px;padding:4px 22px;min-width:170px;text-align:center;font-variant-numeric:tabular-nums;direction:ltr}
+.big-num{font-family:var(--display);font-size:96px;color:var(--c);font-variant-numeric:tabular-nums}
+.hand{font-family:ui-monospace,Menlo,monospace;font-size:48px;line-height:1.7;direction:ltr;text-align:left;color:#3A4560}
+.hand div{clip-path:inset(0 100% 0 0);animation-name:reveal;animation-timing-function:linear}
+@keyframes reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.stages{display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;align-items:end;height:560px}
+.stg{border-radius:26px;position:relative;overflow:hidden;display:grid;place-items:end center;padding:26px;color:#fff;font-weight:800;font-size:44px;text-align:center;line-height:1.15;box-shadow:0 22px 60px -28px rgba(20,60,140,.6)}
+.stg small{display:block;font-size:30px;font-weight:600;opacity:.9}
+.stg1{height:300px;background:linear-gradient(160deg,#6b7fa8,#c4d2ea)}
+.stg2{height:420px;background:repeating-linear-gradient(90deg,#5d6f97 0 150px,#8193bb 150px 158px)}
+.stg3{height:560px;background:linear-gradient(#5a6b8c,#9fb3d4)}
+.stg3 .world{position:absolute;inset:auto -40% 0 -40%;height:55%;background:radial-gradient(ellipse at 30% 100%,#2c4237 40%,transparent 41%),radial-gradient(ellipse at 75% 100%,#3f5a4a 35%,transparent 36%);animation-name:pan;animation-timing-function:ease-in-out}
+@keyframes pan{from{transform:translateX(-12%)}to{transform:translateX(12%)}}
+.fb{display:grid;grid-template-columns:230px 1fr;align-items:center;gap:30px}
+.fb b{font-family:var(--display);font-weight:400;font-size:90px;color:var(--cc);text-align:left;direction:ltr;font-variant-numeric:tabular-nums}
+.fb .bar{height:94px;border-radius:20px;background:var(--cc);width:var(--w);display:flex;align-items:center;padding-inline-start:34px;color:#fff;font-weight:800;font-size:42px;white-space:nowrap}
+.src{font-size:28px;font-weight:700;color:var(--muted)}
+.days{display:flex;gap:20px}
+.day{flex:1;background:#fff;border-radius:24px;padding:24px 8px;text-align:center;font-weight:800;font-size:36px;border-top:10px solid var(--c);display:grid;gap:10px;box-shadow:0 16px 40px -22px rgba(0,0,0,.4)}
+.day i{font-style:normal;color:var(--ok);font-size:58px;line-height:1}
+.prog{height:26px;border-radius:99px;background:#E6DEF8;overflow:hidden}
+.prog div{height:100%;background:var(--c)}
+.qr{width:330px;height:330px;background:#fff;border-radius:28px;padding:20px;box-shadow:0 22px 60px -24px rgba(0,0,0,.5)}
+.qr img{width:100%;height:100%;display:block}
+.underline{height:14px;border-radius:14px;background:var(--c);width:100%}
+
+/* ---- preview gallery ---- */
+.gallery{max-width:1300px;margin:0 auto;padding:28px 16px 80px;display:grid;gap:24px}
+.gallery h1{font-family:var(--display);font-weight:400;font-size:38px}
+.gallery p{color:var(--muted);margin:0}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:18px}
+.thumb{background:#fff;border-radius:14px;padding:10px;display:grid;gap:8px;box-shadow:0 10px 28px -20px rgba(20,60,140,.45)}
+.thumb .meta{display:flex;justify-content:space-between;font-weight:700;font-size:14px;color:var(--muted)}
+.view{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:repeating-conic-gradient(#e9edf3 0 25%,#fff 0 50%) 0 0/24px 24px}
+.view .stage{transform-origin:top right;position:absolute;top:0;right:0}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const I = n => `../../../icons/${n}.png`;
+const A = (cls,d,extra='') => `data-a="${cls}" data-d="${d}" data-x="${extra}"`;
+const STEPS = {
+  A:{c:'var(--s3)',name:'חונך אישי',list:['שיחה חדשה','מדביקים את הפרומפט','כותבים את הנושא','עונים בכנות','תוכנית לשבוע','מתרגלים','משוב, לא מחמאה','סיכום לחזרה']},
+  B:{c:'var(--s5)',name:'מסמך לבוחן',list:['מחברת חדשה','מוסיפים מקור','בודקים שהבין נכון','יוצרים בוחן','עונים ובודקים במקור','שואלים על מה לחזור']},
+  C:{c:'var(--s4)',name:'מחשבון בלי קוד',list:['שיחה חדשה','מתארים בדיוק','הכלי מוכן','בודקים מול חישוב שלכם','משפרים במשפט','משתפים']}
+};
+
+const CLIPS = [];
+const add = (id,title,dur,c,html,opts={}) => CLIPS.push({id,title,dur,c,html,alpha:!!opts.alpha,plate:opts.plate||'grid'});
+
+add('01-quote','פתיח · ציטוט מוקלד (שקוף, מעל הסצנה)',6,'var(--s5)',`
+  <div class="area" style="gap:10px">
+    <div ${A('pop',.1)} class="a pop qmark">״</div>
+    <div class="quote"><span data-type="0.35,2.0">אל תספר לנו מה חדש.</span><br><span data-type="2.2,4.1">תראה לנו </span><span ${A('toYellow',4.25,'--du:.4s')}><span data-type="2.2,4.1" data-off="10">איך עושים</span></span><span data-type="2.2,4.1" data-off="19"> את זה.</span></div>
+  </div>`,{alpha:true});
+
+add('02-three-demos','פתיח · שלוש ההדגמות',6,'var(--s5)',`
+  <div class="area">
+    <div ${A('up',.2)} class="a up h2">3 הדגמות, <span class="c">צעד אחר צעד</span></div>
+    <div class="row">
+      <div ${A('fromR',.8)} class="a fromR card" style="--cc:var(--s3)"><div class="flow" style="gap:16px"><span class="num">1</span><img class="logo" src="${I('claude')}" alt=""></div><b>חונך אישי</b><small>לומדים כל נושא, בתרגול</small></div>
+      <div ${A('fromR',1.1)} class="a fromR card" style="--cc:var(--s5)"><div class="flow" style="gap:16px"><span class="num">2</span><img class="logo" src="${I('gemini')}" alt=""></div><b>מסמך לבוחן</b><small>Gemini Notebook</small></div>
+      <div ${A('fromR',1.4)} class="a fromR card" style="--cc:var(--s4)"><div class="flow" style="gap:16px"><span class="num">3</span><img class="logo" src="${I('claude')}" alt=""></div><b>מחשבון בלי קוד</b><small>Vibe Coding</small></div>
+    </div>
+  </div>`);
+
+add('03-series-logo','פתיח · לוגו הפינה',4,'var(--s1)',`
+  <div class="area" style="justify-items:center;text-align:center;gap:30px">
+    <div class="cubes">${['var(--s1)','var(--s3)','var(--s5)','var(--s4)','var(--s2)','#14213D'].map((c,i)=>`<i ${A('drop',.1+i*.12,`background:${c};--du:.8s`)}></i>`).join('')}</div>
+    <div ${A('up',1.3)} class="a up h1">מה חדש ב-AI</div>
+    <div ${A('fade',1.8)} class="a fade sub">ומה אפשר לעשות עם זה? · גיליון נובמבר 2026</div>
+  </div>`);
+
+add('04-roadmap','מפת הפרק · שלוש תחנות',6,'var(--s1)',`
+  <div class="area">
+    <div ${A('up',.1)} class="a up h2">התוכנית</div>
+    <div class="flow" style="gap:0;flex-wrap:nowrap">
+      <span ${A('pop',.4)} class="a pop chip" style="--cc:var(--s1)">שינוי אחד</span>
+      <span ${A('grow',1.0,'--du:.6s;background:var(--s1)')} class="a grow line"></span>
+      <span ${A('pop',1.6)} class="a pop chip" style="--cc:var(--s3)">3 הדגמות</span>
+      <span ${A('grow',2.3,'--du:.6s;background:var(--s3)')} class="a grow line"></span>
+      <span ${A('pop',3.0)} class="a pop chip" style="--cc:var(--s2)">3 דברים לדעת</span>
+    </div>
+    <div class="flow" style="gap:26px">
+      <span ${A('pop',4.2,'font-size:90px;display:inline-block')} class="a pop">⏸</span>
+      <span ${A('fade',4.4)} class="a fade" style="font-size:46px;font-weight:800">עצרו את הסרטון, ועשו יחד איתי</span>
+    </div>
+  </div>`);
+
+add('05-two-tracks','השינוי הגדול · שני מסלולים',8,'var(--s1)',`
+  <div class="area">
+    <div ${A('dim',1.6,'--du:.6s')} class="a dim">
+      <div class="flow"><span ${A('pop',.2)} class="a pop chip" style="--cc:#6B7790">שאלה</span><span ${A('fade',.5)} class="a fade arr">←</span><span ${A('pop',.6)} class="a pop chip" style="--cc:#6B7790">תשובה</span></div>
+    </div>
+    <div class="flow">
+      <span ${A('pop',2.0)} class="a pop chip">מטרה</span><span ${A('fade',2.9)} class="a fade arr">←</span>
+      <span ${A('pop',3.2)} class="a pop chip">תכנון ופעולות</span><span ${A('fade',4.1)} class="a fade arr">←</span>
+      <span ${A('pop',4.4)} class="a pop chip">תוצר ובקרה</span>
+    </div>
+    <div ${A('up',5.6)} class="a up sub">האדם מגדיר גבולות, ומאשר פעולות משמעותיות</div>
+  </div>`);
+
+[['06-demo1-open','A',1],['07-demo2-open','B',2],['08-demo3-open','C',3]].forEach(([id,k,n])=>{
+  const s=STEPS[k];
+  add(id,`הדגמה ${n} · כרטיס פתיחה`,4,s.c,`
+  <div class="center" style="color:#fff">
+    <div ${A('fade',.1)} class="a fade" style="font-size:44px;font-weight:800;letter-spacing:.12em;opacity:.9">הדגמה ${n}</div>
+    <div ${A('up',.35)} class="a up h1" style="font-size:150px">${s.name}</div>
+    <div class="flow" style="justify-content:center;gap:16px">${s.list.map((_,i)=>`<span ${A('pop',1.0+i*.14,'width:64px;height:64px;border-radius:50%;background:#fff;color:'+s.c+';display:grid;place-items:center;font-family:var(--display);font-size:34px')} class="a pop">${i+1}</span>`).join('')}</div>
+    <div ${A('fade',1.0+s.list.length*.14+.2)} class="a fade" style="font-size:40px;font-weight:700">${s.list.length} צעדים · עצרו ועשו איתי</div>
+  </div>`,{plate:'solid'});
+});
+
+Object.entries(STEPS).forEach(([k,s])=>{
+  s.list.forEach((t,i)=>{
+    add(`09-step-${k}${i+1}`,`שכבת צעד ${k}${i+1} (שקוף)`,3,s.c,`
+    <div ${A('fromR',.05,'--du:.55s')} class="a fromR step"><i ${A('pop',.25)} class="a pop">${i+1}</i><div><small>${s.name} · צעד ${i+1} מתוך ${s.list.length}</small><b>${t}</b></div></div>`,{alpha:true});
+  });
+});
+
+const strip = (k,extra,head) => { const s=STEPS[k]; return `
+  <div class="area">
+    ${head}
+    <div class="pills">${s.list.map((t,i)=>`<span ${A('lit',.6+i*.22,'--du:.3s')} class="a lit pill"><i>${i+1}</i>${t}</span>`).join('')}</div>
+    ${extra}
+  </div>`; };
+add('10-demo1-strip','הדגמה 1 · רצועת סיכום',6,'var(--s3)',strip('A',
+  `<div ${A('up',3.0)} class="a up sub">עובד גם על שפה, מוזיקה, עסקים ומבחנים</div>`,
+  `<div class="h2"><span ${A('fade',.1)} class="a fade">התנסות · </span><span ${A('fade',.3)} class="a fade c">משוב</span><span ${A('fade',.5)} class="a fade"> · תיקון</span></div>`));
+add('11-demo2-strip','הדגמה 2 · רצועת סיכום וטיפים',6.5,'var(--s5)',strip('B',
+  `<div class="row"><div ${A('fromR',2.4)} class="a fromR card" style="--cc:var(--s3)"><b>טיפ למורים ולמנחים</b><small>אותו תהליך יוצר בוחן לתלמידים, מתוך חומר הלימוד שלכם</small></div><div ${A('fromR',3.0)} class="a fromR card"><b>Immersive Explorations</b><small>שיעורים חזותיים ב-Gemini · בעברית: מוצג באנגלית</small></div></div>
+   <div ${A('fade',3.8)} class="a fade src">מקור: Google, ספטמבר–אוקטובר 2026</div>`,
+  `<div ${A('up',.1)} class="a up h2">מסמך שקוראים פעם אחת, <span class="c">הופך לתרגול</span></div>`));
+
+add('12-before-after','הדגמה 3 · לפני ואחרי (צעד 2)',7.5,'var(--s4)',`
+  <div class="area" style="right:90px;width:1500px;left:auto">
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:50px;align-items:stretch">
+      <div ${A('fromR',.2)} class="a fromR box2" style="border:6px solid var(--bad)">
+        <div ${A('pop',1.2)} class="a pop stamp" style="background:var(--bad)">✗</div>
+        <b style="font-size:54px">"תבנה לי מחשבון"</b><span class="sub" style="font-size:32px">ה-AI צריך לנחש מה רציתם</span>
+      </div>
+      <div ${A('fromR',1.6)} class="a fromR box2" style="border:6px solid var(--ok)">
+        <div ${A('pop',5.6)} class="a pop stamp" style="background:var(--ok)">✓</div>
+        <b style="font-size:40px;line-height:1.45" data-type="2.0,5.4">מחשבון לתמחור סדנה. שדות: עלות המקום, חומרים, שעות הכנה והעברה, תעריף לשעה, אחוז רווח. בסוף: מחיר למשתתף לפי מספר המשתתפים.</b>
+      </div>
+    </div>
+  </div>`);
+
+add('13-manual-check','הדגמה 3 · בדיקה מול חישוב ידני (צעד 4)',8,'var(--s4)',`
+  <div class="area" style="width:1500px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:50px">
+      <div ${A('fromR',.1)} class="a fromR box2">
+        <b style="font-size:42px">המחשבון</b>
+        <div class="fld">עלות כוללת<span data-count="0.6,1.6,0,2600,0,₪">₪0</span></div>
+        <div class="fld">עם 20% רווח<span data-count="1.2,2.2,0,3120,0,₪">₪0</span></div>
+        <div class="big-num" style="text-align:center"><span data-count="1.8,3.0,0,260,0,₪">₪0</span> <span style="font-size:44px">למשתתף</span></div>
+      </div>
+      <div ${A('fromR',.5)} class="a fromR box2" style="background:#FFFBEA">
+        <b style="font-size:42px">✍ החישוב שלי</b>
+        <div class="hand">
+          <div ${A('',3.2,'--du:.7s')} class="a">800 + 300 = 1,100</div>
+          <div ${A('',4.0,'--du:.7s')} class="a">6 × 250 = 1,500</div>
+          <div ${A('',4.8,'--du:.7s')} class="a">2,600 × 1.2 = 3,120</div>
+          <div ${A('',5.6,'--du:.7s')} class="a"><span class="a mark" style="--d:6.4s;--du:.5s">3,120 ÷ 12 = 260</span></div>
+        </div>
+        <div ${A('pop',6.8)} class="a pop" style="font-size:54px;font-weight:800;color:var(--ok)">✓ תואם</div>
+      </div>
+    </div>
+  </div>`);
+
+add('14-stages','עולמות · שלוש מדרגות',6.5,'var(--s5)',`
+  <div class="area">
+    <div class="stages">
+      <div ${A('growY',.3,'--du:.8s')} class="a growY stg stg1"><span>תמונה<small>רגע</small></span></div>
+      <div ${A('growY',1.3,'--du:.8s')} class="a growY stg stg2"><span>וידאו<small>רצף</small></span></div>
+      <div ${A('growY',2.3,'--du:.8s')} class="a growY stg stg3"><div class="a world" style="--d:2.8s;--du:3.6s"></div><span style="position:relative">מודל עולם<small>סביבה שמשתנה</small></span></div>
+    </div>
+    <div class="flow"><span ${A('pop',3.6)} class="a pop chip">Genie 4</span><span ${A('fade',3.9)} class="a fade sub">תצוגה מחקרית · Google DeepMind, 27.10.2026</span></div>
+  </div>`);
+
+add('15-funnel','AI בארגונים · משפך נתונים (מסך מלא)',9,'var(--s2)',`
+  <div style="position:absolute;top:110px;right:120px;left:120px;bottom:300px;display:grid;align-content:center;gap:24px">
+    <div ${A('up',.1)} class="a up h2" style="margin-bottom:10px">מה קורה <span class="c">בארגונים</span></div>
+    <div class="fb" style="--cc:var(--s1)"><b data-count="0.6,1.6,0,88,0,,%">0%</b><div ${A('grow',.6,'--du:1s;--w:100%')} class="a grow bar">משתמשים ב-AI בתחום אחד לפחות</div></div>
+    <div class="fb" style="--cc:var(--s3)"><b data-count="1.9,2.9,0,80,0,,%">0%</b><div ${A('grow',1.9,'--du:1s;--w:91%')} class="a grow bar">פרודוקטיביות אישית השתפרה</div></div>
+    <div class="fb" style="--cc:#8C6BD6"><b data-count="3.3,4.3,0,37,0,,%">0%</b><div ${A('grow',3.3,'--du:1s;--w:42%')} class="a grow bar">השפעה כלשהי על הרווח</div></div>
+    <div class="fb" style="--cc:var(--s2)"><b data-count="4.7,5.5,0,6,0,,%">0%</b><div ${A('grow',4.7,'--du:.8s;--w:30%')} class="a grow bar">השפעה משמעותית</div></div>
+  </div>
+  <div ${A('fade',6.4)} class="a fade src" style="position:absolute;right:120px;bottom:215px">Stanford AI Index 2026 (נתוני McKinsey 2025) · McKinsey, The State of AI, אוגוסט 2026 · דיווח עצמי</div>`);
+
+add('16-challenge-qr','אתגר 7 הימים ו-QR',7.5,'var(--s5)',`
+  <div class="area">
+    <div ${A('up',.1)} class="a up h2">אתגר <span class="c">7 הימים</span></div>
+    <div class="days">${[1,2,3,4,5,6,7].map(i=>`<div ${A('up',.3+i*.15)} class="a up day">יום ${i}<i ${A('pop',1.9+i*.35)} class="a pop">✓</i></div>`).join('')}</div>
+    <div class="prog"><div ${A('grow',2.1,'--du:2.5s;animation-timing-function:linear')} class="a grow" style="width:100%"></div></div>
+    <div class="flow" style="gap:40px;flex-wrap:nowrap">
+      <div ${A('pop',4.9)} class="a pop qr"><img src="qr.svg" alt=""></div>
+      <div ${A('fade',5.3)} class="a fade" style="font-size:46px;font-weight:800;line-height:1.35">האתגר, הפרומפטים<br>ורשימת הכלים<div class="src" style="font-size:26px;direction:ltr;text-align:right">1sagoz.github.io/creative-content/ai-news</div></div>
+    </div>
+  </div>`);
+
+add('17-ending','סיום · ללמוד מחדש',4.5,'var(--s5)',`
+  <div style="position:absolute;top:120px;left:0;right:0;display:grid;justify-items:center;gap:22px">
+    <div class="h1" style="font-size:150px"><span ${A('up',.4)} class="a up" style="display:inline-block">ללמוד</span> <span ${A('up',.9)} class="a up c" style="display:inline-block">מחדש</span></div>
+    <div style="width:760px"><div ${A('grow',1.5,'--du:.9s')} class="a grow underline"></div></div>
+  </div>`);
+
+/* ---------- engine ---------- */
+function build(clip, scale){
+  const st=document.createElement('div');
+  st.className='stage'+(clip.alpha?' alpha':'');
+  st.style.setProperty('--c',clip.c);
+  st.innerHTML=(clip.alpha?'':`<div class="plate ${clip.plate==='solid'?'solid':''}"></div>`)+clip.html;
+  st.querySelectorAll('[data-a]').forEach(el=>{el.classList.add('a');if(el.dataset.a)el.classList.add(el.dataset.a);el.style.setProperty('--d',el.dataset.d+'s');if(el.dataset.x)el.style.cssText+=';'+el.dataset.x;});
+  if(scale) st.style.transform=`scale(${scale})`;
+  // typing: split by data-off groups sharing a time window
+  st.querySelectorAll('[data-type]').forEach(el=>{el.dataset.full=el.textContent;el.textContent='';});
+  st.querySelectorAll('[data-count]').forEach(el=>{el.dataset.fmt=el.dataset.count;});
+  return st;
+}
+function seek(st,t){
+  st.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=t*1000;});
+  // typing windows: groups with same window type as one continuous string using offsets
+  st.querySelectorAll('[data-type]').forEach(el=>{
+    const [t0,t1]=el.dataset.type.split(',').map(Number), full=el.dataset.full;
+    // total length of the group = max(off+len) for siblings sharing window
+    const group=[...st.querySelectorAll(`[data-type="${el.dataset.type}"]`)];
+    const total=Math.max(...group.map(g=>(+g.dataset.off||0)+g.dataset.full.length));
+    const p=Math.min(1,Math.max(0,(t-t0)/(t1-t0))), n=Math.round(p*total)-(+el.dataset.off||0);
+    el.textContent=full.slice(0,Math.max(0,Math.min(full.length,n)));
+  });
+  st.querySelectorAll('[data-count]').forEach(el=>{
+    const [t0,t1,a,b,dec,pre='',suf='']=el.dataset.fmt.split(',');
+    const p=Math.min(1,Math.max(0,(t-+t0)/(+t1-+t0))), e=1-Math.pow(1-p,3);
+    const v=(+a)+(+b-+a)*e;
+    el.textContent=pre+v.toLocaleString('en-US',{minimumFractionDigits:+dec,maximumFractionDigits:+dec})+suf;
+  });
+}
+window.CLIPS=CLIPS;
+const q=new URLSearchParams(location.search), root=document.getElementById('root');
+if(q.get('clip')){
+  document.body.classList.add('render');
+  const clip=CLIPS.find(c=>c.id===q.get('clip'));
+  const st=build(clip); root.appendChild(st);
+  window.STAGE=st; window.seekTo=t=>seek(st,t); window.DUR=clip.dur; window.ALPHA=clip.alpha;
+  seek(st,0);
+} else {
+  root.innerHTML=`<div class="gallery"><h1>קליפי מושן · מה חדש ב-AI · נובמבר 2026</h1><p>${CLIPS.length} קליפים בתצוגה מקדימה חיה. רקע משובץ מסמן קליפ שקוף. הקבצים המוכנים לעריכה נמצאים בתיקייה clips.</p><div class="thumbs" id="th"></div></div>`;
+  const th=document.getElementById('th'), live=[];
+  CLIPS.forEach(c=>{
+    const card=document.createElement('div');card.className='thumb';
+    card.innerHTML=`<div class="meta"><span>${c.id}</span><span>${c.dur} שנ׳${c.alpha?' · שקוף':''}</span></div><div class="view"></div><b>${c.title}</b>`;
+    th.appendChild(card);
+    const v=card.querySelector('.view'), st=build(c);v.appendChild(st);live.push({st,c,v});
+  });
+  const fit=()=>live.forEach(o=>o.st.style.transform=`scale(${o.v.clientWidth/1920})`);
+  addEventListener('resize',fit);fit();
+  const t0=performance.now();
+  (function loop(now){const s=(now-t0)/1000;live.forEach(o=>seek(o.st,s%(o.c.dur+1.2)));requestAnimationFrame(loop)})(t0);
+}
+</script>
+</body>
+</html>

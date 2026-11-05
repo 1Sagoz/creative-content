@@ -85,6 +85,13 @@ section{display:grid;gap:18px;scroll-margin-top:16px}
 .copy{font:inherit;font-size:15px;font-weight:700;padding:7px 16px;border-radius:999px;border:0;background:var(--c,var(--s1));color:#fff;cursor:pointer}
 .copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
+.demos{display:grid;gap:16px}
+.demo{display:grid;gap:12px;border-top:3px solid var(--c)}
+.demo h3{font-size:22px;display:flex;align-items:center;gap:10px}
+.demo h3 .n{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--c);color:#fff;font-size:17px;flex:none}
+.demo ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.demo ol li::marker{color:var(--c);font-weight:700}
+.demo .prompt{border:0;padding:0;box-shadow:none;background:none}
 .table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:#fff}
 table{width:100%;border-collapse:collapse;font-size:16px;min-width:540px}
 th,td{text-align:start;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -259,6 +266,63 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
         <p>לא להעלות מידע רגיש בלי להבין את תנאי השירות, לבדוק מקורות לפני שמפיצים טענות, ולא לאפשר לסוכן לבצע פעולות משמעותיות בחשבון בלי בקרה מתאימה.</p>
       </div>
       <p>היכולת החשובה אינה רק לזהות מתי AI טועה. היא לדעת מתי צריך לעצור, לבדוק ולחשוב בעצמנו.</p>
+    </section>
+
+
+    <!-- demos -->
+    <section id="demos" style="--c:var(--s3)">
+      <h2><small>מהפרק ביוטיוב</small>שלוש ההדגמות, צעד אחר צעד</h2>
+      <p>אלה שלוש ההדגמות מהפרק, עם כל מה שצריך כדי לעשות אותן בעצמכם. כדאי לעשות אותן לפי הסדר, ולעצור אחרי כל צעד.</p>
+      <div class="demos">
+        <div class="panel demo" style="--c:var(--s3)">
+          <h3><span class="n">1</span>חונך אישי</h3>
+          <ol>
+            <li>נכנסים ל-claude.ai ופותחים שיחה חדשה. זה עובד גם ב-ChatGPT וב-Gemini.</li>
+            <li>מדביקים את <a href="#learning">פרומפט החונך</a>.</li>
+            <li>במקום [נושא] כותבים את מה שרוצים ללמוד.</li>
+            <li>עונים בכנות על שלוש השאלות שהחונך שואל.</li>
+            <li>מקבלים תוכנית לשבוע, עם מושג אחד בכל יום.</li>
+            <li>עושים את התרגיל בעצמכם, ושולחים את התוצאה עם הסבר קצר.</li>
+            <li>קוראים את המשוב, ומסבירים שוב במילים שלכם את מה שפספסתם.</li>
+            <li>מבקשים סיכום קצר לחזרה בעוד יומיים, ושומרים אותו.</li>
+          </ol>
+        </div>
+        <div class="panel demo" style="--c:var(--s5)">
+          <h3><span class="n">2</span>מסמך שהופך לבוחן ב-Gemini Notebook</h3>
+          <ol>
+            <li>נכנסים ל-notebook.google.com ויוצרים מחברת חדשה.</li>
+            <li>מוסיפים מקור: קובץ PDF, מסמך מהדרייב, קישור לאתר או סרטון יוטיוב.</li>
+            <li>קוראים את הסיכום האוטומטי, ובודקים שהכלי הבין את המקור נכון.</li>
+            <li>בחלונית הכלים בוחרים "בוחן", וקובעים מספר שאלות ורמת קושי.</li>
+            <li>עונים, ובכל תשובה לוחצים על ההפניה כדי לראות את המקום במסמך.</li>
+            <li>שואלים בצ'אט: "על מה כדאי לי לחזור, לפי התוצאות שלי?"</li>
+          </ol>
+          <p style="font-size:16px;color:var(--muted)">שמות הכפתורים עשויים להשתנות מעט עם עדכוני הממשק.</p>
+        </div>
+        <div class="panel demo" style="--c:var(--s4)">
+          <h3><span class="n">3</span>מחשבון תמחור בלי קוד</h3>
+          <ol>
+            <li>פותחים שיחה חדשה ב-Claude.</li>
+            <li>מדביקים את התיאור המלא של הכלי (למטה).</li>
+            <li>המחשבון מופיע בחלונית נפרדת, ואפשר להשתמש בו מיד.</li>
+            <li>בודקים עם מספרים שאתם מכירים, מול חישוב שעשיתם בעצמכם.</li>
+            <li>משפרים במשפט אחד (למטה).</li>
+            <li>משתפים בקישור. כלי אישי בלבד: בלי מידע רגיש ובלי פרטי משתתפים.</li>
+          </ol>
+          <div class="prompt" style="--c:var(--s4)">
+            <div class="prompt-head"><strong>תיאור הכלי</strong><button class="copy" type="button" data-copy="p2">העתקה</button></div>
+<pre id="p2">בנה לי מחשבון לתמחור סדנה.
+שדות: עלות המקום, עלות החומרים, מספר שעות ההכנה וההעברה, תעריף לשעה, אחוז רווח רצוי ומספר משתתפים.
+חשב את העלות הכוללת, הוסף את אחוז הרווח, והצג בסוף את המחיר למשתתף.
+עיצוב פשוט וברור, בעברית ומימין לשמאל.</pre>
+          </div>
+          <div class="prompt" style="--c:var(--s4)">
+            <div class="prompt-head"><strong>שיפור במשפט אחד</strong><button class="copy" type="button" data-copy="p3">העתקה</button></div>
+<pre id="p3">תוסיף מע"מ של 18 אחוז, ותציג את המחיר למשתתף לפני מע"מ ואחריו.</pre>
+          </div>
+          <p style="font-size:16px;color:var(--muted)">לבדיקה: מקום 800, חומרים 300, 6 שעות, 250 ש"ח לשעה, 20% רווח ו-12 משתתפים צריכים לתת 260 ש"ח למשתתף, ו-306.80 ש"ח עם מע"מ.</p>
+        </div>
+      </div>
     </section>
 
     <!-- 7 -->
