@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>סטוריבורד · מה חדש ב-AI · נובמבר 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --ink:#14213D;--muted:#4A5873;--line:rgba(40,90,170,.16);
+  --s1:#2F6BFF;--s2:#D92F66;--s3:#0B8F7D;--s4:#B86A00;--s5:#7440D8;
+  --display:"Secular One","Assistant","Arial Hebrew",Arial,sans-serif;
+  --body:"Assistant","Arial Hebrew",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:#fff}
+body{margin:0;background:linear-gradient(180deg,#fff,#EEF6FF 40%,#E3F0FF);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.page{max-width:1280px;margin:0 auto;padding:28px 16px 80px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.2}
+p{margin:0}
+.top h1{font-size:clamp(28px,4.4vw,44px)}
+.top p{color:var(--muted);max-width:75ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.legend span{font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fff;border:1px solid var(--line)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:5;padding:10px 0;background:linear-gradient(#fff 70%,rgba(255,255,255,0))}
+.jump a{font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none}
+.jump a i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-inline-end:6px}
+.sec{display:grid;gap:14px;scroll-margin-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--c);padding-bottom:6px}
+.sec-head h2{font-size:26px;color:var(--c)}
+.sec-head span{color:var(--muted);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+@media (max-width:420px){.grid{grid-template-columns:1fr}}
+.shot{display:grid;gap:8px;align-content:start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px;box-shadow:0 10px 28px -20px rgba(20,60,140,.45)}
+.meta{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:700;color:var(--muted)}
+.meta b{color:var(--c)}
+.note{font-size:14px;color:var(--muted);line-height:1.5}
+.note strong{color:var(--ink)}
+.clip{justify-self:start;font-size:12px;font-weight:800;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c)}
+
+/* ===== FRAME (16:9, scales with container) ===== */
+.f{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;container-type:inline-size;isolation:isolate;
+  background:#F2F8FF;font-family:var(--body);color:var(--ink);direction:rtl}
+.f *{line-height:1.25}
+.bg-grid{position:absolute;inset:0;z-index:-2;background:
+  linear-gradient(rgba(47,107,255,.07) 1px,transparent 1px) 0 0/4cqw 4cqw,
+  linear-gradient(90deg,rgba(47,107,255,.07) 1px,transparent 1px) 0 0/4cqw 4cqw,
+  radial-gradient(circle at 80% 20%,color-mix(in srgb,var(--c) 18%,transparent),transparent 60%),#F5F9FF}
+.bg-dark{position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 70% 30%,color-mix(in srgb,var(--c) 35%,#0B1020),#0B1020 70%)}
+.bg-scene{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,#5a6b8c 0%,#8fa3c4 45%,#3f5a4a 46%,#2c4237 100%)}
+.bg-scene::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(255,255,255,.25) 0 .15cqw,transparent .15cqw 2.2cqw)}
+.bg-scene::after{content:"";position:absolute;left:8%;right:8%;bottom:30%;height:12%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+/* presenter */
+.p-big{position:absolute;left:3cqw;bottom:0;width:36cqw;height:88%;z-index:2}
+.p-small{position:absolute;left:2.2cqw;bottom:2.2cqw;width:13cqw;height:13cqw;border-radius:50%;overflow:hidden;z-index:4;border:.45cqw solid var(--c);background:#E7EEF9;box-shadow:0 .6cqw 2cqw rgba(0,0,0,.25)}
+.p-center{position:absolute;left:32cqw;bottom:0;width:36cqw;height:88%;z-index:2}
+.person{width:100%;height:100%;display:block}
+.p-label{position:absolute;bottom:13%;left:50%;transform:translateX(-50%);font-size:1.4cqw;font-weight:800;color:#fff;background:rgba(20,33,61,.55);padding:.2cqw .9cqw;border-radius:99px;white-space:nowrap}
+/* chrome */
+.ttl{position:absolute;top:2.4cqw;right:3cqw;font-family:var(--display);font-size:2.2cqw;color:var(--c);z-index:5;background:rgba(255,255,255,.85);padding:.3cqw 1.2cqw;border-radius:99px}
+.dark .ttl{background:rgba(255,255,255,.1)}
+.tag{position:absolute;top:2.4cqw;left:3cqw;font-size:1.35cqw;font-weight:800;color:#fff;background:rgba(20,33,61,.7);padding:.35cqw 1cqw;border-radius:.6cqw;z-index:5}
+.cap{position:absolute;bottom:2.4cqw;left:50%;transform:translateX(-50%);max-width:78%;text-align:center;z-index:6;
+  font-size:2.25cqw;font-weight:800;color:#fff;background:rgba(11,16,32,.72);padding:.5cqw 1.6cqw;border-radius:.8cqw}
+.cap em{font-style:normal;color:color-mix(in srgb,var(--c) 55%,#fff)}
+.src{position:absolute;bottom:11.4cqw;right:3cqw;font-size:1.2cqw;font-weight:700;color:var(--muted);z-index:5;background:rgba(255,255,255,.8);padding:.15cqw .7cqw;border-radius:.4cqw}
+/* right content area (when presenter big) */
+.area{position:absolute;top:7.5cqw;right:3cqw;width:56cqw;bottom:10cqw;display:grid;align-content:center;gap:1.6cqw;z-index:3}
+.full{position:absolute;inset:6.5cqw 3cqw 8.5cqw 3cqw;z-index:3}
+.h-big{font-family:var(--display);font-size:4.6cqw;line-height:1.1;color:var(--ink)}
+.h-big .c{color:var(--c)}
+.h-mid{font-family:var(--display);font-size:3.2cqw;color:var(--ink)}
+.dark .h-big,.dark .h-mid{color:#fff}
+.txt{font-size:1.9cqw;color:var(--muted);font-weight:600}
+.quote{font-family:var(--display);font-size:3.6cqw;line-height:1.2;color:var(--ink);border-inline-start:.7cqw solid var(--c);padding-inline-start:1.6cqw}
+.quote::before{content:"״";color:var(--c);font-size:5cqw;line-height:.6;display:block}
+/* cards / chips */
+.row{display:flex;gap:1.2cqw;flex-wrap:wrap;align-items:stretch}
+.card{flex:1 1 0;min-width:0;background:#fff;border-radius:1.2cqw;padding:1.3cqw;border-top:.5cqw solid var(--cc,var(--c));box-shadow:0 .8cqw 2.4cqw -1.2cqw rgba(20,60,140,.45);display:grid;gap:.6cqw;align-content:start}
+.card b{font-size:1.85cqw}
+.card small{font-size:1.4cqw;color:var(--muted);font-weight:600}
+.logo{width:4.2cqw;height:4.2cqw;border-radius:1cqw;background:#fff;object-fit:contain;padding:.4cqw;box-shadow:0 0 0 1px var(--line)}
+.logo.lg{width:7cqw;height:7cqw;border-radius:1.6cqw}
+.txtlogo{display:inline-grid;place-items:center;height:4.2cqw;padding:0 1.2cqw;border-radius:1cqw;background:#111;color:#fff;font-weight:800;font-size:1.7cqw}
+.chip{display:inline-flex;align-items:center;gap:.6cqw;font-size:2cqw;font-weight:800;padding:.6cqw 1.6cqw;border-radius:99px;background:color-mix(in srgb,var(--cc,var(--c)) 13%,#fff);color:var(--cc,var(--c));border:.2cqw solid color-mix(in srgb,var(--cc,var(--c)) 40%,transparent)}
+.arrow{font-size:2.4cqw;color:var(--muted);font-weight:800}
+.flow{display:flex;align-items:center;gap:.8cqw;flex-wrap:wrap}
+.chapter{position:absolute;inset:0;display:grid;place-items:center;text-align:center;z-index:3;gap:1cqw;align-content:center}
+.chapter .kick{font-size:1.9cqw;font-weight:800;letter-spacing:.1em;color:var(--c)}
+.chapter .h-big{font-size:5.6cqw}
+.chapter .steps{display:flex;gap:.7cqw;justify-content:center}
+.chapter .steps i{width:3cqw;height:3cqw;border-radius:50%;background:var(--c);color:#fff;font-style:normal;font-weight:800;font-size:1.5cqw;display:grid;place-items:center}
+.cubes{display:flex;gap:.8cqw;justify-content:center}
+.cubes i{width:4.5cqw;height:4.5cqw;border-radius:1cqw;display:block;box-shadow:0 .6cqw 1.6cqw -.6cqw rgba(0,0,0,.4)}
+/* step overlay */
+.step{position:absolute;top:2cqw;right:3cqw;z-index:6;display:flex;align-items:center;gap:1cqw;background:#fff;padding:.5cqw 1.6cqw .5cqw .6cqw;border-radius:99px;box-shadow:0 .6cqw 2cqw -.6cqw rgba(0,0,0,.4)}
+.step i{width:4.2cqw;height:4.2cqw;border-radius:50%;background:var(--c);color:#fff;font-style:normal;font-family:var(--display);font-size:2.6cqw;display:grid;place-items:center}
+.step b{font-size:2.3cqw}
+.hl{outline:.4cqw solid #FFB020;outline-offset:.35cqw;border-radius:.8cqw;box-shadow:0 0 0 1.2cqw rgba(255,176,32,.22)}
+.hlg{outline:.4cqw solid #18B47B;outline-offset:.35cqw;border-radius:.8cqw;box-shadow:0 0 0 1.2cqw rgba(24,180,123,.18)}
+.cursor{position:absolute;width:2.6cqw;height:2.6cqw;border-radius:50%;background:rgba(255,214,0,.55);box-shadow:0 0 0 .8cqw rgba(255,214,0,.25);z-index:7}
+.cursor::after{content:"";position:absolute;left:45%;top:45%;border-left:1.1cqw solid #111;border-top:.55cqw solid transparent;border-bottom:.55cqw solid transparent;transform:rotate(-35deg) translate(-.1cqw,-.3cqw)}
+.pointer{position:absolute;z-index:7;font-size:4cqw;color:#FFB020;font-weight:800;filter:drop-shadow(0 .2cqw .3cqw rgba(0,0,0,.35))}
+.zoom{position:absolute;z-index:6;background:#fff;border-radius:1cqw;border:.4cqw solid #FFB020;padding:1cqw 1.4cqw;font-size:2.6cqw;font-weight:800;box-shadow:0 1.4cqw 3cqw -1cqw rgba(0,0,0,.45)}
+.zoom small{display:block;font-size:1.2cqw;color:var(--muted);font-weight:700;margin-bottom:.3cqw}
+/* mock window */
+.win{position:absolute;inset:0;background:#fff;border-radius:1.2cqw;overflow:hidden;box-shadow:0 1.4cqw 3.6cqw -1.6cqw rgba(20,40,90,.55);display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1cqw;padding:.8cqw 1.2cqw;background:#F1F4F9;border-bottom:1px solid var(--line);direction:ltr}
+.bar .dots{display:flex;gap:.5cqw}.bar .dots i{width:1cqw;height:1cqw;border-radius:50%;background:#D5DBE6}
+.bar .url{flex:1;background:#fff;border-radius:99px;padding:.3cqw 1.2cqw;font-size:1.35cqw;color:var(--muted);font-weight:600;border:1px solid var(--line)}
+.bar img{width:2cqw;height:2cqw;border-radius:.4cqw}
+.wb{position:relative;display:grid;min-height:0}
+.side{background:#F7F9FC;border-inline-start:1px solid var(--line);padding:1.2cqw;display:grid;align-content:start;gap:.8cqw;font-size:1.4cqw;font-weight:700;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5cqw;justify-self:start;font-size:1.45cqw;font-weight:800;color:var(--ink);background:#fff;border:1px solid var(--line);padding:.5cqw 1.1cqw;border-radius:.8cqw}
+.chat{padding:1.4cqw 2cqw;display:grid;align-content:start;gap:1cqw;font-size:1.45cqw}
+.msg{max-width:80%;padding:.9cqw 1.2cqw;border-radius:1.1cqw;font-weight:600}
+.msg.u{justify-self:start;background:#E9F0FF}
+.msg.a{justify-self:end;background:#F6F7F9;border:1px solid var(--line)}
+.msg ol{margin:.4cqw 0 0;padding-inline-start:2cqw;display:grid;gap:.3cqw}
+.input{position:absolute;left:2cqw;right:2cqw;bottom:1.4cqw;border:1px solid var(--line);border-radius:1.2cqw;padding:1cqw 1.4cqw;font-size:1.4cqw;font-weight:600;background:#fff;color:var(--ink)}
+.input .ph{color:#9AA5B8}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:1.25cqw;direction:ltr;text-align:left;color:#55607a}
+.fld{display:grid;grid-template-columns:1fr auto;gap:.8cqw;align-items:center;font-size:1.35cqw;font-weight:700;padding:.5cqw 0;border-bottom:1px dashed var(--line)}
+.fld span{background:#F2F5FA;border-radius:.5cqw;padding:.2cqw .9cqw;min-width:6cqw;text-align:center;font-variant-numeric:tabular-nums}
+.res{margin-top:.6cqw;font-size:2.4cqw;font-family:var(--display);color:var(--s4)}
+.photo{flex:1;border-radius:1cqw;aspect-ratio:4/3;position:relative;overflow:hidden;background:linear-gradient(160deg,#4d6b85,#9fc1d6 50%,#2e4a5e)}
+.photo::before{content:"";position:absolute;inset:25% 0 20%;background:var(--w)}
+.photo b{position:absolute;bottom:.6cqw;right:.6cqw;font-size:1.6cqw;color:#fff;background:rgba(0,0,0,.55);padding:.1cqw .7cqw;border-radius:.4cqw;direction:ltr}
+.bars{display:grid;gap:1.1cqw}
+.fb{display:grid;grid-template-columns:9cqw 1fr;align-items:center;gap:1.2cqw}
+.fb b{font-family:var(--display);font-weight:400;font-size:4cqw;color:var(--cc);text-align:left;direction:ltr;font-variant-numeric:tabular-nums}
+.fb div{height:4.4cqw;border-radius:.8cqw;background:var(--cc);width:var(--w);display:flex;align-items:center;padding-inline-start:1.2cqw;color:#fff;font-weight:800;font-size:1.6cqw;white-space:nowrap}
+.days{display:flex;gap:.8cqw}
+.days span{flex:1;background:#fff;border-radius:1cqw;padding:1cqw .4cqw;text-align:center;font-weight:800;font-size:1.5cqw;border-top:.5cqw solid var(--c);display:grid;gap:.3cqw}
+.days span i{font-style:normal;color:#18B47B;font-size:2.2cqw}
+.qr{width:16cqw;height:16cqw;background:
+  conic-gradient(#14213D 25%,#fff 0 50%,#14213D 0 75%,#fff 0) 0 0/2cqw 2cqw;border:1.2cqw solid #fff;border-radius:1cqw;box-shadow:0 0 0 .3cqw var(--line);position:relative}
+.qr::before,.qr::after{content:"";position:absolute;width:4.6cqw;height:4.6cqw;border:1cqw solid #14213D;background:#fff;top:0;right:0}
+.qr::after{right:auto;left:0}
+.ok{color:#18B47B;font-weight:800}.no{color:#E0384F;font-weight:800}
+.lock{font-size:6cqw}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw;height:100%}
+.split > div{background:#fff;border-radius:1.2cqw;padding:1.6cqw;display:grid;align-content:center;gap:1cqw;box-shadow:0 1cqw 2.6cqw -1.4cqw rgba(20,60,140,.5)}
+.loop{display:grid;grid-template-columns:1fr 1fr;gap:.8cqw}
+.loop span{background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c);font-weight:800;font-size:1.7cqw;text-align:center;padding:1cqw;border-radius:1cqw}
+.mark{background:linear-gradient(transparent 55%,#FFE066 55%)}
+.cite{display:inline-block;font-size:1.1cqw;font-weight:800;color:#fff;background:var(--s5);border-radius:99px;padding:0 .6cqw;vertical-align:middle}
+.stages{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4cqw;align-items:end}
+.stages div{border-radius:1cqw;background:linear-gradient(160deg,#6b7fa8,#c4d2ea);position:relative;display:grid;place-items:end center;padding:1cqw;color:#fff;font-weight:800;font-size:1.8cqw}
+.stages div:nth-child(1){height:12cqw}
+.stages div:nth-child(2){height:16cqw;background:repeating-linear-gradient(90deg,#5d6f97 0 6cqw,#8193bb 6cqw 6.3cqw)}
+.stages div:nth-child(3){height:22cqw;background:radial-gradient(ellipse at 50% 120%,#3f5a4a 40%,transparent 41%),linear-gradient(#5a6b8c,#9fb3d4)}
+.watch{display:grid;place-items:center;gap:.6cqw;font-weight:800;font-size:1.8cqw}
+.watch div{width:13cqw;height:13cqw;border-radius:50%;border:1cqw solid var(--cc);display:grid;place-items:center;font-family:var(--display);font-size:3cqw;color:var(--cc);background:#fff}
+.scale{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw}
+.scale > div{background:#fff;border-radius:1.2cqw;padding:1.4cqw;display:grid;gap:.6cqw;box-shadow:0 1cqw 2.4cqw -1.4cqw rgba(20,60,140,.5);font-size:1.7cqw;font-weight:700}
+.box{display:inline-block;width:1.8cqw;height:1.8cqw;border:.25cqw solid var(--muted);border-radius:.3cqw;vertical-align:middle;margin-inline-end:.6cqw}
+.strip{display:flex;gap:.6cqw;flex-wrap:wrap}
+.strip span{display:inline-flex;align-items:center;gap:.5cqw;background:#fff;border-radius:99px;padding:.4cqw 1cqw .4cqw .4cqw;font-weight:800;font-size:1.45cqw;box-shadow:0 .4cqw 1.2cqw -.6cqw rgba(0,0,0,.35)}
+.strip span i{width:2.4cqw;height:2.4cqw;border-radius:50%;background:var(--c);color:#fff;font-style:normal;display:grid;place-items:center;font-size:1.3cqw}
+.planrow{display:grid;grid-template-columns:5cqw 1fr;gap:.6cqw;font-size:1.35cqw;font-weight:700;padding:.35cqw 0;border-bottom:1px solid var(--line)}
+.planrow b{color:var(--s3)}
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <h1>סטוריבורד · מה חדש ב-AI · נובמבר 2026</h1>
+    <p>39 פריימים לפרק של 15 דקות. כל פריים מראה את מה שהצופה רואה: את שגיא בגדול, או בחלון קטן בזמן ההדגמות, את הכתוביות עם מילות מפתח מודגשות, את כותרת המקטע, את התוויות ואת שורת המקור. מתחת לכל פריים כתוב מה זז ומה מקליטים. המסכים בהדגמות הם שרטוט של מה שמקליטים. בעריכה מחליפים אותם בהקלטות המסך של שגיא, ושכבות ההדגשה נשארות מעליהן.</p>
+    <div class="legend"><span>שגיא בגדול: ברירת המחדל</span><span>שגיא קטן: הדגמות וגרף</span><span>כתוביות: מילת מפתח בצבע</span><span>תווית: המחשה · נוצר ב-AI</span><span>קליפ מושן: ירונדר בשלב הבא</span></div>
+  </header>
+  <nav class="jump" id="jump" aria-label="מקטעים"></nav>
+  <main id="board"></main>
+  <footer>הטקסט המלא להקראה נמצא בקובץ 2026-11-teleprompter.txt, ותסריט ההפקה בקובץ 2026-11-production.md.</footer>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A4A6B"/><stop offset="1" stop-color="#1D2944"/></linearGradient>
+    <symbol id="person" viewBox="0 0 200 240"><circle cx="100" cy="70" r="40" fill="url(#pg)"/><path d="M20 240c0-62 36-104 80-104s80 42 80 104z" fill="url(#pg)"/><path d="M84 138l16 30 16-30" fill="#E6ECF7"/></symbol>
+  </defs>
+</svg>
+
+<script>
+const I = n => `../../icons/${n}.png`;
+const P = {
+  big: `<div class="p-big"><svg class="person" viewBox="0 0 200 240" preserveAspectRatio="xMidYMax meet"><use href="#person"/></svg><span class="p-label">שגיא · בגדול</span></div>`,
+  small: `<div class="p-small"><svg class="person" viewBox="0 0 200 240" preserveAspectRatio="xMidYMax meet"><use href="#person"/></svg></div>`,
+  center: `<div class="p-center"><svg class="person" viewBox="0 0 200 240" preserveAspectRatio="xMidYMax meet"><use href="#person"/></svg><span class="p-label">שגיא · במרכז</span></div>`,
+  none: ``
+};
+const AI_TAG = `<div class="tag">המחשה · נוצר ב-AI</div>`;
+const step = (n,t) => `<div class="step"><i>${n}</i><b>${t}</b></div>`;
+const win = (url,icon,body,cls='') => `<div class="win ${cls}"><div class="bar"><span class="dots"><i></i><i></i><i></i></span>${icon?`<img src="${icon}" alt="">`:''}<span class="url">${url}</span></div><div class="wb">${body}</div></div>`;
+const claudeUI = (inner, sideHl='') => win('claude.ai', I('claude'), `<div style="display:grid;grid-template-columns:1fr 17cqw;height:100%"><div style="position:relative">${inner}</div><div class="side"><span class="btn ${sideHl}">＋ שיחה חדשה</span><span>שיחות אחרונות</span><span style="opacity:.5">· · ·</span></div></div>`);
+const nbUI = (src, mid, studio) => win('notebook.google.com', I('gemini'), `<div style="display:grid;grid-template-columns:15cqw 1fr 16cqw;height:100%;direction:rtl"><div class="side" style="border-inline-start:0;border-inline-end:1px solid var(--line)">${src}</div><div style="position:relative">${mid}</div><div class="side">${studio}</div></div>`);
+
+const SECTIONS = [
+ {id:'open',name:'פתיח',time:'0:00–0:40',c:'var(--s5)',shots:[
+  {t:'0:00',bg:'scene',p:'big',ttl:'',tag:true,
+   body:`<div class="area"><div class="quote" style="color:#fff;font-size:3.4cqw">אל תספר לנו מה חדש.<br>תראה לנו <span style="color:#FFD166">איך עושים</span> את זה.</div></div>`,
+   cap:`בכל הרצאה חוזרת אותה בקשה: <em>תראה לנו איך עושים</em>`,
+   note:`<strong>רקע:</strong> סצנה שנוצרה ב-AI (גשם, ואחר כך שמש), מטושטשת מאחורי שגיא. <strong>מושן:</strong> הציטוט מוקלד אות אחר אות, ו"איך עושים" נצבע בצהוב.`,clip:'ציטוט מוקלד'},
+  {t:'0:15',bg:'grid',p:'big',ttl:'היום בפרק',
+   body:`<div class="area"><div class="h-mid">3 הדגמות, <span style="color:var(--c)">צעד אחר צעד</span></div><div class="row">
+     <div class="card" style="--cc:var(--s3)"><img class="logo" src="${I('claude')}" alt=""><b>חונך אישי</b><small>לומדים כל נושא, בתרגול</small></div>
+     <div class="card" style="--cc:var(--s5)"><img class="logo" src="${I('gemini')}" alt=""><b>מסמך לבוחן</b><small>Gemini Notebook</small></div>
+     <div class="card" style="--cc:var(--s4)"><img class="logo" src="${I('claude')}" alt=""><b>מחשבון בלי קוד</b><small>Vibe Coding</small></div></div></div>`,
+   cap:`חונך אישי, מסמך שהופך לבוחן, ו<em>מחשבון בלי שורת קוד</em>`,
+   note:`<strong>מושן:</strong> שלושת הכרטיסים נכנסים מימין, בהפרש של 0.3 שניות. בכל כרטיס מופיע לרגע צילום מסך קטן מההדגמה.`,clip:'שלושה כרטיסים'},
+  {t:'0:32',bg:'grid',p:'big',ttl:'',
+   body:`<div class="area" style="justify-items:center;text-align:center"><div class="cubes"><i style="background:var(--s1)"></i><i style="background:var(--s3)"></i><i style="background:var(--s5)"></i><i style="background:var(--s4)"></i><i style="background:var(--s2)"></i><i style="background:#14213D"></i></div><div class="h-big">מה חדש ב-AI</div><div class="txt">ומה אפשר לעשות עם זה? · גיליון נובמבר 2026</div></div>`,
+   cap:`אני שגיא אשכנזי, וזה <em>מה חדש ב-AI</em>`,
+   note:`<strong>מושן:</strong> שש קוביות נופלות ונבנות ללוגו הפינה, ושם הפרק נחשף מתחתן. זה הלוגו הקבוע של כל גיליון.`,clip:'לוגו הפינה'}
+ ]},
+ {id:'map',name:'מפת הפרק',time:'0:40–1:10',c:'var(--s1)',shots:[
+  {t:'0:40',bg:'grid',p:'big',ttl:'התוכנית',
+   body:`<div class="area"><div class="flow"><span class="chip" style="--cc:var(--s1)">שינוי אחד</span><span class="arrow">←</span><span class="chip" style="--cc:var(--s3)">3 הדגמות</span><span class="arrow">←</span><span class="chip" style="--cc:var(--s2)">3 דברים לדעת</span></div><div class="row" style="align-items:center;gap:1.4cqw"><span style="font-size:4cqw">⏸</span><span class="txt" style="font-size:2.2cqw;color:var(--ink)">עצרו את הסרטון, ועשו יחד איתי</span></div></div>`,
+   cap:`תעצרו את הסרטון, <em>ותעשו יחד איתי</em>`,
+   note:`<strong>מושן:</strong> שלוש התחנות נדלקות לפי הדיבור. בסוף, אייקון ההשהיה פועם פעם אחת.`,clip:'ציר התוכנית'}
+ ]},
+ {id:'agents',name:'השינוי הגדול',time:'1:10–2:40',c:'var(--s1)',shots:[
+  {t:'1:10',bg:'grid',p:'big',ttl:'השינוי הגדול',
+   body:`<div class="area"><div class="h-big">מ-AI ש<span class="c">עונה</span><br>ל-AI ש<span class="c">מבצע</span></div><div class="card" style="max-width:40cqw"><b>OpenAI מציגה את dots</b><small>סוכנים שממשיכים לעבוד גם אחרי שסוגרים את החלון</small></div></div>`,
+   src:'מקור: OpenAI DevDay, 29.9.2026',cap:`סוכנים שממשיכים לעבוד <em>גם אחרי שסגרתם את החלון</em>`,
+   note:`<strong>רקע:</strong> צילום מסך של כותרת ההכרזה, עם זום איטי. <strong>מושן:</strong> המילה "עונה" מתחלפת ב"מבצע" בהיפוך של הקוביות.`},
+  {t:'1:35',bg:'grid',p:'big',ttl:'השינוי הגדול',
+   body:`<div class="area"><div class="flow" style="opacity:.55"><span class="chip" style="--cc:#6B7790">שאלה</span><span class="arrow">←</span><span class="chip" style="--cc:#6B7790">תשובה</span></div><div class="flow"><span class="chip">מטרה</span><span class="arrow">←</span><span class="chip">תכנון ופעולות</span><span class="arrow">←</span><span class="chip">תוצר ובקרה</span></div><div class="txt">האדם מגדיר גבולות ומאשר פעולות משמעותיות</div></div>`,
+   cap:`מגדירים <em>מטרה</em>. הסוכן מתכנן ופועל. ואנחנו <em>בודקים</em>`,
+   note:`<strong>מושן (מרכזי):</strong> שני מסלולים. האפור נבנה מהר ומתעמעם, והכחול נבנה חוליה אחרי חוליה עם קו זורם בין החוליות.`,clip:'שני מסלולים'},
+  {t:'2:05',bg:'grid',p:'big',ttl:'המיומנות החדשה',
+   body:`<div class="area"><div class="h-mid">המיומנות החדשה</div><div class="flow"><span class="chip">1 · להגדיר</span><span class="chip">2 · לפרק</span><span class="chip">3 · לבדוק</span><span class="chip">4 · לאשר</span></div></div>`,
+   cap:`פחות לנסח שאלה, יותר <em>להגדיר מטרה</em>`,
+   note:`<strong>מושן:</strong> ארבעה תגים קופצים בקפיצה קלה (spring), אחד על כל מילה.`},
+  {t:'2:25',bg:'dark',p:'big',ttl:'שימו לב',dark:true,
+   body:`<div class="area"><span class="lock">🔒</span><div class="h-mid" style="color:#FFB020">הרשאות קטנות · משימות הפיכות</div><div class="txt" style="color:#C9D3E6">סוכן שמחובר לחשבונות שלכם יכול גם לטעות</div></div>`,
+   cap:`מתחילים בהרשאות קטנות, <em>ובמשימות שאפשר לבטל</em>`,
+   note:`<strong>מושן:</strong> הרקע מחשיך בבת אחת, והמנעול "נסגר" עם צליל קליק קצר.`}
+ ]},
+ {id:'demo1',name:'הדגמה 1: חונך אישי',time:'2:40–6:00',c:'var(--s3)',shots:[
+  {t:'2:40',bg:'grid',p:'big',ttl:'הדגמה 1',
+   body:`<div class="area"><div class="quote">AI יכול לשפר את <span style="color:var(--c)">הביצוע</span>,<br>בלי לשפר את <span style="color:var(--c)">הלמידה</span>.</div><div class="h-mid" style="font-size:5cqw;color:var(--c)">ביצוע ≠ למידה</div></div>`,
+   src:'מקור: OECD Digital Education Outlook, ינואר 2026',cap:`AI יכול לשפר את <em>הביצוע</em>, בלי לשפר את <em>הלמידה</em>`,
+   note:`<strong>לפני:</strong> כרטיס פתיחה ירוק, "הדגמה 1 · חונך אישי · 8 צעדים", עם שמונה נקודות. <strong>מושן:</strong> סימן ה-≠ נחתך באלכסון.`,clip:'כרטיס פתיחת הדגמה'},
+  {t:'3:05',bg:'grid',p:'big',ttl:'הדגמה 1 · חונך אישי',
+   body:`<div class="area"><div class="split" style="height:auto"><div><b style="font-size:2cqw">דרך 1: קוראים</b><div class="txt">📄 הסבר על מהירות תריס</div><span class="chip" style="--cc:#6B7790">✓ קראתי</span></div><div><b style="font-size:2cqw">דרך 2: מתרגלים</b><div class="loop"><span>מתנסים</span><span>שולפים</span><span>משוב</span><span>מתקנים</span></div></div></div></div>`,
+   cap:`מי שמתרגל ומקבל משוב, <em>באמת לומד</em>`,
+   note:`<strong>מושן:</strong> הצד הימני מתעמעם, והמעגל בצד השמאלי מסתובב פעם אחת.`},
+  {t:'3:25',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"><div class="msg a" style="opacity:.4">במה אפשר לעזור היום?</div></div><div class="input"><span class="ph">כתבו הודעה...</span></div>`,'hl')}</div><div class="cursor" style="right:13cqw;top:13.4cqw"></div>${step(1,'שיחה חדשה')}`,
+   cap:`נכנסים ל-claude.ai, ופותחים <em>שיחה חדשה</em>`,
+   note:`<strong>הקלטה A1:</strong> לחיצה על "שיחה חדשה". <strong>שכבה:</strong> מסגרת כתומה סביב הכפתור, ואדווה בלחיצה. לציין בטקסט קטן "עובד גם ב-ChatGPT וב-Gemini", עם שני הלוגואים.`,clip:'שכבת צעד'},
+  {t:'3:40',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"></div><div class="input hlg" style="bottom:1.4cqw;line-height:1.5">אני רוצה ללמוד <b style="background:#FFF1C2">[נושא]</b> כדי לרכוש בו יכולת מעשית.<br>פעל כחונך אישי. שאל אותי תחילה שלוש שאלות קצרות...<br><span class="ph">בנה תוכנית לימוד לשבוע...</span></div>`)}</div><div class="zoom" style="left:18cqw;top:14cqw"><small>הפרומפט המלא</small>בתיאור ↓</div>${step(2,'מדביקים את הפרומפט')}`,
+   cap:`מדביקים את הפרומפט, <em>הוא מחכה לכם בתיאור</em>`,
+   note:`<strong>הקלטה A2:</strong> הדבקה (Ctrl+V). <strong>שכבה:</strong> זוהר ירוק סביב תיבת הכתיבה, ותג "בתיאור ↓" שמצביע למטה.`},
+  {t:'3:55',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"></div><div class="input" style="line-height:1.5">אני רוצה ללמוד <b>צילום</b> כדי לרכוש בו יכולת מעשית...</div>`)}</div><div class="zoom" style="right:20cqw;top:18cqw;font-size:3.6cqw"><small>במקום [נושא]</small><s style="color:#9AA5B8">[נושא]</s> ← <span style="color:var(--c)">צילום</span></div>${step(3,'כותבים את הנושא')}`,
+   cap:`במקום הסוגריים, כותבים את <em>הנושא</em>`,
+   note:`<strong>הקלטה A3:</strong> מחיקת [נושא] והקלדת "צילום". <strong>שכבה:</strong> זום של 150% על השורה, והמילה הישנה נמחקת בקו.`},
+  {t:'4:10',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"><div class="msg u">אני רוצה ללמוד צילום...</div><div class="msg a hl">לפני שנתחיל, שלוש שאלות קצרות:<ol><li>מה הניסיון שלך בצילום?</li><li>באיזו מצלמה או טלפון אתה משתמש?</li><li>מה תרצה להצליח לצלם בעוד שבוע?</li></ol></div></div>`)}</div>${step(4,'עונים בכנות')}`,
+   cap:`הוא לא מרצה. הוא <em>שואל שלוש שאלות</em>`,
+   note:`<strong>הקלטה A4:</strong> התשובה, והתשובות שגיא מקליד. <strong>שכבה:</strong> מספרים 1, 2, 3 מונפשים ליד כל שאלה. התוכן כאן הוא דוגמה, ובהקלטה זה יהיה מה ש-Claude כותב בפועל.`},
+  {t:'4:35',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"><div class="msg a" style="max-width:92%"><b>תוכנית לשבוע</b><div class="planrow hl" style="margin-top:.6cqw"><b>יום 1</b><span>מהירות תריס: הקפאה מול טשטוש · תרגיל צילום</span></div><div class="planrow"><b>יום 2</b><span>צמצם ועומק שדה</span></div><div class="planrow"><b>יום 3</b><span>ISO ורעש</span></div><div class="planrow" style="opacity:.5"><b>יום 4–7</b><span>...</span></div></div></div>`)}</div>${step(5,'תוכנית לשבוע')}`,
+   cap:`מושג אחד בכל יום, <em>ותרגיל בכל מושג</em>`,
+   note:`<strong>הקלטה A5:</strong> גלילה איטית בתוכנית. <strong>שכבה:</strong> הדגשה של "יום 1".`},
+  {t:'4:55',bg:'grid',p:'small',ttl:'הדגמה 1 · התרגיל',
+   body:`<div class="full" style="display:grid;align-content:center;gap:1.4cqw"><div class="row" style="gap:1.4cqw"><div class="photo" style="--w:linear-gradient(90deg,#cfe8f5 0 8%,transparent 8% 16%,#cfe8f5 16% 22%,transparent 22%)"><b>1/1000</b></div><div class="photo" style="--w:repeating-linear-gradient(90deg,rgba(220,240,250,.7) 0 3cqw,rgba(220,240,250,.35) 3cqw 6cqw)"><b>1/60</b></div><div class="photo" style="--w:linear-gradient(90deg,rgba(235,247,252,.85),rgba(235,247,252,.6))"><b>1/4</b></div></div><div class="row" style="justify-content:center;gap:4cqw;font-weight:800;font-size:1.9cqw"><span>טיפות קפואות</span><span>תנועה עדינה</span><span>מים כמו משי</span></div></div>${step(6,'מתרגלים')}`,
+   cap:`שלוש תמונות של מים זורמים, <em>בשלוש מהירויות תריס</em>`,
+   note:`<strong>חומר:</strong> שלוש תמונות אמיתיות של ברז או נחל, שצילם שגיא. <strong>מושן:</strong> התמונות נכנסות אחת אחרי השנייה עם צליל תריס, והמספרים "נלחצים" פנימה.`},
+  {t:'5:20',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${claudeUI(`<div class="chat"><div class="msg u">צילמתי. בתמונה השלישית המים נראים חלקים...</div><div class="msg a" style="max-width:90%"><span class="hlg" style="display:block;padding:.4cqw;margin-bottom:.8cqw">✓ נכון: חשיפה ארוכה מטשטשת תנועה.</span><span class="hl" style="display:block;padding:.4cqw">△ מה פספסת: למה התמונה השלישית בהירה יותר? נסה להסביר במילים שלך.</span></div></div>`)}</div>${step(7,'משוב, לא מחמאה')}`,
+   cap:`הוא מראה <em>מה נכון</em> ו<em>מה פספסתי</em>`,
+   note:`<strong>הקלטה A6–A7:</strong> העלאת התמונות והמשוב. <strong>שכבה:</strong> מסגרת ירוקה סביב "נכון", ומסגרת כתומה סביב "מה פספסת".`},
+  {t:'5:40',bg:'grid',p:'big',ttl:'הדגמה 1 · סיכום',
+   body:`<div class="area"><div class="h-mid">התנסות · <span style="color:var(--c)">משוב</span> · תיקון</div><div class="strip"><span><i>1</i>שיחה חדשה</span><span><i>2</i>פרומפט</span><span><i>3</i>נושא</span><span><i>4</i>שאלות</span><span><i>5</i>תוכנית</span><span><i>6</i>תרגיל</span><span><i>7</i>משוב</span><span><i>8</i>סיכום לחזרה</span></div><div class="txt">עובד גם על שפה, מוזיקה, עסקים ומבחנים</div></div>`,
+   cap:`לא קיבלתי תשובה. קיבלתי <em>תהליך למידה</em>`,
+   note:`<strong>מושן:</strong> שגיא חוזר לגודל מלא, ושמונת הצעדים נדלקים ברצף מהיר. זה פריים שכדאי שהצופה יצלם מסך שלו.`,clip:'רצועת צעדים'}
+ ]},
+ {id:'demo2',name:'הדגמה 2: מסמך לבוחן',time:'6:00–8:40',c:'var(--s5)',shots:[
+  {t:'6:00',bg:'grid',p:'big',ttl:'הדגמה 2',
+   body:`<div class="area"><img class="logo lg" src="${I('gemini')}" alt=""><div class="h-big">מסמך שהופך<br><span class="c">לבוחן</span></div><div class="flow"><span class="chip">Gemini Notebook</span><span class="txt">לשעבר NotebookLM</span></div><span class="chip" style="--cc:var(--s3)">עונה רק מתוך המקורות שלכם</span></div>`,
+   cap:`הוא עונה <em>רק מתוך החומרים</em> שאתם נותנים לו`,
+   note:`<strong>לפני:</strong> כרטיס פתיחה סגול, "הדגמה 2 · 6 צעדים". <strong>מושן:</strong> השם NotebookLM מתחלף ב-Gemini Notebook.`,clip:'כרטיס פתיחת הדגמה'},
+  {t:'6:20',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${win('notebook.google.com',I('gemini'),`<div style="display:grid;place-items:center;align-content:center;gap:1.4cqw;height:100%"><div class="h-mid" style="font-size:2.6cqw">המחברות שלי</div><span class="btn hl" style="justify-self:center;font-size:2cqw">＋ מחברת חדשה</span></div>`)}</div><div class="zoom" style="left:26cqw;top:6.4cqw;font-size:2cqw;direction:ltr">notebook.google.com</div>${step(1,'מחברת חדשה')}`,
+   cap:`נכנסים ל-notebook.google.com, ויוצרים <em>מחברת חדשה</em>`,
+   note:`<strong>הקלטה B1.</strong> <strong>שכבה:</strong> זום על שורת הכתובת, ואחר כך מסגרת סביב הכפתור.`},
+  {t:'6:35',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${win('notebook.google.com',I('gemini'),`<div style="display:grid;place-items:center;height:100%;background:rgba(20,33,61,.25)"><div style="background:#fff;border-radius:1.2cqw;padding:2cqw;display:grid;gap:1.2cqw;width:60%"><b style="font-size:2cqw">הוספת מקור</b><div class="row"><span class="card hl" style="--cc:var(--s2);text-align:center"><b>📄 PDF</b></span><span class="card" style="--cc:var(--s3);text-align:center"><b>📁 דרייב</b></span><span class="card" style="--cc:var(--s1);text-align:center"><b>🔗 אתר</b></span><span class="card" style="--cc:#E0384F;text-align:center"><b>▶ יוטיוב</b></span></div><span class="mono">מה-חדש-ב-AI-נובמבר-2026.pdf</span></div></div>`)}</div>${step(2,'מוסיפים מקור')}`,
+   cap:`קובץ, דרייב, אתר או יוטיוב. <em>אני מעלה את המאמר</em>`,
+   note:`<strong>הקלטה B2:</strong> העלאת ה-PDF של המאמר. <strong>שכבה:</strong> ארבעה סוגי מקור נכנסים אחד אחרי השני, וה-PDF מואר. שמות הכפתורים יותאמו לממשק בפועל.`},
+  {t:'6:55',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${nbUI(`<b style="color:var(--ink)">מקורות (1)</b><span class="btn">📄 מה חדש ב-AI</span>`,`<div class="chat"><div class="msg a" style="max-width:95%"><b>סיכום המקור</b><br>המאמר סוקר שש מגמות: <span class="mark">מעבר מ-AI שעונה ל-AI שמבצע</span>, למידה אישית, בניית כלים בשפה טבעית...</div></div>`,`<b style="color:var(--ink)">כלים</b><span class="btn">סקירת אודיו</span><span class="btn">סרטון הסבר</span><span class="btn">בוחן</span><span class="btn">כרטיסיות</span>`)}</div>${step(3,'בודקים שהבין נכון')}`,
+   cap:`מקבלים סיכום, <em>ובודקים שהוא הבין נכון</em>`,
+   note:`<strong>הקלטה B3.</strong> <strong>שכבה:</strong> מרקר צהוב נמרח על משפט אחד בסיכום, בתנועה משמאל לימין.`},
+  {t:'7:15',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${nbUI(`<b style="color:var(--ink)">מקורות (1)</b><span class="btn">📄 מה חדש ב-AI</span>`,`<div style="display:grid;place-items:center;height:100%"><div style="background:#fff;border:1px solid var(--line);border-radius:1.2cqw;padding:1.6cqw;display:grid;gap:.8cqw;width:75%" class="hl"><b style="font-size:1.8cqw">הגדרות הבוחן</b><div class="fld">מספר שאלות<span>10</span></div><div class="fld">רמת קושי<span>בינונית</span></div><span class="btn" style="background:var(--s5);color:#fff">יצירה</span></div></div>`,`<b style="color:var(--ink)">כלים</b><span class="btn">סקירת אודיו</span><span class="btn">סרטון הסבר</span><span class="btn hl">בוחן</span><span class="btn">כרטיסיות</span>`)}</div><div class="pointer" style="right:9cqw;top:27cqw">➜</div>${step(4,'יוצרים בוחן')}`,
+   cap:`בוחרים <em>בוחן</em>, מספר שאלות ורמת קושי`,
+   note:`<strong>הקלטה B4.</strong> <strong>שכבה:</strong> חץ כתום מונפש שמצביע אל "בוחן", ואחריו מסגרת סביב ההגדרות.`},
+  {t:'7:35',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${nbUI(`<b style="color:var(--ink)">מקור</b><span class="hl" style="font-size:1.25cqw;padding:.5cqw;background:#F3EEFF;display:block">"...רק 37% ייחסו ל-AI השפעה כלשהי על הרווח התפעולי..."</span>`,`<div class="chat"><div class="msg a" style="max-width:95%"><b>שאלה 4 מתוך 10</b><br>כמה מהמשיבים בסקר McKinsey ייחסו ל-AI השפעה על הרווח?<div class="row" style="margin-top:.8cqw;gap:.6cqw"><span class="btn">88%</span><span class="btn">80%</span><span class="btn hlg">37% ✓</span></div><div style="margin-top:.6cqw">נכון! <span class="cite">1</span></div></div></div>`,`<b style="color:var(--ink)">סוגי שאלות</b><span>בחירה מרובה</span><span>תשובה קצרה</span><span>השלמת חסר</span>`)}</div>${step(5,'עונים ובודקים במקור')}`,
+   cap:`על כל תשובה, הוא מפנה <em>למקום המדויק במסמך</em>`,
+   note:`<strong>הקלטה B5:</strong> מענה על שתי שאלות ולחיצה על הציטוט. <strong>שכבה:</strong> קו מונפש מתג הציטוט אל הפסקה בחלונית המקור.`},
+  {t:'8:00',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${nbUI(`<b style="color:var(--ink)">מקורות (1)</b><span class="btn">📄 מה חדש ב-AI</span>`,`<div class="chat"><div class="msg u hl">על מה כדאי לי לחזור, לפי התוצאות שלי?</div><div class="msg a" style="max-width:92%">טעית ב-2 מתוך 10 שאלות. כדאי לחזור על:<ol><li>ההבדל בין ביצוע ללמידה (OECD)</li><li>המגבלות של SynthID Detector</li></ol></div></div>`,`<b style="color:var(--ink)">התוצאה שלך</b><span style="font-family:var(--display);font-size:3cqw;color:var(--s5)">8/10</span>`)}</div>${step(6,'שואלים על מה לחזור')}`,
+   cap:`וזה החלק החשוב: <em>על מה כדאי לי לחזור?</em>`,
+   note:`<strong>הקלטה B6.</strong> <strong>שכבה:</strong> זום על השאלה, ואחר כך הדגשה של שני נושאי החזרה.`},
+  {t:'8:20',bg:'grid',p:'big',ttl:'הדגמה 2 · סיכום',
+   body:`<div class="area"><div class="strip"><span><i>1</i>מחברת</span><span><i>2</i>מקור</span><span><i>3</i>סיכום</span><span><i>4</i>בוחן</span><span><i>5</i>מענה</span><span><i>6</i>חזרה</span></div><div class="card" style="--cc:var(--s3)"><b>טיפ למורים ולמנחים</b><small>אותו תהליך יוצר בוחן לתלמידים, מתוך חומר הלימוד שלכם</small></div><div class="card"><b>Immersive Explorations ב-Gemini</b><small>שיעורים חזותיים אינטראקטיביים · בעברית: מוצג באנגלית</small></div></div>`,
+   src:'מקור: Google, ספטמבר–אוקטובר 2026',cap:`מסמך שקוראים פעם אחת, <em>הופך לתרגול</em>`,
+   note:`<strong>מושן:</strong> רצועת הצעדים, ואחריה שני כרטיסים. בכרטיס השני מופיע צילום מסך קטן של Immersive Explorations.`,clip:'רצועת צעדים'}
+ ]},
+ {id:'demo3',name:'הדגמה 3: מחשבון בלי קוד',time:'8:40–11:40',c:'var(--s4)',shots:[
+  {t:'8:40',bg:'grid',p:'big',ttl:'הדגמה 3',
+   body:`<div class="area"><div class="h-big">מחשבון<br><span class="c">בלי שורת קוד</span></div><div class="row" style="align-items:center"><img class="logo" src="${I('claude')}" alt=""><span class="txtlogo">Codex</span><span class="txtlogo" style="background:#1A73E8">AI Studio</span></div><span class="chip">Vibe Coding: מתארים, וה-AI בונה</span></div>`,
+   cap:`מתארים במילים מה רוצים, <em>וה-AI בונה</em>`,
+   note:`<strong>לפני:</strong> כרטיס פתיחה כתום, "הדגמה 3 · 6 צעדים". <strong>מושן:</strong> הלוגואים נכנסים אחד אחרי השני. Codex ו-AI Studio מופיעים כאן כטקסט, ובעריכה יוחלפו בלוגואים הרשמיים.`,clip:'כרטיס פתיחת הדגמה'},
+  {t:'9:05',bg:'grid',p:'small',ttl:'הדגמה 3 · צעד 2',
+   body:`<div class="full"><div class="split"><div style="border:.4cqw solid #E0384F"><span class="no" style="font-size:3cqw">✗</span><b style="font-size:2.2cqw">"תבנה לי מחשבון"</b><div class="txt">ה-AI צריך לנחש מה רציתם</div></div><div style="border:.4cqw solid #18B47B"><span class="ok" style="font-size:3cqw">✓</span><b style="font-size:1.9cqw">מחשבון לתמחור סדנה. שדות: עלות המקום, חומרים, שעות הכנה והעברה, תעריף לשעה, אחוז רווח. בסוף: מחיר למשתתף לפי מספר המשתתפים.</b></div></div></div>${step(2,'מתארים בדיוק')}`,
+   cap:`לא "תבנה לי מחשבון", אלא <em>בדיוק מה הוא צריך לעשות</em>`,
+   note:`<strong>הקלטה C1–C2:</strong> שיחה חדשה והדבקת התיאור. <strong>מושן:</strong> פיצול לפני ואחרי, ואחריו זום על כל אחד מחמשת השדות ברשימה.`,clip:'לפני ואחרי'},
+  {t:'9:40',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${win('claude.ai',I('claude'),`<div style="display:grid;grid-template-columns:1fr 1fr;height:100%;direction:ltr"><div class="hl" style="margin:1.2cqw;background:#fff;border:1px solid var(--line);border-radius:1cqw;padding:1.4cqw;direction:rtl;display:grid;align-content:start"><b style="font-size:1.8cqw">מחשבון תמחור סדנה</b><div class="fld">עלות המקום<span>₪800</span></div><div class="fld">חומרים<span>₪300</span></div><div class="fld">שעות עבודה<span>6</span></div><div class="fld">תעריף לשעה<span>₪250</span></div><div class="fld">אחוז רווח<span>20%</span></div><div class="fld">משתתפים<span>12</span></div><div class="res">₪260 למשתתף</div></div><div class="chat" style="direction:rtl"><div class="msg u">מחשבון לתמחור סדנה. שדות...</div><div class="msg a">בניתי לך מחשבון. אפשר לשנות כל שדה, והמחיר מתעדכן.</div></div></div>`)}</div><div class="pointer" style="left:52cqw;top:24cqw;transform:scaleX(-1)">➜</div>${step(3,'הכלי מוכן')}`,
+   cap:`הכלי מופיע מימין, <em>ואפשר להשתמש בו מיד</em>`,
+   note:`<strong>הקלטה C3:</strong> החלונית נפתחת. <strong>שכבה:</strong> זוהר סביב החלונית, וחץ אליה. בהקלטה אמיתית החלונית יכולה להופיע בצד אחר, ואז מזיזים את החץ.`},
+  {t:'10:05',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full"><div class="split"><div><b style="font-size:2cqw">המחשבון</b><div class="fld">עלות כוללת<span>₪2,600</span></div><div class="fld">עם 20% רווח<span>₪3,120</span></div><div class="res">₪260 למשתתף</div></div><div style="background:#FFFBEA"><b style="font-size:2cqw">✍ החישוב שלי</b><div class="mono" style="font-size:1.7cqw;line-height:1.6">800 + 300 = 1,100<br>6 × 250 = 1,500<br>2,600 × 1.2 = 3,120<br>3,120 ÷ 12 = 260</div><span class="ok" style="font-size:2.4cqw">✓ תואם</span></div></div></div>${step(4,'בודקים מול חישוב שלכם')}`,
+   cap:`זה הצעד <em>שהכי הרבה אנשים מדלגים עליו</em>`,
+   note:`<strong>הקלטה C4:</strong> הזנת המספרים. <strong>מושן:</strong> החישוב הידני "נכתב ביד", ושני ה-260 נדלקים יחד עם V. אם המחשבון יוצא שונה, זה רגע מעולה להראות איך מתקנים.`,clip:'בדיקה מול חישוב ידני'},
+  {t:'10:30',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${win('claude.ai',I('claude'),`<div style="display:grid;grid-template-columns:1fr 1fr;height:100%;direction:ltr"><div style="margin:1.2cqw;background:#fff;border:1px solid var(--line);border-radius:1cqw;padding:1.4cqw;direction:rtl;display:grid;align-content:center;gap:.6cqw"><div class="fld">לפני מע"מ<span>₪260.00</span></div><div class="fld hl">אחרי מע"מ 18%<span>₪306.80</span></div></div><div class="chat" style="direction:rtl"><div class="msg u hl">תוסיף מע"מ של 18 אחוז, ותציג את המחיר לפני ואחרי</div><div class="msg a">עדכנתי.</div></div></div>`)}</div>${step(5,'משפרים במשפט')}`,
+   cap:`משפט אחד, <em>והכלי מתעדכן</em>`,
+   note:`<strong>הקלטה C5.</strong> <strong>מושן:</strong> המספר נספר מ-260 ל-306.80.`},
+  {t:'10:50',bg:'grid',p:'small',ttl:'',
+   body:`<div class="full">${win('claude.ai',I('claude'),`<div style="display:grid;place-items:center;align-content:center;gap:1.4cqw;height:100%"><span class="btn hl" style="font-size:2.2cqw">↗ שיתוף</span><span class="mono" style="font-size:1.6cqw;background:#F2F5FA;padding:.6cqw 1.2cqw;border-radius:.6cqw">claude.ai/…/workshop-calculator</span><div class="row" style="justify-content:center;gap:1.2cqw;font-size:2cqw;font-weight:800"><span>💬 וואטסאפ</span><span>✉ מייל</span></div></div>`)}</div>${step(6,'משתפים')}`,
+   cap:`מקבלים קישור, <em>ושולחים לשותף או ללקוח</em>`,
+   note:`<strong>הקלטה C6:</strong> שיתוף והעתקת הקישור. <strong>מושן:</strong> הקישור "עף" לאייקון של וואטסאפ. במסך הקישור צריך להסתיר כתובות אישיות.`},
+  {t:'11:05',bg:'grid',p:'big',ttl:'הדגמה 3 · סיכום',
+   body:`<div class="area"><div class="scale"><div><span class="ok" style="font-size:2.4cqw">✓ אב-טיפוס</span><span>כלי אישי</span><span>בלי מידע רגיש</span></div><div><b style="font-size:2cqw">מוצר</b><span><i class="box"></i>בדיקות אבטחה</span><span><i class="box"></i>טיפול בנתונים</span><span><i class="box"></i>תחזוקה</span></div></div><div class="flow"><span class="chip">להגדיר</span><span class="chip">לתאר</span><span class="chip">לבדוק</span></div></div>`,
+   cap:`זה לא תכנות. זו היכולת <em>להגדיר, לתאר ולבדוק</em>`,
+   note:`<strong>מושן:</strong> מאזניים. "אב-טיפוס" מקבל V מיד, ו"מוצר" נשאר עם שלוש תיבות ריקות שמהבהבות.`}
+ ]},
+ {id:'know',name:'שלושה דברים לדעת',time:'11:40–14:20',c:'var(--s2)',shots:[
+  {t:'11:40',bg:'grid',p:'big',ttl:'1 · עולמות',tag:true,
+   body:`<div class="area"><div class="stages"><div>תמונה<br><small>רגע</small></div><div>וידאו<br><small>רצף</small></div><div>מודל עולם<br><small>סביבה שמשתנה</small></div></div><div class="flow"><span class="chip">Genie 4</span><span class="txt">זמין כרגע לבודקים בלבד</span></div></div>`,
+   src:'מקור: Google DeepMind, 27.10.2026 · תצוגה מחקרית',cap:`תמונה היא רגע. וידאו הוא רצף. <em>ועולם, אפשר לשנות</em>`,
+   note:`<strong>חומר:</strong> קליפים שנוצרו ב-Kling או ב-Dreamina. <strong>מושן:</strong> שלוש המדרגות גדלות. במשפט "מסומן בפינה" מופיע חץ אל התווית.`,clip:'שלוש מדרגות'},
+  {t:'12:40',bg:'grid',p:'small',ttl:'2 · AI בארגונים',
+   body:`<div class="full" style="display:grid;align-content:center"><div class="bars"><div class="fb" style="--cc:var(--s1)"><b>88%</b><div style="--w:100%">משתמשים ב-AI בתחום אחד לפחות</div></div><div class="fb" style="--cc:var(--s3)"><b>80%</b><div style="--w:91%">פרודוקטיביות אישית השתפרה</div></div><div class="fb" style="--cc:#8C6BD6"><b>37%</b><div style="--w:42%">השפעה כלשהי על הרווח</div></div><div class="fb" style="--cc:var(--s2)"><b>6%</b><div style="--w:12%">משמעותית</div></div></div></div>`,
+   src:'Stanford AI Index 2026 (נתוני McKinsey 2025) · McKinsey, אוגוסט 2026 · דיווח עצמי',cap:`80% מרגישים פרודוקטיביים, <em>רק 6% רואים השפעה משמעותית</em>`,
+   note:`<strong>גרף (מרכזי):</strong> הפסים נבנים מלמעלה למטה, והמספרים נספרים מ-0. הפס האחרון אדום ופועם פעם אחת. אחריו שני שעוני עצר.`,clip:'משפך נתונים'},
+  {t:'13:15',bg:'grid',p:'big',ttl:'2 · AI בארגונים',
+   body:`<div class="area"><div class="row" style="justify-content:center;gap:4cqw"><div class="watch" style="--cc:#6B7790"><div>40′</div>בלי AI</div><div class="watch" style="--cc:var(--s2)"><div>25′</div>עם AI + בדיקה</div></div><div class="txt" style="text-align:center">מדדו את <b>כל</b> הזמן, כולל בדיקה ותיקון</div></div>`,
+   cap:`אל תמדדו רק כמה מהר. <em>מדדו את כל הזמן</em>`,
+   note:`<strong>מושן:</strong> שני שעונים רצים במקביל. המספרים הם דוגמה להמחשה, ולא נתון.`},
+  {t:'13:40',bg:'grid',p:'big',ttl:'3 · אמון',
+   body:`<div class="area"><div class="row" style="gap:.8cqw"><span class="chip" style="--cc:#18B47B">תמונה ✓</span><span class="chip" style="--cc:#18B47B">וידאו ✓</span><span class="chip" style="--cc:#18B47B">שמע ✓</span><span class="chip" style="--cc:#E0384F">טקסט ✗</span></div><div class="row"><div class="card"><b>🔒 מידע רגיש</b><small>בודקים תנאי שירות</small></div><div class="card"><b>🔍 מקור</b><small>לפני ששולחים הלאה</small></div><div class="card"><b>✋ אישור</b><small>לפני פעולה משמעותית</small></div></div></div>`,
+   src:'מקור: Google, 7.10.2026',cap:`SynthID מזהה <em>רק תוכן שסומן מראש</em>`,
+   note:`<strong>רקע:</strong> צילום מסך של synthid.com. <strong>מושן:</strong> ארבע התיבות מסומנות, ואחריהן שלושה כרטיסי הרגלים מתהפכים.`}
+ ]},
+ {id:'close',name:'אתגר וסיום',time:'14:20–15:00',c:'var(--s5)',shots:[
+  {t:'14:20',bg:'grid',p:'big',ttl:'אתגר 7 הימים',
+   body:`<div class="area"><div class="days"><span>יום 1<i>✓</i></span><span>יום 2<i>✓</i></span><span>יום 3<i>✓</i></span><span>יום 4<i>✓</i></span><span>יום 5<i>✓</i></span><span>יום 6<i>✓</i></span><span>יום 7<i>✓</i></span></div><div class="row" style="align-items:center;gap:2cqw"><div class="qr"></div><div class="txt" style="color:var(--ink);font-size:2.1cqw">האתגר, הפרומפטים<br>ורשימת הכלים</div></div></div>`,
+   cap:`סורקים את הקוד, <em>ומקבלים הכל</em>`,
+   note:`<strong>מושן:</strong> שבעה ימים מסומנים ברצף, כמו בעמוד באתר. ה-QR מוביל לעמוד הגיליון. הקוד כאן הוא מקום שמור, ובקליפ יופק קוד אמיתי.`,clip:'אתגר ו-QR'},
+  {t:'14:45',bg:'grid',p:'center',ttl:'',
+   body:`<div class="chapter" style="align-content:start;padding-top:8cqw"><div class="h-big" style="font-size:5cqw">ללמוד <span style="color:var(--c)">מחדש</span></div></div>`,
+   cap:`המיומנות החשובה ביותר: <em>היכולת ללמוד מחדש</em>`,
+   note:`<strong>מושן:</strong> כל הגרפיקה יוצאת, ונשארים רק שגיא במרכז ושתי מילים. אחר כך מסך סיום עם קישור למאמר ולפרק הבא.`}
+ ]}
+];
+
+const nav = document.getElementById('jump'), board = document.getElementById('board');
+let count = 0;
+SECTIONS.forEach(s => {
+  nav.insertAdjacentHTML('beforeend', `<a href="#${s.id}" style="--c:${s.c}"><i></i>${s.name}</a>`);
+  const shots = s.shots.map(sh => {
+    count++;
+    const bg = sh.bg==='scene' ? '<div class="bg-scene"></div>' : sh.bg==='dark' ? '<div class="bg-dark"></div>' : '<div class="bg-grid"></div>';
+    return `<figure class="shot" style="margin:0">
+      <div class="meta"><b>${sh.t}</b><span>פריים ${count}</span></div>
+      <div class="f ${sh.dark?'dark':''}" style="--c:${s.c}">${bg}${P[sh.p]}${sh.body}${sh.ttl?`<div class="ttl">${sh.ttl}</div>`:''}${sh.tag?AI_TAG:''}${sh.src?`<div class="src">${sh.src}</div>`:''}<div class="cap">${sh.cap}</div></div>
+      <figcaption class="note">${sh.note}</figcaption>
+      ${sh.clip?`<span class="clip">קליפ מושן: ${sh.clip}</span>`:''}
+    </figure>`;
+  }).join('');
+  board.insertAdjacentHTML('beforeend', `<section class="sec" id="${s.id}" style="--c:${s.c}"><div class="sec-head"><h2>${s.name}</h2><span>${s.time} · ${s.shots.length} פריימים</span></div><div class="grid">${shots}</div></section>`);
+});
+document.querySelector('.top h1').insertAdjacentHTML('afterend','');
+</script>
+</body>
+</html>
